@@ -726,15 +726,6 @@
           <label class="form-label">First Name</label>
           <input class="form-input" type="text" placeholder="Jane" id="inp-first">
         </div>
-        <div class="form-group">
-          <label class="form-label">Last Name</label>
-          <input class="form-input" type="text" placeholder="Doe" id="inp-last">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Email Address</label>
-        <input class="form-input" type="email" placeholder="jane@example.com" id="inp-email">
-      </div>
       <div class="form-group">
         <label class="form-label">Session Type</label>
         <select class="form-select" id="inp-service">
@@ -1097,7 +1088,7 @@
     var time    = timeEl ? timeEl.textContent : '';
     var msg     = document.getElementById('inp-msg').value.trim();
 
-    if (!first || !email || !service || !date || !time) {
+    if (!first || !service || !date || !time) {
       showToast('Missing Info', 'Please fill in all fields and select a date & time.', true);
       return;
     }
@@ -1105,8 +1096,7 @@
     var waText = encodeURIComponent(
       'Hi FlirtCity Photography! \uD83D\uDCF8\n\n' +
       'I\'d like to book a session:\n' +
-      '\uD83D\uDC64 Name: ' + first + ' ' + last + '\n' +
-      '\uD83D\uDCE7 Email: ' + email + '\n' +
+      '\uD83D\uDC64 Name: ' + first + ' ' + last + '\n' 
       '\uD83C\uDFAF Session: ' + service + '\n' +
       '\uD83D\uDCC5 Date: ' + date + '\n' +
       '\u23F0 Time: ' + time +
