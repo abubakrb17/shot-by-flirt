@@ -591,12 +591,12 @@ footer {
     <p style="font-size:0.8rem;color:var(--muted);line-height:1.9;">A curated collection of portraits, editorial moments, and intimate sessions — each image a window into a feeling.</p>
   </div>
   <div class="gallery-grid">
-    <div class="gallery-item gi-1"><img src="portrait1.jpg" alt="FlirtCity Photography"></div>
-    <div class="gallery-item gi-2"><img src="portrait2.jpg" alt="FlirtCity Photography"></div>
-    <div class="gallery-item gi-3"><img src="portrait3.jpg" alt="FlirtCity Photography"></div>
-    <div class="gallery-item gi-4"><img src="portrait4.jpg" alt="FlirtCity Photography"></div>
-    <div class="gallery-item gi-5"><img src="portrait5.jpg" alt="FlirtCity Photography"></div>
-    <div class="gallery-item gi-6"><img src="portrait6.jpg" alt="FlirtCity Photography"></div>
+    <div class="gallery-item gi-1" onclick="openLightbox(0)"><img src="portrait1.jpg" alt="FlirtCity Photography"></div>
+<div class="gallery-item gi-2" onclick="openLightbox(1)"><img src="portrait2.jpg" alt="FlirtCity Photography"></div>
+<div class="gallery-item gi-3" onclick="openLightbox(2)"><img src="portrait3.jpg" alt="FlirtCity Photography"></div>
+<div class="gallery-item gi-4" onclick="openLightbox(3)"><img src="portrait4.jpg" alt="FlirtCity Photography"></div>
+<div class="gallery-item gi-5" onclick="openLightbox(4)"><img src="portrait5.jpg" alt="FlirtCity Photography"></div>
+<div class="gallery-item gi-6" onclick="openLightbox(5)"><img src="portrait6.jpg" alt="FlirtCity Photography"></div>
   </div>
 </section>
 
@@ -884,6 +884,15 @@ footer {
   <p class="footer-copy">© 2026 FlirtCity Photography. All rights reserved.</p>
 </footer>
 
+  <!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">&#215;</button>
+  <button class="lightbox-prev" onclick="lightboxNav(-1)">&#8592;</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  <button class="lightbox-next" onclick="lightboxNav(1)">&#8594;</button>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
 <!-- WHATSAPP -->
 <a class="wa-float" href="https://wa.me/905488677150?text=Hi%20FlirtCity%20Photography!%20I%27d%20like%20to%20book%20a%20session%20%F0%9F%93%B8" target="_blank" rel="noopener">
   <span class="wa-tooltip">Book via WhatsApp</span>
@@ -979,6 +988,36 @@ function showToast(title, msg) {
   t.classList.add('show');
   setTimeout(function() { t.classList.remove('show'); }, 4000);
 }
+
+ // ── Lightbox ──
+var lbImages = ['portrait1.jpg','portrait2.jpg','portrait3.jpg','portrait4.jpg','portrait5.jpg','portrait6.jpg'];
+var lbIndex = 0;
+
+function openLightbox(i) {
+  lbIndex = i;
+  document.getElementById('lightbox-img').src = lbImages[lbIndex];
+  document.getElementById('lightbox-counter').textContent = (lbIndex + 1) + ' / ' + lbImages.length;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeLightboxOutside(e) {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+}
+function lightboxNav(dir) {
+  lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length;
+  document.getElementById('lightbox-img').src = lbImages[lbIndex];
+  document.getElementById('lightbox-counter').textContent = (lbIndex + 1) + ' / ' + lbImages.length;
+}
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'ArrowLeft') lightboxNav(-1);
+  if (e.key === 'ArrowRight') lightboxNav(1);
+  if (e.key === 'Escape') closeLightbox();
+});
 </script>
 </body>
 </html>
