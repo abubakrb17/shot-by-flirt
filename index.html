@@ -6,568 +6,533 @@
 <title>FlirtCity Photography</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --black: #0a0808;
-    --deep: #110d0e;
-    --card: #1a1214;
-    --border: #2e1f23;
-    --gold: #e8547a;
-    --gold-light: #f07a96;
-    --white: #fdf0f3;
-    --muted: #9a8085;
-    --radius: 4px;
-    --pink-glow: rgba(232,84,122,0.12);
-    --pink-faint: rgba(232,84,122,0.05);
-  }
+:root {
+  --black: #0a0808;
+  --deep: #110d0e;
+  --card: #1a1214;
+  --border: #2e1f23;
+  --pink: #e8547a;
+  --pink-light: #f07a96;
+  --white: #fdf0f3;
+  --muted: #9a8085;
+  --pink-glow: rgba(232,84,122,0.12);
+  --pink-faint: rgba(232,84,122,0.05);
+}
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
 
-  html { scroll-behavior: smooth; }
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 48px;
+  background: rgba(10,8,8,0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(232,84,122,0.1);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem; font-weight: 400; letter-spacing: 0.08em;
+  color: var(--pink); text-decoration: none; white-space: nowrap;
+}
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  color: var(--muted); text-decoration: none;
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-book {
+  background: var(--pink); color: var(--black);
+  padding: 10px 22px; border: none; cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
+  transition: background 0.3s; text-decoration: none; white-space: nowrap;
+}
+.nav-book:hover { background: var(--pink-light); }
 
-  body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
+/* Hamburger */
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 4px; background: none; border: none;
+}
+.hamburger span {
+  display: block; width: 24px; height: 2px;
+  background: var(--white); transition: all 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
 
-  /* ─── NAV ─── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 48px;
-    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
-    backdrop-filter: blur(8px);
-  }
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem; font-weight: 400; letter-spacing: 0.08em;
-    color: var(--gold);
-    text-decoration: none;
-  }
-  .nav-links { display: flex; gap: 36px; list-style: none; }
-  .nav-links a {
-    color: var(--muted); text-decoration: none;
-    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
-    transition: color 0.3s;
-  }
-  .nav-links a:hover { color: var(--white); }
-  .nav-book {
-    background: var(--gold); color: var(--black);
-    padding: 10px 24px; border: none; cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
-    transition: background 0.3s;
-    text-decoration: none;
-  }
-  .nav-book:hover { background: var(--gold-light); }
+.mobile-menu {
+  display: none; position: fixed; top: 62px; left: 0; right: 0; z-index: 999;
+  background: rgba(10,8,8,0.98); backdrop-filter: blur(10px);
+  padding: 24px; flex-direction: column; gap: 0;
+  border-bottom: 1px solid var(--border);
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  color: var(--white); text-decoration: none;
+  font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 16px 0; border-bottom: 1px solid var(--border);
+  transition: color 0.3s;
+}
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu a:hover { color: var(--pink); }
 
-  /* ─── HERO ─── */
-  .hero {
-    height: 100vh; position: relative;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 60% 40%, var(--pink-glow) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 40% at 20% 70%, var(--pink-faint) 0%, transparent 60%),
-      radial-gradient(ellipse 30% 50% at 80% 80%, rgba(232,84,122,0.06) 0%, transparent 60%),
-      #0a0808;
-  }
-  .hero-bg::after {
-    content: '';
-    position: absolute; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-    opacity: 0.4;
-  }
-  .hero-tag {
-    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 24px;
-    position: relative; z-index: 1;
-    animation: fadeUp 1s ease both;
-  }
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.5rem, 8vw, 7rem);
-    font-weight: 300; line-height: 1; text-align: center;
-    position: relative; z-index: 1;
-    animation: fadeUp 1s ease 0.15s both;
-  }
-  .hero-title em { font-style: italic; color: var(--gold); }
-  .hero-sub {
-    margin-top: 28px; font-size: 0.8rem; letter-spacing: 0.1em;
-    color: var(--muted); text-align: center; max-width: 380px;
-    position: relative; z-index: 1;
-    animation: fadeUp 1s ease 0.3s both;
-  }
-  .hero-cta {
-    margin-top: 44px; display: flex; gap: 16px;
-    position: relative; z-index: 1;
-    animation: fadeUp 1s ease 0.45s both;
-  }
-  .btn-primary {
-    background: var(--gold); color: var(--black);
-    padding: 14px 36px; border: none; cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
-    transition: all 0.3s; text-decoration: none; display: inline-block;
-  }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
-  .btn-ghost {
-    background: transparent; color: var(--white);
-    padding: 14px 36px; border: 1px solid var(--border); cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500;
-    transition: all 0.3s; text-decoration: none; display: inline-block;
-  }
-  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
-  .hero-scroll {
-    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 1;
-    color: var(--muted); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
-    animation: fadeUp 1s ease 0.6s both;
-  }
-  .scroll-line {
-    width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent);
-    animation: scrollPulse 2s ease-in-out infinite;
-  }
+/* ─── HERO ─── */
+.hero {
+  height: 100vh; min-height: 600px; position: relative;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  overflow: hidden; padding: 80px 24px 40px;
+  text-align: center;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 60% 40%, var(--pink-glow) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 70%, var(--pink-faint) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 50% at 80% 80%, rgba(232,84,122,0.06) 0%, transparent 60%),
+    #0a0808;
+}
+.hero-tag {
+  font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--pink); margin-bottom: 20px; position: relative; z-index: 1;
+  animation: fadeUp 1s ease both;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 10vw, 7rem);
+  font-weight: 300; line-height: 1; position: relative; z-index: 1;
+  animation: fadeUp 1s ease 0.15s both;
+}
+.hero-title em { font-style: italic; color: var(--pink); }
+.hero-sub {
+  margin-top: 20px; font-size: 0.78rem; letter-spacing: 0.08em;
+  color: var(--muted); max-width: 340px; position: relative; z-index: 1;
+  animation: fadeUp 1s ease 0.3s both;
+}
+.hero-cta {
+  margin-top: 36px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+  position: relative; z-index: 1;
+  animation: fadeUp 1s ease 0.45s both;
+}
+.btn-primary {
+  background: var(--pink); color: var(--black);
+  padding: 14px 32px; border: none; cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
+  transition: all 0.3s; text-decoration: none; display: inline-block;
+}
+.btn-primary:hover { background: var(--pink-light); transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent; color: var(--white);
+  padding: 14px 32px; border: 1px solid var(--border); cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500;
+  transition: all 0.3s; text-decoration: none; display: inline-block;
+}
+.btn-ghost:hover { border-color: var(--pink); color: var(--pink); }
+.hero-scroll {
+  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 1;
+  color: var(--muted); font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase;
+}
+.scroll-line {
+  width: 1px; height: 36px; background: linear-gradient(to bottom, var(--pink), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
 
-  /* ─── SECTION COMMON ─── */
-  section { padding: 100px 48px; }
-  .section-label {
-    font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold);
-    margin-bottom: 16px;
-  }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.2rem, 4vw, 3.2rem);
-    font-weight: 300; line-height: 1.1;
-  }
-  .section-title em { font-style: italic; color: var(--gold); }
-  .divider {
-    width: 60px; height: 1px; background: var(--gold); margin: 24px 0;
-  }
+/* ─── SECTIONS ─── */
+section { padding: 80px 48px; }
+.section-label {
+  font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--pink);
+  margin-bottom: 14px;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 300; line-height: 1.1;
+}
+.section-title em { font-style: italic; color: var(--pink); }
+.divider { width: 60px; height: 1px; background: var(--pink); margin: 20px 0; }
 
-  /* ─── GALLERY ─── */
-  #gallery { background: var(--deep); }
-  .gallery-header { max-width: 600px; margin-bottom: 56px; }
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: auto;
-    gap: 12px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .gallery-item {
-    overflow: hidden; cursor: pointer; position: relative;
-    background: var(--card);
-  }
-  .gallery-item::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(10,10,10,0.5), transparent 50%);
-    opacity: 0; transition: opacity 0.4s;
-  }
-  .gallery-item:hover::after { opacity: 1; }
-  .gallery-item img, .gallery-placeholder {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.6s ease;
-    display: block;
-  }
-  .gallery-item:hover img, .gallery-item:hover .gallery-placeholder { transform: scale(1.04); }
-  .gallery-placeholder {
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.9rem; color: var(--muted); letter-spacing: 0.1em;
-  }
-  .gi-1 { grid-column: 1/6; grid-row: 1; height: 380px; }
-  .gi-2 { grid-column: 6/9; grid-row: 1; height: 380px; }
-  .gi-3 { grid-column: 9/13; grid-row: 1; height: 380px; }
-  .gi-4 { grid-column: 1/4; grid-row: 2; height: 300px; }
-  .gi-5 { grid-column: 4/9; grid-row: 2; height: 300px; }
-  .gi-6 { grid-column: 9/13; grid-row: 2; height: 300px; }
+/* ─── GALLERY ─── */
+#gallery { background: var(--deep); }
+.gallery-header { max-width: 600px; margin-bottom: 48px; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 8px;
+  max-width: 1200px; margin: 0 auto;
+}
+.gallery-item {
+  overflow: hidden; cursor: pointer; position: relative; background: var(--card);
+}
+.gallery-item::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(10,10,10,0.5), transparent 50%);
+  opacity: 0; transition: opacity 0.4s;
+}
+.gallery-item:hover::after { opacity: 1; }
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s ease; display: block;
+}
+.gallery-item:hover img { transform: scale(1.04); }
+.gi-1 { grid-column: 1/6; grid-row: 1; height: 320px; }
+.gi-2 { grid-column: 6/9; grid-row: 1; height: 320px; }
+.gi-3 { grid-column: 9/13; grid-row: 1; height: 320px; }
+.gi-4 { grid-column: 1/4; grid-row: 2; height: 260px; }
+.gi-5 { grid-column: 4/9; grid-row: 2; height: 260px; }
+.gi-6 { grid-column: 9/13; grid-row: 2; height: 260px; }
 
-  /* ─── SERVICES ─── */
-  #services { background: var(--black); }
-  .services-header { max-width: 600px; margin-bottom: 60px; }
-  .services-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2px; max-width: 1200px; margin: 0 auto;
-  }
-  .service-card {
-    background: var(--card);
-    padding: 40px 36px; position: relative; overflow: hidden;
-    transition: background 0.3s;
-    border-top: 1px solid var(--border);
-  }
-  .service-card::before {
-    content: ''; position: absolute; top: 0; left: 0;
-    width: 3px; height: 0; background: var(--gold);
-    transition: height 0.4s ease;
-  }
-  .service-card:hover { background: #1c1c1c; }
-  .service-card:hover::before { height: 100%; }
-  .service-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.5rem; font-weight: 300; color: var(--border);
-    margin-bottom: 20px; line-height: 1;
-  }
-  .service-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem; font-weight: 400; margin-bottom: 12px;
-  }
-  .service-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.8; margin-bottom: 24px; }
-  .service-footer {
-    display: flex; align-items: center; justify-content: space-between;
-    border-top: 1px solid var(--border); padding-top: 20px;
-  }
-  .service-price {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.8rem; color: var(--gold); font-weight: 300;
-  }
-  .service-duration { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
-  .service-btn {
-    background: none; border: 1px solid var(--border); color: var(--white);
-    padding: 8px 20px; cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
-    transition: all 0.3s;
-  }
-  .service-btn:hover { border-color: var(--gold); color: var(--gold); }
+/* ─── SERVICES ─── */
+#services { background: var(--black); }
+.services-header { max-width: 600px; margin-bottom: 48px; }
+.services-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2px; max-width: 1200px; margin: 0 auto;
+}
+.service-card {
+  background: var(--card); padding: 36px 28px; position: relative; overflow: hidden;
+  transition: background 0.3s; border-top: 1px solid var(--border);
+}
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 3px; height: 0; background: var(--pink); transition: height 0.4s ease;
+}
+.service-card:hover { background: #1c1c1c; }
+.service-card:hover::before { height: 100%; }
+.service-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-weight: 300; color: var(--border); margin-bottom: 16px; line-height: 1;
+}
+.service-name {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; margin-bottom: 10px;
+}
+.service-desc { font-size: 0.76rem; color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
+.service-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--border); padding-top: 16px;
+}
+.service-price { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--pink); font-weight: 300; }
+.service-duration { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+.service-btn {
+  background: none; border: 1px solid var(--border); color: var(--white);
+  padding: 8px 18px; cursor: pointer; font-family: 'Montserrat', sans-serif;
+  font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.3s;
+}
+.service-btn:hover { border-color: var(--pink); color: var(--pink); }
+.note-box {
+  max-width: 800px; margin: 36px auto 0;
+  background: var(--card); border-left: 3px solid var(--pink);
+  padding: 18px 24px; font-size: 0.76rem; color: var(--muted); line-height: 1.9;
+}
+.note-box strong { color: var(--white); font-weight: 500; display: block; margin-bottom: 4px; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; }
 
-  /* ─── BOOKING ─── */
-  #booking { background: var(--deep); }
-  .booking-wrap {
-    display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px;
-    max-width: 1100px; margin: 0 auto; align-items: start;
-  }
-  .booking-info p { font-size: 0.82rem; color: var(--muted); line-height: 1.9; margin-bottom: 28px; }
-  .booking-contact { display: flex; flex-direction: column; gap: 16px; }
-  .contact-item { display: flex; gap: 16px; align-items: center; }
-  .contact-icon {
-    width: 36px; height: 36px; border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--gold); font-size: 0.9rem; flex-shrink: 0;
-  }
-  .contact-text { font-size: 0.78rem; color: var(--muted); }
-  .contact-text strong { color: var(--white); font-weight: 500; display: block; font-size: 0.72rem; letter-spacing: 0.08em; }
+/* ─── BOOKING ─── */
+#booking { background: var(--deep); }
+.booking-wrap {
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px;
+  max-width: 1100px; margin: 0 auto; align-items: start;
+}
+.booking-info p { font-size: 0.8rem; color: var(--muted); line-height: 1.9; margin-bottom: 24px; }
+.booking-contact { display: flex; flex-direction: column; gap: 14px; }
+.contact-item { display: flex; gap: 14px; align-items: center; }
+.contact-icon {
+  width: 36px; height: 36px; border: 1px solid var(--border); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; color: var(--pink); font-size: 0.9rem;
+}
+.contact-text { font-size: 0.76rem; color: var(--muted); }
+.contact-text strong { color: var(--white); font-weight: 500; display: block; font-size: 0.68rem; letter-spacing: 0.08em; }
+.contact-text a { color: var(--muted); text-decoration: none; }
+.contact-text a:hover { color: var(--pink); }
 
-  /* Calendar */
-  .booking-form { background: var(--card); padding: 44px; }
-  .form-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem; margin-bottom: 32px;
-  }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
-  .form-group.full { grid-column: 1/-1; }
-  .form-label { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
-  .form-input, .form-select, .form-textarea {
-    background: var(--deep); border: 1px solid var(--border);
-    color: var(--white); padding: 12px 16px;
-    font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 300;
-    outline: none; transition: border-color 0.3s; width: 100%;
-  }
-  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
-  .form-select option { background: var(--deep); }
-  .form-textarea { resize: vertical; min-height: 100px; }
+.booking-form { background: var(--card); padding: 36px; }
+.form-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 28px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+.form-label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+.form-input, .form-select, .form-textarea {
+  background: var(--deep); border: 1px solid var(--border);
+  color: var(--white); padding: 12px 14px;
+  font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 300;
+  outline: none; transition: border-color 0.3s; width: 100%;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--pink); }
+.form-select option { background: var(--deep); }
+.form-textarea { resize: vertical; min-height: 90px; }
 
-  /* monthly calendar */
-  /* ─── CALENDAR ─── */
-  .monthly-cal-wrap {
-    background: #1e1416;
-    border: 1px solid #3a2530;
-    padding: 0;
-    margin-top: 8px;
-    overflow: hidden;
-  }
-  .cal-nav-bar {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 14px 16px;
-    background: #16100f;
-    border-bottom: 1px solid #3a2530;
-  }
-  .cal-nav-btn {
-    background: none; border: 1px solid #3a2530; color: #fdf0f3;
-    width: 36px; height: 36px; cursor: pointer; font-size: 1rem;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s; border-radius: 2px;
-  }
-  .cal-nav-btn:hover:not(:disabled) { border-color: #e8547a; color: #e8547a; }
-  .cal-nav-btn:disabled { opacity: 0.25; cursor: default; }
-  .cal-nav-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem; font-weight: 600; color: #fdf0f3; letter-spacing: 0.06em;
-  }
-  .mb { padding: 16px; }
-  .mg { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
-  .cdn {
-    text-align: center; font-size: 0.52rem; letter-spacing: 0.08em;
-    text-transform: uppercase; color: #e8547a; padding: 6px 0; font-weight: 700;
-  }
-  .cd {
-    text-align: center; padding: 8px 2px; font-size: 0.78rem;
-    cursor: pointer; border: 1px solid transparent; border-radius: 2px;
-    color: #fdf0f3; transition: all 0.15s; line-height: 1;
-  }
-  .cd:hover { border-color: #e8547a; color: #e8547a; background: rgba(232,84,122,0.12); }
-  .cd.selected { background: #e8547a !important; color: #0a0808 !important; font-weight: 700 !important; border-color: #e8547a !important; }
-  .cd.today { color: #e8547a; font-weight: 700; border: 1px solid rgba(232,84,122,0.5); }
-  .cde { pointer-events: none; }
-  .cd.past { color: #3a2530 !important; cursor: default; pointer-events: none; }
+/* ─── CALENDAR ─── */
+.monthly-cal-wrap {
+  background: #16100f; border: 1px solid #3a2530; overflow: hidden; margin-top: 6px;
+}
+.cal-nav-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px; background: #120e0d; border-bottom: 1px solid #3a2530;
+}
+.cal-nav-btn {
+  background: none; border: 1px solid #3a2530; color: var(--white);
+  width: 34px; height: 34px; cursor: pointer; font-size: 1rem;
+  display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+}
+.cal-nav-btn:hover:not(:disabled) { border-color: var(--pink); color: var(--pink); }
+.cal-nav-btn:disabled { opacity: 0.2; cursor: default; }
+.cal-nav-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; font-weight: 600; color: var(--white); letter-spacing: 0.06em;
+}
+.mb { padding: 14px; }
+.mg { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+.cdn {
+  text-align: center; font-size: 0.5rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--pink); padding: 5px 0; font-weight: 700;
+}
+.cd {
+  text-align: center; padding: 8px 2px; font-size: 0.76rem;
+  cursor: pointer; border: 1px solid transparent; border-radius: 2px;
+  color: var(--white); transition: all 0.15s; line-height: 1;
+}
+.cd:hover { border-color: var(--pink); color: var(--pink); background: rgba(232,84,122,0.1); }
+.cd.selected { background: var(--pink) !important; color: #0a0808 !important; font-weight: 700 !important; }
+.cd.today { color: var(--pink); font-weight: 700; border: 1px solid rgba(232,84,122,0.4); }
+.cde { pointer-events: none; }
+.cd.past { color: #3a2530 !important; cursor: default; pointer-events: none; }
 
-  .time-slots { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-  .time-slot {
-    padding: 7px 14px; border: 1px solid var(--border); cursor: pointer;
-    font-size: 0.72rem; letter-spacing: 0.08em; transition: all 0.2s;
-  }
-  .time-slot:hover { border-color: var(--gold); color: var(--gold); }
-  .time-slot.selected { background: var(--gold); color: var(--black); border-color: var(--gold); font-weight: 600; }
-  .time-slot.unavailable { opacity: 0.3; cursor: not-allowed; }
+/* ─── TIME SLOTS ─── */
+.time-slots { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+.time-slot {
+  padding: 7px 12px; border: 1px solid var(--border); cursor: pointer;
+  font-size: 0.68rem; letter-spacing: 0.06em; color: var(--white); transition: all 0.2s;
+}
+.time-slot:hover { border-color: var(--pink); color: var(--pink); }
+.time-slot.selected { background: var(--pink); color: var(--black); border-color: var(--pink); font-weight: 600; }
+.time-slot.unavailable { opacity: 0.25; cursor: not-allowed; }
 
-  .form-submit {
-    width: 100%; background: var(--gold); color: var(--black);
-    border: none; padding: 16px; cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
-    transition: all 0.3s; margin-top: 8px;
-  }
-  .form-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+.form-submit {
+  width: 100%; background: var(--pink); color: var(--black);
+  border: none; padding: 15px; cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
+  transition: all 0.3s; margin-top: 6px;
+}
+.form-submit:hover { background: var(--pink-light); transform: translateY(-1px); }
 
-  /* ─── REVIEWS ─── */
-  #reviews { background: var(--black); }
-  .reviews-header { max-width: 600px; margin: 0 auto 60px; text-align: center; }
-  .reviews-header .divider { margin: 24px auto; }
-  .reviews-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px; max-width: 1200px; margin: 0 auto;
-  }
-  .review-card { background: var(--card); padding: 36px; position: relative; }
-  .review-card::before {
-    content: '"';
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 6rem; line-height: 0.7;
-    color: var(--gold); opacity: 0.15;
-    position: absolute; top: 20px; left: 24px;
-  }
-  .stars { color: var(--gold); letter-spacing: 3px; font-size: 0.75rem; margin-bottom: 16px; }
-  .review-text {
-    font-size: 0.82rem; color: var(--muted); line-height: 1.9;
-    margin-bottom: 24px; font-style: italic;
-  }
-  .review-author { display: flex; align-items: center; gap: 14px; }
-  .author-avatar {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--gold), var(--border));
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--black);
-  }
-  .author-name { font-size: 0.78rem; font-weight: 500; }
-  .author-date { font-size: 0.65rem; color: var(--muted); }
+/* ─── REVIEWS ─── */
+#reviews { background: var(--black); }
+.reviews-header { max-width: 600px; margin: 0 auto 48px; text-align: center; }
+.reviews-header .divider { margin: 20px auto; }
+.reviews-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px; max-width: 1200px; margin: 0 auto;
+}
+.review-card { background: var(--card); padding: 32px; position: relative; }
+.review-card::before {
+  content: '"'; font-family: 'Cormorant Garamond', serif; font-size: 5rem; line-height: 0.7;
+  color: var(--pink); opacity: 0.15; position: absolute; top: 18px; left: 20px;
+}
+.stars { color: var(--pink); letter-spacing: 3px; font-size: 0.72rem; margin-bottom: 14px; }
+.review-text { font-size: 0.8rem; color: var(--muted); line-height: 1.9; margin-bottom: 20px; font-style: italic; }
+.review-author { display: flex; align-items: center; gap: 12px; }
+.author-avatar {
+  width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--pink), var(--border));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--black);
+}
+.author-name { font-size: 0.76rem; font-weight: 500; }
+.author-date { font-size: 0.62rem; color: var(--muted); }
 
-  /* ─── FOOTER ─── */
-  footer {
-    background: #070707; border-top: 1px solid var(--border);
-    padding: 60px 48px 40px; text-align: center;
-  }
-  .footer-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem; color: var(--gold); letter-spacing: 0.1em;
-    display: block; margin-bottom: 16px;
-  }
-  .footer-tagline { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.15em; margin-bottom: 36px; }
-  .footer-links { display: flex; justify-content: center; gap: 32px; list-style: none; margin-bottom: 40px; }
-  .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.3s; }
-  .footer-links a:hover { color: var(--gold); }
-  .footer-copy { font-size: 0.62rem; color: #444; letter-spacing: 0.1em; }
+/* ─── PRICING ─── */
+#pricing { background: var(--deep); }
+.pricing-header { max-width: 600px; margin: 0 auto 52px; text-align: center; }
+.pricing-header .divider { margin: 20px auto; }
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; max-width: 1100px; margin: 0 auto; border: 1px solid var(--border);
+}
+.pricing-plan {
+  padding: 40px 28px; border-right: 1px solid var(--border); position: relative; transition: background 0.3s;
+}
+.pricing-plan:last-child { border-right: none; }
+.pricing-plan.featured { background: var(--card); border-top: 3px solid var(--pink); }
+.pricing-plan.featured::before {
+  content: 'MOST POPULAR';
+  position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+  background: var(--pink); color: var(--black);
+  font-size: 0.5rem; letter-spacing: 0.2em; font-weight: 700; padding: 4px 12px;
+}
+.plan-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin-bottom: 6px; }
+.plan-tagline { font-size: 0.66rem; color: var(--muted); letter-spacing: 0.06em; margin-bottom: 24px; }
+.plan-price { display: flex; align-items: flex-start; gap: 3px; margin-bottom: 3px; }
+.plan-currency { font-size: 1rem; color: var(--pink); margin-top: 7px; font-weight: 500; }
+.plan-amount { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--pink); line-height: 1; font-weight: 300; }
+.plan-duration { font-size: 0.62rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 28px; text-transform: uppercase; }
+.plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+.plan-features li { font-size: 0.74rem; color: var(--muted); display: flex; gap: 10px; align-items: flex-start; }
+.plan-features li::before { content: '✓'; color: var(--pink); font-weight: 700; font-size: 0.72rem; flex-shrink: 0; margin-top: 1px; }
+.plan-features li.no::before { content: '×'; color: var(--border); }
+.plan-features li.no { opacity: 0.4; }
+.plan-cta {
+  width: 100%; padding: 11px; border: 1px solid var(--border);
+  background: none; color: var(--white); cursor: pointer;
+  font-family: 'Montserrat', sans-serif; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
+  transition: all 0.3s;
+}
+.plan-cta:hover, .pricing-plan.featured .plan-cta { background: var(--pink); border-color: var(--pink); color: var(--black); }
 
-  /* ─── TOAST ─── */
-  .toast {
-    position: fixed; bottom: 32px; right: 32px; z-index: 999;
-    background: var(--card); border-left: 3px solid var(--gold);
-    padding: 16px 24px; max-width: 320px;
-    font-size: 0.78rem; line-height: 1.6;
-    transform: translateX(120%); transition: transform 0.4s ease;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-  }
-  .toast.show { transform: translateX(0); }
-  .toast-title { font-weight: 600; color: var(--gold); margin-bottom: 4px; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
+/* ─── INSTAGRAM ─── */
+#instagram { background: var(--black); }
+.ig-header { max-width: 600px; margin: 0 auto 40px; text-align: center; }
+.ig-header .divider { margin: 20px auto; }
+.ig-handle {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--pink); font-size: 0.76rem; letter-spacing: 0.12em;
+  text-decoration: none; margin-bottom: 6px; transition: color 0.3s;
+}
+.ig-handle:hover { color: var(--pink-light); }
+.ig-handle svg { width: 16px; height: 16px; fill: currentColor; }
+.ig-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 6px; max-width: 1000px; margin: 0 auto 36px;
+}
+.ig-post { aspect-ratio: 1; overflow: hidden; cursor: pointer; position: relative; background: var(--card); }
+.ig-post-inner { width: 100%; height: 100%; transition: transform 0.5s ease; }
+.ig-post:hover .ig-post-inner { transform: scale(1.06); }
+.ig-post-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ig-placeholder {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
+}
+.ig-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(232,84,122,0.75), rgba(10,8,8,0.55));
+  opacity: 0; transition: opacity 0.35s;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+}
+.ig-post:hover .ig-overlay { opacity: 1; }
+.ig-overlay-icon { font-size: 1.3rem; }
+.ig-overlay-stat { font-size: 0.62rem; letter-spacing: 0.12em; color: #fff; }
+.ig-follow-wrap { text-align: center; }
+.ig-follow {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, #e8547a, #c9376a, #a0255a);
+  color: #fff; padding: 14px 32px; text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; transition: all 0.3s;
+}
+.ig-follow:hover { opacity: 0.88; transform: translateY(-1px); }
+.ig-follow svg { width: 16px; height: 16px; fill: #fff; }
 
-  /* ─── PRICING TABLE ─── */
-  #pricing { background: var(--deep); }
-  .pricing-header { max-width: 600px; margin: 0 auto 64px; text-align: center; }
-  .pricing-header .divider { margin: 24px auto; }
-  .pricing-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 0; max-width: 1100px; margin: 0 auto;
-    border: 1px solid var(--border);
-  }
-  .pricing-plan {
-    padding: 48px 36px; border-right: 1px solid var(--border);
-    position: relative; transition: background 0.3s;
-  }
-  .pricing-plan:last-child { border-right: none; }
-  .pricing-plan.featured {
-    background: var(--card);
-    border-top: 3px solid var(--gold);
-  }
-  .pricing-plan.featured::before {
-    content: 'MOST POPULAR';
-    position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
-    background: var(--gold); color: var(--black);
-    font-size: 0.55rem; letter-spacing: 0.2em; font-weight: 700;
-    padding: 4px 14px;
-  }
-  .plan-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem; margin-bottom: 8px;
-  }
-  .plan-tagline { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; margin-bottom: 28px; }
-  .plan-price {
-    display: flex; align-items: flex-start; gap: 4px; margin-bottom: 4px;
-  }
-  .plan-currency { font-size: 1.1rem; color: var(--gold); margin-top: 8px; font-weight: 500; }
-  .plan-amount {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3.5rem; color: var(--gold); line-height: 1; font-weight: 300;
-  }
-  .plan-duration { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 32px; text-transform: uppercase; }
-  .plan-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
-  .plan-features li {
-    font-size: 0.78rem; color: var(--muted); display: flex; gap: 12px; align-items: flex-start;
-  }
-  .plan-features li::before {
-    content: '✓'; color: var(--gold); font-weight: 700; font-size: 0.75rem; flex-shrink: 0; margin-top: 1px;
-  }
-  .plan-features li.no::before { content: '×'; color: var(--border); }
-  .plan-features li.no { opacity: 0.4; }
-  .plan-cta {
-    width: 100%; padding: 12px; border: 1px solid var(--border);
-    background: none; color: var(--white); cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
-    transition: all 0.3s;
-  }
-  .plan-cta:hover, .pricing-plan.featured .plan-cta {
-    background: var(--gold); border-color: var(--gold); color: var(--black);
-  }
-  .pricing-plan.featured .plan-cta:hover { background: var(--gold-light); }
+/* ─── FOOTER ─── */
+footer {
+  background: #070707; border-top: 1px solid var(--border);
+  padding: 52px 48px 36px; text-align: center;
+}
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--pink); letter-spacing: 0.1em; display: block; margin-bottom: 12px; }
+.footer-tagline { font-size: 0.66rem; color: var(--muted); letter-spacing: 0.15em; margin-bottom: 32px; }
+.footer-links { display: flex; justify-content: center; gap: 24px; list-style: none; margin-bottom: 36px; flex-wrap: wrap; }
+.footer-links a { color: var(--muted); text-decoration: none; font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.3s; }
+.footer-links a:hover { color: var(--pink); }
+.footer-copy { font-size: 0.6rem; color: #444; letter-spacing: 0.1em; }
 
-  /* ─── INSTAGRAM FEED ─── */
-  #instagram { background: var(--black); }
-  .ig-header { max-width: 600px; margin: 0 auto 48px; text-align: center; }
-  .ig-header .divider { margin: 24px auto; }
-  .ig-handle {
-    display: inline-flex; align-items: center; gap: 8px;
-    color: var(--gold); font-size: 0.78rem; letter-spacing: 0.12em;
-    text-decoration: none; margin-bottom: 8px;
-    transition: color 0.3s;
-  }
-  .ig-handle:hover { color: var(--gold-light); }
-  .ig-handle svg { width: 18px; height: 18px; fill: currentColor; }
-  .ig-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 6px; max-width: 1200px; margin: 0 auto 40px;
-  }
-  .ig-post {
-    aspect-ratio: 1; overflow: hidden; cursor: pointer; position: relative;
-    background: var(--card);
-  }
-  .ig-post-inner {
-    width: 100%; height: 100%;
-    transition: transform 0.5s ease;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .ig-post:hover .ig-post-inner { transform: scale(1.06); }
-  .ig-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(232,84,122,0.7), rgba(10,8,8,0.6));
-    opacity: 0; transition: opacity 0.35s;
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
-  }
-  .ig-post:hover .ig-overlay { opacity: 1; }
-  .ig-overlay-icon { font-size: 1.4rem; }
-  .ig-overlay-stat { font-size: 0.65rem; letter-spacing: 0.12em; color: #fff; }
-  .ig-placeholder {
-    width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem;
-  }
-  .ig-follow-wrap { text-align: center; }
-  .ig-follow {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: linear-gradient(135deg, #e8547a, #c9376a, #a0255a);
-    color: #fff; padding: 14px 36px; text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
-    transition: all 0.3s;
-  }
-  .ig-follow:hover { opacity: 0.88; transform: translateY(-1px); }
-  .ig-follow svg { width: 18px; height: 18px; fill: #fff; }
+/* ─── WHATSAPP ─── */
+.wa-float {
+  position: fixed; bottom: 24px; right: 24px; z-index: 200;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+  cursor: pointer; text-decoration: none;
+  animation: waPulse 2.5s ease-in-out infinite; transition: transform 0.3s;
+}
+.wa-float:hover { transform: scale(1.1); }
+.wa-float svg { width: 28px; height: 28px; fill: #fff; }
+.wa-tooltip {
+  position: absolute; right: 66px; top: 50%; transform: translateY(-50%);
+  background: var(--card); border: 1px solid var(--border);
+  padding: 7px 12px; white-space: nowrap; font-size: 0.66rem;
+  letter-spacing: 0.08em; color: var(--white); opacity: 0; pointer-events: none; transition: opacity 0.3s;
+}
+.wa-float:hover .wa-tooltip { opacity: 1; }
 
-  /* ─── WHATSAPP FLOAT ─── */
-  .wa-float {
-    position: fixed; bottom: 28px; right: 28px; z-index: 200;
-    width: 60px; height: 60px; border-radius: 50%;
-    background: linear-gradient(135deg, #25d366, #128c7e);
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 4px 20px rgba(37,211,102,0.35), 0 0 0 0 rgba(37,211,102,0.4);
-    cursor: pointer; text-decoration: none;
-    animation: waPulse 2.5s ease-in-out infinite;
-    transition: transform 0.3s;
-  }
-  .wa-float:hover { transform: scale(1.1); }
-  .wa-float svg { width: 30px; height: 30px; fill: #fff; }
-  .wa-tooltip {
-    position: absolute; right: 72px; top: 50%; transform: translateY(-50%);
-    background: var(--card); border: 1px solid var(--border);
-    padding: 8px 14px; white-space: nowrap;
-    font-size: 0.7rem; letter-spacing: 0.1em; color: var(--white);
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.3s; border-radius: 3px;
-  }
-  .wa-tooltip::after {
-    content: ''; position: absolute; right: -6px; top: 50%; transform: translateY(-50%);
-    border: 6px solid transparent; border-right: none;
-    border-left-color: var(--border);
-  }
-  .wa-float:hover .wa-tooltip { opacity: 1; }
-  /* ─── ANIMATIONS ─── */
-  @keyframes waPulse {
-    0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.35), 0 0 0 0 rgba(37,211,102,0.4); }
-    50%      { box-shadow: 0 4px 20px rgba(37,211,102,0.35), 0 0 0 12px rgba(37,211,102,0); }
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes scrollPulse {
-    0%,100% { opacity: 0.4; } 50% { opacity: 1; }
-  }
+/* ─── TOAST ─── */
+.toast {
+  position: fixed; bottom: 28px; right: 28px; z-index: 999;
+  background: var(--card); border-left: 3px solid var(--pink);
+  padding: 14px 20px; max-width: 300px; font-size: 0.76rem; line-height: 1.6;
+  transform: translateX(120%); transition: transform 0.4s ease;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.toast.show { transform: translateX(0); }
+.toast-title { font-weight: 600; color: var(--pink); margin-bottom: 3px; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; }
 
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    .nav-links { display: none; }
-    section { padding: 72px 24px; }
-    .booking-wrap { grid-template-columns: 1fr; gap: 40px; }
-    .form-row { grid-template-columns: 1fr; }
-    .gi-1,.gi-2,.gi-3 { grid-column: span 12; height: 240px; }
-    .gi-4,.gi-5,.gi-6 { grid-column: span 12; height: 220px; }
-    footer { padding: 40px 24px 24px; }
-    .pricing-grid { grid-template-columns: 1fr; border: none; gap: 2px; }
-    .pricing-plan { border-right: none; border-bottom: 1px solid var(--border); }
-    .ig-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-  @media (max-width: 500px) {
-    .ig-grid { grid-template-columns: repeat(2, 1fr); }
-  }
+/* ─── ANIMATIONS ─── */
+@keyframes waPulse {
+  0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.35), 0 0 0 0 rgba(37,211,102,0.4); }
+  50%      { box-shadow: 0 4px 20px rgba(37,211,102,0.35), 0 0 0 12px rgba(37,211,102,0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scrollPulse {
+  0%,100% { opacity: 0.4; } 50% { opacity: 1; }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+  .pricing-plan:nth-child(2) { border-right: none; }
+  .pricing-plan:nth-child(3) { border-top: 1px solid var(--border); }
+  .ig-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  nav { padding: 14px 20px; }
+  .nav-links { display: none; }
+  .nav-book { display: none; }
+  .hamburger { display: flex; }
+  section { padding: 64px 20px; }
+  .gallery-grid { gap: 6px; }
+  .gi-1 { grid-column: 1/13; grid-row: 1; height: 240px; }
+  .gi-2 { grid-column: 1/7; grid-row: 2; height: 200px; }
+  .gi-3 { grid-column: 7/13; grid-row: 2; height: 200px; }
+  .gi-4 { grid-column: 1/5; grid-row: 3; height: 180px; }
+  .gi-5 { grid-column: 5/9; grid-row: 3; height: 180px; }
+  .gi-6 { grid-column: 9/13; grid-row: 3; height: 180px; }
+  .booking-wrap { grid-template-columns: 1fr; gap: 32px; }
+  .booking-form { padding: 24px 20px; }
+  .pricing-grid { grid-template-columns: 1fr; border: none; gap: 2px; }
+  .pricing-plan { border-right: none; border-bottom: 1px solid var(--border); }
+  .pricing-plan:last-child { border-bottom: none; }
+  .ig-grid { grid-template-columns: repeat(2, 1fr); }
+  footer { padding: 40px 20px 28px; }
+  .footer-links { gap: 16px; }
+  .wa-float { width: 50px; height: 50px; bottom: 20px; right: 20px; }
+  .wa-tooltip { display: none; }
+  .toast { right: 16px; bottom: 16px; max-width: calc(100vw - 32px); }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: clamp(2.4rem, 12vw, 3.5rem); }
+  .hero-cta { flex-direction: column; align-items: center; }
+  .btn-primary, .btn-ghost { width: 100%; text-align: center; }
+  .ig-grid { grid-template-columns: repeat(2, 1fr); gap: 4px; }
+  .time-slots { gap: 5px; }
+  .time-slot { padding: 6px 10px; font-size: 0.64rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .reviews-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -584,7 +549,20 @@
     <li><a href="#booking">Book</a></li>
   </ul>
   <a class="nav-book" href="#booking">Book Now</a>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#gallery" onclick="closeMenu()">Gallery</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#pricing" onclick="closeMenu()">Pricing</a>
+  <a href="#reviews" onclick="closeMenu()">Reviews</a>
+  <a href="#instagram" onclick="closeMenu()">Instagram</a>
+  <a href="#booking" onclick="closeMenu()">Book Now</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -608,28 +586,17 @@
     <div class="section-label">Portfolio</div>
     <h2 class="section-title">Every Frame<br>Tells a <em>Story</em></h2>
     <div class="divider"></div>
-    <p style="font-size:0.82rem;color:var(--muted);line-height:1.9;">A curated collection of portraits, editorial moments, and intimate sessions — each image a window into a feeling.</p>
+    <p style="font-size:0.8rem;color:var(--muted);line-height:1.9;">A curated collection of portraits, editorial moments, and intimate sessions — each image a window into a feeling.</p>
   </div>
-<div class="gallery-grid">
-  <div class="gallery-item gi-1">
-    <img src="portrait1.jpg" alt="FlirtCity Photography" style="width:100%;height:100%;object-fit:cover;display:block;">
+  <div class="gallery-grid">
+    <div class="gallery-item gi-1"><img src="portrait1.jpg" alt="FlirtCity Photography"></div>
+    <div class="gallery-item gi-2"><img src="portrait2.jpg" alt="FlirtCity Photography"></div>
+    <div class="gallery-item gi-3"><img src="portrait3.jpg" alt="FlirtCity Photography"></div>
+    <div class="gallery-item gi-4"><img src="portrait4.jpg" alt="FlirtCity Photography"></div>
+    <div class="gallery-item gi-5"><img src="portrait5.jpg" alt="FlirtCity Photography"></div>
+    <div class="gallery-item gi-6"><img src="portrait6.jpg" alt="FlirtCity Photography"></div>
   </div>
-  <div class="gallery-item gi-2">
-    <img src="portrait2.jpg" alt="FlirtCity Photography" style="width:100%;height:100%;object-fit:cover;display:block;">
-  </div>
-  <div class="gallery-item gi-3">
-    <img src="portrait3.jpg" alt="FlirtCity Photography" style="width:100%;height:100%;object-fit:cover;display:block;">
-  </div>
-  <div class="gallery-item gi-4">
-    <img src="portrait4.jpg" alt="FlirtCity Photography" style="width:100%;height:100%;object-fit:cover;display:block;">
-  </div>
-  <div class="gallery-item gi-5">
-    <img src="portrait5.jpg" alt="FlirtCity Photography" style="width:100%;height:100%;object-fit:cover;display:block;">
-  </div>
-  <div class="gallery-item gi-6">
-    <img src="portrait6.jpg" alt="FlirtCity Photography" style="width:100%;height:100%;object-fit:cover;display:block;">
-  </div>
-</div>
+</section>
 
 <!-- SERVICES -->
 <section id="services">
@@ -644,35 +611,26 @@
       <div class="service-name">1 Hour Session</div>
       <p class="service-desc">A focused shoot packed into one golden hour. Perfect for portraits, headshots, or a quick content refresh. Includes 8 beautifully edited photos of your choice.</p>
       <div class="service-footer">
-        <div>
-          <div class="service-price">$70</div>
-          <div class="service-duration">1 hour · 8 edited photos</div>
-        </div>
-        <button class="service-btn" onclick="selectService('1 Hour Session', '$70')">Book This</button>
+        <div><div class="service-price">$70</div><div class="service-duration">1 hour · 8 edited photos</div></div>
+        <button class="service-btn" onclick="selectService('1 Hour Session')">Book This</button>
       </div>
     </div>
     <div class="service-card">
       <div class="service-num">02</div>
       <div class="service-name">2 Hour Session</div>
-      <p class="service-desc">More time, more looks, more magic. Ideal for a relaxed creative shoot. Includes 8 beautifully edited photos of your choice.</p>
+      <p class="service-desc">More time, more looks, more magic. Ideal for multiple outfits or a relaxed creative shoot. Includes 8 beautifully edited photos of your choice.</p>
       <div class="service-footer">
-        <div>
-          <div class="service-price">$80</div>
-          <div class="service-duration">2 hours · 8 edited photos</div>
-        </div>
-        <button class="service-btn" onclick="selectService('2 Hour Session', '$80')">Book This</button>
+        <div><div class="service-price">$80</div><div class="service-duration">2 hours · 8 edited photos</div></div>
+        <button class="service-btn" onclick="selectService('2 Hour Session')">Book This</button>
       </div>
     </div>
     <div class="service-card">
       <div class="service-num">03</div>
       <div class="service-name">Premium 10</div>
-      <p class="service-desc">Step it up with 10 premium edited photos. More variety, more expression — ideal for models, creatives, and anyone who wants a fuller gallery to choose from.</p>
+      <p class="service-desc">Step it up with 10 premium edited photos. More variety, more expression — ideal for models, creatives, and anyone who wants a fuller gallery.</p>
       <div class="service-footer">
-        <div>
-          <div class="service-price">$100</div>
-          <div class="service-duration">10 edited photos</div>
-        </div>
-        <button class="service-btn" onclick="selectService('Premium 10 Photos', '$100')">Book This</button>
+        <div><div class="service-price">$100</div><div class="service-duration">10 edited photos</div></div>
+        <button class="service-btn" onclick="selectService('Premium 10 Photos')">Book This</button>
       </div>
     </div>
     <div class="service-card">
@@ -680,16 +638,13 @@
       <div class="service-name">Premium 15</div>
       <p class="service-desc">The ultimate collection — 15 premium edited photos for maximum versatility. Best for brands, influencers, and anyone who wants to show every side of themselves.</p>
       <div class="service-footer">
-        <div>
-          <div class="service-price">$120</div>
-          <div class="service-duration">15 edited photos</div>
-        </div>
-        <button class="service-btn" onclick="selectService('Premium 15 Photos', '$120')">Book This</button>
+        <div><div class="service-price">$120</div><div class="service-duration">15 edited photos</div></div>
+        <button class="service-btn" onclick="selectService('Premium 15 Photos')">Book This</button>
       </div>
     </div>
   </div>
-  <div style="max-width:800px;margin:40px auto 0;background:var(--card);border-left:3px solid var(--gold);padding:20px 28px;font-size:0.78rem;color:var(--muted);line-height:1.9;">
-    <span style="color:var(--white);font-weight:500;display:block;margin-bottom:6px;letter-spacing:0.08em;">📌 Please Note</span>
+  <div class="note-box">
+    <strong>📌 Please Note</strong>
     Transportation costs (both going and coming) are to be covered by the client. I'm based in <strong style="color:var(--white);">Lefkoşa</strong>.
   </div>
 </section>
@@ -706,7 +661,7 @@
       <div class="booking-contact">
         <div class="contact-item">
           <div class="contact-icon">✉</div>
-          <div class="contact-text"><strong>Email</strong><a href="/cdn-cgi/l/flirtcityphotography@gmail.com" class="__cf_email__" data-cfemail="553d3039393a1533393c2721363c212c253d3a213a322734253d2c7b363a38">[flirtcityphotography@gmail.com]</a></div>
+          <div class="contact-text"><strong>Email</strong><a href="mailto:flirtcityphotography@gmail.com">flirtcityphotography@gmail.com</a></div>
         </div>
         <div class="contact-item">
           <div class="contact-icon">☎</div>
@@ -721,11 +676,10 @@
 
     <div class="booking-form">
       <div class="form-title">Request a Booking</div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">First Name</label>
-          <input class="form-input" type="text" placeholder="Jane" id="inp-first">
-        </div>
+      <div class="form-group">
+        <label class="form-label">Your Name</label>
+        <input class="form-input" type="text" placeholder="Your full name" id="inp-first">
+      </div>
       <div class="form-group">
         <label class="form-label">Session Type</label>
         <select class="form-select" id="inp-service">
@@ -736,9 +690,7 @@
           <option>Premium 15 Photos — $120</option>
         </select>
       </div>
-
-      <!-- Monthly Calendar -->
-      <div class="form-group full">
+      <div class="form-group">
         <label class="form-label">Preferred Date</label>
         <div class="monthly-cal-wrap">
           <div class="cal-nav-bar">
@@ -756,14 +708,12 @@
 <div class="mb" id="month-7" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cd" onclick="pickDate(this,'October 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'October 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'October 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'October 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'October 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'October 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'October 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'October 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'October 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'October 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'October 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'October 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'October 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'October 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'October 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'October 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'October 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'October 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'October 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'October 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'October 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'October 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'October 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'October 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'October 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'October 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'October 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'October 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'October 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'October 30, 2026')">30</div><div class="cd" onclick="pickDate(this,'October 31, 2026')">31</div><div class="cde"></div></div></div>
 <div class="mb" id="month-8" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cd" onclick="pickDate(this,'November 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'November 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'November 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'November 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'November 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'November 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'November 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'November 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'November 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'November 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'November 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'November 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'November 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'November 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'November 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'November 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'November 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'November 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'November 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'November 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'November 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'November 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'November 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'November 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'November 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'November 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'November 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'November 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'November 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'November 30, 2026')">30</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div></div></div>
 <div class="mb" id="month-9" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cd" onclick="pickDate(this,'December 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'December 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'December 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'December 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'December 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'December 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'December 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'December 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'December 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'December 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'December 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'December 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'December 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'December 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'December 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'December 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'December 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'December 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'December 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'December 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'December 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'December 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'December 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'December 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'December 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'December 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'December 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'December 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'December 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'December 30, 2026')">30</div><div class="cd" onclick="pickDate(this,'December 31, 2026')">31</div><div class="cde"></div><div class="cde"></div><div class="cde"></div></div></div>
-        </div></div>
-        <input class="form-input" type="text" id="inp-date" placeholder="Click any date to select it" readonly style="cursor:default; margin-top:10px;">
+        </div>
+        <input class="form-input" type="text" id="inp-date" placeholder="Click any date to select it" readonly style="cursor:default;margin-top:8px;">
       </div>
-
-      <!-- Time slots -->
       <div class="form-group">
         <label class="form-label">Preferred Time</label>
-        <div class="time-slots" id="time-slots">
+        <div class="time-slots">
           <div class="time-slot" onclick="pickTime(this)">9:00 AM</div>
           <div class="time-slot" onclick="pickTime(this)">10:00 AM</div>
           <div class="time-slot" onclick="pickTime(this)">11:00 AM</div>
@@ -781,12 +731,10 @@
           <div class="time-slot" onclick="pickTime(this)">11:00 PM</div>
         </div>
       </div>
-
       <div class="form-group">
         <label class="form-label">Tell Me About Your Vision</label>
         <textarea class="form-textarea" id="inp-msg" placeholder="Describe the mood, location ideas, or any inspiration you have in mind..."></textarea>
       </div>
-
       <button class="form-submit" onclick="submitForm()">Send via WhatsApp →</button>
     </div>
   </div>
@@ -803,65 +751,45 @@
     <div class="review-card">
       <div class="stars">★★★★★</div>
       <p class="review-text">Working with FlirtCity Photography was an absolute dream. She made me feel so comfortable in front of the camera — the final images were beyond anything I could have imagined. Pure magic.</p>
-      <div class="review-author">
-        <div class="author-avatar">S</div>
-        <div><div class="author-name">Sofia M.</div><div class="author-date">Portrait Session · October 2025</div></div>
-      </div>
+      <div class="review-author"><div class="author-avatar">S</div><div><div class="author-name">Sofia M.</div><div class="author-date">Portrait Session · October 2025</div></div></div>
     </div>
     <div class="review-card">
       <div class="stars">★★★★★</div>
       <p class="review-text">Our wedding shoot was everything. FlirtCity Photography captured moments we didn't even realise were happening. Every photo tells our story perfectly. We'll be back for our anniversary!</p>
-      <div class="review-author">
-        <div class="author-avatar">J</div>
-        <div><div class="author-name">Frederick & Lena</div><div class="author-date">Couples Session · March 2026</div></div>
-      </div>
+      <div class="review-author"><div class="author-avatar">F</div><div><div class="author-name">Frederick & Lena</div><div class="author-date">Couples Session · March 2026</div></div></div>
     </div>
     <div class="review-card">
       <div class="stars">★★★★★</div>
-      <p class="review-text">The brand shoot exceeded all expectations. FlirtCity Photography understood our aesthetic immediately and delivered a cohesive gallery that transformed our entire social media presence.</p>
-      <div class="review-author">
-        <div class="author-avatar">A</div>
-        <div><div class="author-name">Aisha K.</div><div class="author-date">Brand & Product · December 2025</div></div>
-      </div>
+      <p class="review-text">The brand shoot exceeded all expectations. FlirtCity understood our aesthetic immediately and delivered a cohesive gallery that transformed our entire social media presence.</p>
+      <div class="review-author"><div class="author-avatar">A</div><div><div class="author-name">Aisha K.</div><div class="author-date">Brand Session · December 2025</div></div></div>
     </div>
     <div class="review-card">
       <div class="stars">★★★★★</div>
-      <p class="review-text">I was nervous about my first professional shoot but FlirtCity photography's calm energy and creative direction made the whole experience feel natural. I finally love photos of myself!</p>
-      <div class="review-author">
-        <div class="author-avatar">R</div>
-        <div><div class="author-name">Rachel T.</div><div class="author-date">Graduation Session · January 2026</div></div>
-      </div>
+      <p class="review-text">I was nervous about my first professional shoot but FlirtCity's calm energy and creative direction made the whole experience feel natural. I finally love photos of myself!</p>
+      <div class="review-author"><div class="author-avatar">R</div><div><div class="author-name">Rachel T.</div><div class="author-date">Graduation Session · January 2026</div></div></div>
     </div>
     <div class="review-card">
       <div class="stars">★★★★★</div>
       <p class="review-text">Hired FlirtCity Photography for our wedding event. She was discreet, professional, and captured everything beautifully. Turnaround was fast and the gallery was stunning.</p>
-      <div class="review-author">
-        <div class="author-avatar">N</div>
-        <div><div class="author-name">Nour & Michael.</div><div class="author-date">Event Coverage · February 2026</div></div>
-      </div>
+      <div class="review-author"><div class="author-avatar">N</div><div><div class="author-name">Nour & Michael</div><div class="author-date">Event Coverage · February 2026</div></div></div>
     </div>
     <div class="review-card">
       <div class="stars">★★★★★</div>
-      <p class="review-text">The editorial shoot we did together was a full creative collaboration. FlirtCity Photography brought ideas I hadn't thought of, and the final images are genuinely gallery-worthy. 10/10.</p>
-      <div class="review-author">
-        <div class="author-avatar">M</div>
-        <div><div class="author-name">Marco L.</div><div class="author-date">Editorial Session · November 2025</div></div>
-      </div>
+      <p class="review-text">The editorial shoot we did together was a full creative collaboration. FlirtCity brought ideas I hadn't thought of, and the final images are genuinely gallery-worthy. 10/10.</p>
+      <div class="review-author"><div class="author-avatar">M</div><div><div class="author-name">Marco L.</div><div class="author-date">Editorial Session · November 2025</div></div></div>
     </div>
   </div>
 </section>
 
-<!-- PRICING TABLE -->
+<!-- PRICING -->
 <section id="pricing">
   <div class="pricing-header">
     <div class="section-label">Investment</div>
     <h2 class="section-title">Simple, Transparent<br><em>Pricing</em></h2>
     <div class="divider"></div>
-    <p style="font-size:0.82rem;color:var(--muted);line-height:1.9;">Every package includes professional editing, a private online gallery, and my full creative attention. No hidden fees.</p>
+    <p style="font-size:0.8rem;color:var(--muted);line-height:1.9;">Every package includes professional editing and my full creative attention. No hidden fees.</p>
   </div>
   <div class="pricing-grid">
-
-    <!-- 1 HOUR -->
     <div class="pricing-plan">
       <div class="plan-name">1 Hour</div>
       <div class="plan-tagline">Quick & stunning shoot</div>
@@ -874,10 +802,8 @@
         <li>Digital delivery</li>
         <li class="no">Extra edited photos</li>
       </ul>
-      <button class="plan-cta" onclick="selectService('1 Hour Session', '$70')">Book Now</button>
+      <button class="plan-cta" onclick="selectService('1 Hour Session')">Book Now</button>
     </div>
-
-    <!-- 2 HOURS (featured) -->
     <div class="pricing-plan featured">
       <div class="plan-name">2 Hours</div>
       <div class="plan-tagline">More looks, more magic</div>
@@ -890,10 +816,8 @@
         <li>Digital delivery</li>
         <li class="no">Extra edited photos</li>
       </ul>
-      <button class="plan-cta" onclick="selectService('2 Hour Session', '$80')">Book Now</button>
+      <button class="plan-cta" onclick="selectService('2 Hour Session')">Book Now</button>
     </div>
-
-    <!-- PREMIUM 10 -->
     <div class="pricing-plan">
       <div class="plan-name">Premium 10</div>
       <div class="plan-tagline">Bigger gallery, bolder you</div>
@@ -906,10 +830,8 @@
         <li>Digital delivery</li>
         <li>Great for models & brands</li>
       </ul>
-      <button class="plan-cta" onclick="selectService('Premium 10 Photos', '$100')">Book Now</button>
+      <button class="plan-cta" onclick="selectService('Premium 10 Photos')">Book Now</button>
     </div>
-
-    <!-- PREMIUM 15 -->
     <div class="pricing-plan">
       <div class="plan-name">Premium 15</div>
       <div class="plan-tagline">The ultimate collection</div>
@@ -922,23 +844,35 @@
         <li>Digital delivery</li>
         <li>Best for influencers & content</li>
       </ul>
-      <button class="plan-cta" onclick="selectService('Premium 15 Photos', '$120')">Book Now</button>
+      <button class="plan-cta" onclick="selectService('Premium 15 Photos')">Book Now</button>
     </div>
-
   </div>
-  <div style="max-width:800px;margin:32px auto 0;background:var(--card);border-left:3px solid var(--gold);padding:18px 28px;font-size:0.78rem;color:var(--muted);line-height:1.9;text-align:left;">
-    <span style="color:var(--white);font-weight:500;display:block;margin-bottom:4px;letter-spacing:0.08em;font-size:0.7rem;text-transform:uppercase;">📌 Important Note</span>
+  <div class="note-box" style="margin-top:28px;">
+    <strong>📌 Important Note</strong>
     Transportation costs (both going and coming) are to be covered by the client. I'm based in <strong style="color:var(--white);">Lefkoşa</strong>.
   </div>
 </section>
 
-<!-- INSTAGRAM FEED -->
+<!-- INSTAGRAM -->
 <section id="instagram">
   <div class="ig-header">
     <div class="section-label">Follow Along</div>
     <h2 class="section-title">Find Us on<br><em>Instagram</em></h2>
     <div class="divider"></div>
-   </a>
+    <a class="ig-handle" href="https://instagram.com/shot_by_flirt" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      @shot_by_flirt
+    </a>
+  </div>
+  <div class="ig-grid">
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#2a1020,#1a0818);">🌸</div></div><div class="ig-overlay"><div class="ig-overlay-icon">♥</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#1a1020,#2a0a18);">✨</div></div><div class="ig-overlay"><div class="ig-overlay-icon">♥</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#20101a,#180a2a);">📸</div></div><div class="ig-overlay"><div class="ig-overlay-icon">♥</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#1a0a20,#2a1028);">💄</div></div><div class="ig-overlay"><div class="ig-overlay-icon">♥</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#28101a,#1a0820);">🌹</div></div><div class="ig-overlay"><div class="ig-overlay-icon">♥</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#200a18,#2a1020);">💫</div></div><div class="ig-overlay"><div class="ig-overlay-icon">♥</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#1e0c1a,#2c1022);">🎞️</div></div><div class="ig-overlay"><div class="ig-overlay-icon">♥</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#220e1c,#180c1e);">💋</div></div><div class="ig-overlay"><div class="ig-overlay-icon">♥</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
   </div>
   <div class="ig-follow-wrap">
     <a class="ig-follow" href="https://instagram.com/shot_by_flirt" target="_blank" rel="noopener">
@@ -951,7 +885,7 @@
 <!-- FOOTER -->
 <footer>
   <span class="footer-logo">FlirtCity Photography</span>
-  <p class="footer-tagline">Photography Studio · Available Worldwide</p>
+  <p class="footer-tagline">Photography Studio · Lefkoşa</p>
   <ul class="footer-links">
     <li><a href="#home">Home</a></li>
     <li><a href="#gallery">Gallery</a></li>
@@ -961,34 +895,43 @@
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="#instagram">Instagram</a></li>
   </ul>
-  <p class="footer-copy">© 2025 FlirtCity Photography. All rights reserved.</p>
+  <p class="footer-copy">© 2026 FlirtCity Photography. All rights reserved.</p>
 </footer>
 
-<!-- WHATSAPP FLOAT -->
-<a class="wa-float" id="wa-btn" href="https://wa.me/+905488677150?text=Hi%20FlirtCity%20Photography!%20I%27d%20like%20to%20book%20a%20session%20%F0%9F%93%B8" target="_blank" rel="noopener">
+<!-- WHATSAPP -->
+<a class="wa-float" href="https://wa.me/905488677150?text=Hi%20FlirtCity%20Photography!%20I%27d%20like%20to%20book%20a%20session%20%F0%9F%93%B8" target="_blank" rel="noopener">
   <span class="wa-tooltip">Book via WhatsApp</span>
-  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-    <path d="M16 2C8.268 2 2 8.268 2 16c0 2.492.648 4.832 1.784 6.864L2 30l7.352-1.76A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.5a11.44 11.44 0 01-5.832-1.592l-.416-.248-4.36 1.044 1.076-4.248-.272-.432A11.44 11.44 0 014.5 16C4.5 9.648 9.648 4.5 16 4.5S27.5 9.648 27.5 16 22.352 27.5 16 27.5zm6.276-8.548c-.344-.172-2.032-1.004-2.348-1.116-.316-.116-.548-.172-.776.172-.228.344-.888 1.116-1.088 1.348-.2.228-.396.256-.74.084-.344-.172-1.452-.536-2.764-1.708-1.02-.912-1.712-2.04-1.912-2.384-.2-.344-.02-.528.148-.7.152-.152.344-.396.516-.596.172-.2.228-.344.344-.572.116-.228.056-.428-.028-.6-.084-.172-.776-1.872-1.064-2.564-.28-.672-.564-.58-.776-.592l-.66-.012c-.228 0-.596.084-.908.428-.312.344-1.192 1.164-1.192 2.836 0 1.672 1.22 3.288 1.392 3.516.172.228 2.404 3.672 5.824 5.148.816.352 1.452.564 1.948.72.82.26 1.564.224 2.152.136.656-.1 2.032-.832 2.32-1.636.288-.804.288-1.492.2-1.636-.084-.144-.312-.228-.656-.4z"/>
-  </svg>
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.492.648 4.832 1.784 6.864L2 30l7.352-1.76A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.5a11.44 11.44 0 01-5.832-1.592l-.416-.248-4.36 1.044 1.076-4.248-.272-.432A11.44 11.44 0 014.5 16C4.5 9.648 9.648 4.5 16 4.5S27.5 9.648 27.5 16 22.352 27.5 16 27.5zm6.276-8.548c-.344-.172-2.032-1.004-2.348-1.116-.316-.116-.548-.172-.776.172-.228.344-.888 1.116-1.088 1.348-.2.228-.396.256-.74.084-.344-.172-1.452-.536-2.764-1.708-1.02-.912-1.712-2.04-1.912-2.384-.2-.344-.02-.528.148-.7.152-.152.344-.396.516-.596.172-.2.228-.344.344-.572.116-.228.056-.428-.028-.6-.084-.172-.776-1.872-1.064-2.564-.28-.672-.564-.58-.776-.592l-.66-.012c-.228 0-.596.084-.908.428-.312.344-1.192 1.164-1.192 2.836 0 1.672 1.22 3.288 1.392 3.516.172.228 2.404 3.672 5.824 5.148.816.352 1.452.564 1.948.72.82.26 1.564.224 2.152.136.656-.1 2.032-.832 2.32-1.636.288-.804.288-1.492.2-1.636-.084-.144-.312-.228-.656-.4z"/></svg>
 </a>
 
-
 <div class="toast" id="toast">
-  <div class="toast-title" id="toast-title">Booking Received!</div>
-  <div id="toast-msg">Thank you! Your request has been sent. I'll confirm within 24 hours.</div>
+  <div class="toast-title" id="toast-title"></div>
+  <div id="toast-msg"></div>
 </div>
 
 <script>
+// ── Mobile Menu ──
+function toggleMenu() {
+  var h = document.getElementById('hamburger');
+  var m = document.getElementById('mobile-menu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobile-menu').classList.remove('open');
+}
+
+// ── Calendar ──
 var calCurrent = 0;
 var calTotal = 10;
 var calMonthNames = ["March","April","May","June","July","August","September","October","November","December"];
-var calYear = 2026;
 
 function calNav(dir) {
   document.getElementById('month-' + calCurrent).style.display = 'none';
   calCurrent += dir;
   document.getElementById('month-' + calCurrent).style.display = 'block';
-  document.getElementById('cal-nav-title').textContent = calMonthNames[calCurrent] + ' ' + calYear;
+  document.getElementById('cal-nav-title').textContent = calMonthNames[calCurrent] + ' 2026';
   document.getElementById('cal-prev-btn').disabled = (calCurrent === 0);
   document.getElementById('cal-next-btn').disabled = (calCurrent === calTotal - 1);
 }
@@ -1000,6 +943,7 @@ function pickDate(el, dateStr) {
   document.getElementById('inp-date').value = dateStr;
 }
 
+// ── Time slots ──
 function pickTime(el) {
   if (el.classList.contains('unavailable')) return;
   var all = document.querySelectorAll('.time-slot');
@@ -1007,6 +951,7 @@ function pickTime(el) {
   el.classList.add('selected');
 }
 
+// ── Service select ──
 function selectService(name) {
   var sel = document.getElementById('inp-service');
   for (var i = 0; i < sel.options.length; i++) {
@@ -1015,6 +960,7 @@ function selectService(name) {
   document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
 }
 
+// ── Form submit ──
 function submitForm() {
   var first   = document.getElementById('inp-first').value.trim();
   var service = document.getElementById('inp-service').value;
@@ -1024,7 +970,7 @@ function submitForm() {
   var msg     = document.getElementById('inp-msg').value.trim();
 
   if (!first || !service || !date || !time) {
-    alert('Please fill in your name, select a package, a date and a time.');
+    showToast('Missing Info', 'Please fill in your name, select a package, a date and a time.');
     return;
   }
 
@@ -1037,8 +983,15 @@ function submitForm() {
     '\u23F0 Time: ' + time +
     (msg ? '\n\n\uD83D\uDCAC Notes: ' + msg : '')
   );
-
   window.open('https://wa.me/905488677150?text=' + waText, '_blank');
+}
+
+function showToast(title, msg) {
+  document.getElementById('toast-title').textContent = title;
+  document.getElementById('toast-msg').textContent = msg;
+  var t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 4000);
 }
 </script>
 </body>
