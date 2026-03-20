@@ -1039,105 +1039,67 @@
 </div>
 
 <script>
-(function() {
+var calCurrent = 0;
+var calTotal = 10;
+var calMonthNames = ["March","April","May","June","July","August","September","October","November","December"];
+var calYear = 2026;
 
-  var calCurrent = 0;
-  var calTotal = 10;
-  var calMonthNames = ["March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  var calYear = 2026;
+function calNav(dir) {
+  document.getElementById('month-' + calCurrent).style.display = 'none';
+  calCurrent += dir;
+  document.getElementById('month-' + calCurrent).style.display = 'block';
+  document.getElementById('cal-nav-title').textContent = calMonthNames[calCurrent] + ' ' + calYear;
+  document.getElementById('cal-prev-btn').disabled = (calCurrent === 0);
+  document.getElementById('cal-next-btn').disabled = (calCurrent === calTotal - 1);
+}
 
-  window.calNav = function(dir) {
-    document.getElementById('month-' + calCurrent).style.display = 'none';
-    calCurrent += dir;
-    document.getElementById('month-' + calCurrent).style.display = 'block';
-    document.getElementById('cal-nav-title').textContent = calMonthNames[calCurrent] + ' ' + calYear;
-    document.getElementById('cal-prev-btn').disabled = (calCurrent === 0);
-    document.getElementById('cal-next-btn').disabled = (calCurrent === calTotal - 1);
-  };
+function pickDate(el, dateStr) {
+  var all = document.querySelectorAll('.cd.selected');
+  for (var i = 0; i < all.length; i++) { all[i].classList.remove('selected'); }
+  el.classList.add('selected');
+  document.getElementById('inp-date').value = dateStr;
+}
 
-  window.pickDate = function(el, dateStr) {
-    document.querySelectorAll('.cd.selected').forEach(function(x){ x.classList.remove('selected'); });
-    el.classList.add('selected');
-    document.getElementById('inp-date').value = dateStr;
-  };
+function pickTime(el) {
+  if (el.classList.contains('unavailable')) return;
+  var all = document.querySelectorAll('.time-slot');
+  for (var i = 0; i < all.length; i++) { all[i].classList.remove('selected'); }
+  el.classList.add('selected');
+}
 
-  /* ── Time slots ── */
-  window.pickTime = function(el) {
-    if (el.classList.contains('unavailable')) return;
-    document.querySelectorAll('.time-slot').forEach(function(s){ s.classList.remove('selected'); });
-    el.classList.add('selected');
-  };
+function selectService(name) {
+  var sel = document.getElementById('inp-service');
+  for (var i = 0; i < sel.options.length; i++) {
+    if (sel.options[i].text.indexOf(name) === 0) { sel.selectedIndex = i; break; }
+  }
+  document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+}
 
-  /* ── Service quick-select ── */
-  window.selectService = function(name) {
-    var sel = document.getElementById('inp-service');
-    for (var i = 0; i < sel.options.length; i++) {
-      if (sel.options[i].text.indexOf(name) === 0) { sel.selectedIndex = i; break; }
-    }
-    document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
-  };
+function submitForm() {
+  var first   = document.getElementById('inp-first').value.trim();
+  var service = document.getElementById('inp-service').value;
+  var date    = document.getElementById('inp-date').value;
+  var timeEl  = document.querySelector('.time-slot.selected');
+  var time    = timeEl ? timeEl.textContent : '';
+  var msg     = document.getElementById('inp-msg').value.trim();
 
-  /* ── Form submit + WhatsApp ── */
-  window.submitForm = function() {
-    var first   = document.getElementById('inp-first').value.trim();
-    var last    = document.getElementById('inp-last').value.trim();
-    var email   = document.getElementById('inp-email').value.trim();
-    var service = document.getElementById('inp-service').value;
-    var date    = document.getElementById('inp-date').value;
-    var timeEl  = document.querySelector('.time-slot.selected');
-    var time    = timeEl ? timeEl.textContent : '';
-    var msg     = document.getElementById('inp-msg').value.trim();
-
-    if (!first || !service || !date || !time) {
-      showToast('Missing Info', 'Please fill in all fields and select a date & time.', true);
-      return;
-    }
-
-    var waText = encodeURIComponent(
-      'Hi FlirtCity Photography! \uD83D\uDCF8\n\n' +
-      'I\'d like to book a session:\n' +
-      '\uD83D\uDC64 Name: ' + first + ' ' + last + '\n' 
-      '\uD83C\uDFAF Session: ' + service + '\n' +
-      '\uD83D\uDCC5 Date: ' + date + '\n' +
-      '\u23F0 Time: ' + time +
-      (msg ? '\n\n\uD83D\uDCAC Notes: ' + msg : '')
-    );
-
-    var waLink = document.getElementById('wa-btn');
-    waLink.href = 'https://wa.me/YOURNUMBER?text=' + waText;
-
-    showToast('Opening WhatsApp! \uD83D\uDCAC', 'Your booking details are ready to send.');
-    setTimeout(function() { window.open(waLink.href, '_blank'); }, 1200);
-  };
-
-  function showToast(title, msg, isError) {
-    var t = document.getElementById('toast');
-    document.getElementById('toast-title').textContent = title;
-    document.getElementById('toast-msg').textContent   = msg;
-    t.style.borderLeftColor = isError ? '#e07070' : 'var(--gold)';
-    t.classList.add('show');
-    setTimeout(function() { t.classList.remove('show'); }, 5000);
+  if (!first || !service || !date || !time) {
+    alert('Please fill in your name, select a package, a date and a time.');
+    return;
   }
 
-  /* ── Scroll fade-in ── */
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        e.target.style.opacity   = '1';
-        e.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
+  var waText = encodeURIComponent(
+    'Hi FlirtCity Photography! \uD83D\uDCF8\n\n' +
+    'I\'d like to book a session:\n' +
+    '\uD83D\uDC64 Name: ' + first + '\n' +
+    '\uD83C\uDFAF Session: ' + service + '\n' +
+    '\uD83D\uDCC5 Date: ' + date + '\n' +
+    '\u23F0 Time: ' + time +
+    (msg ? '\n\n\uD83D\uDCAC Notes: ' + msg : '')
+  );
 
-  document.querySelectorAll('.service-card,.review-card,.gallery-item,.pricing-plan,.ig-post')
-    .forEach(function(el) {
-      el.style.opacity    = '0';
-      el.style.transform  = 'translateY(20px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(el);
-    });
-
-})();
+  window.open('https://wa.me/905488677150?text=' + waText, '_blank');
+}
 </script>
 </body>
 </html>
