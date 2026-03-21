@@ -18,177 +18,59 @@
   --pink-glow: rgba(232,84,122,0.12);
   --pink-faint: rgba(232,84,122,0.05);
 }
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body {
-  background: var(--black);
-  color: var(--white);
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
-  line-height: 1.7;
-  overflow-x: hidden;
-}
+body { background: var(--black); color: var(--white); font-family: 'Montserrat', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
 
 /* ─── NAV ─── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 48px;
-  background: rgba(10,8,8,0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(232,84,122,0.1);
-}
-.nav-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem; font-weight: 400; letter-spacing: 0.08em;
-  color: var(--pink); text-decoration: none; white-space: nowrap;
-}
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 18px 48px; background: rgba(10,8,8,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(232,84,122,0.1); }
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; letter-spacing: 0.08em; color: var(--pink); text-decoration: none; white-space: nowrap; }
 .nav-links { display: flex; gap: 28px; list-style: none; }
-.nav-links a {
-  color: var(--muted); text-decoration: none;
-  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
-  transition: color 0.3s;
-}
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
 .nav-links a:hover { color: var(--white); }
-.nav-book {
-  background: var(--pink); color: var(--black);
-  padding: 10px 22px; border: none; cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
-  transition: background 0.3s; text-decoration: none; white-space: nowrap;
-}
+.nav-book { background: var(--pink); color: var(--black); padding: 10px 22px; border: none; cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; transition: background 0.3s; text-decoration: none; white-space: nowrap; }
 .nav-book:hover { background: var(--pink-light); }
-
-/* Hamburger */
-.hamburger {
-  display: none; flex-direction: column; gap: 5px;
-  cursor: pointer; padding: 4px; background: none; border: none;
-}
-.hamburger span {
-  display: block; width: 24px; height: 2px;
-  background: var(--white); transition: all 0.3s;
-}
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: all 0.3s; }
 .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
-
-.mobile-menu {
-  display: none; position: fixed; top: 62px; left: 0; right: 0; z-index: 999;
-  background: rgba(10,8,8,0.98); backdrop-filter: blur(10px);
-  padding: 24px; flex-direction: column; gap: 0;
-  border-bottom: 1px solid var(--border);
-}
+.mobile-menu { display: none; position: fixed; top: 62px; left: 0; right: 0; z-index: 999; background: rgba(10,8,8,0.98); backdrop-filter: blur(10px); padding: 24px; flex-direction: column; gap: 0; border-bottom: 1px solid var(--border); }
 .mobile-menu.open { display: flex; }
-.mobile-menu a {
-  color: var(--white); text-decoration: none;
-  font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;
-  padding: 16px 0; border-bottom: 1px solid var(--border);
-  transition: color 0.3s;
-}
+.mobile-menu a { color: var(--white); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 16px 0; border-bottom: 1px solid var(--border); transition: color 0.3s; }
 .mobile-menu a:last-child { border-bottom: none; }
 .mobile-menu a:hover { color: var(--pink); }
 
 /* ─── HERO ─── */
-.hero {
-  height: 100vh; min-height: 600px; position: relative;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  overflow: hidden; padding: 80px 24px 40px;
-  text-align: center;
-}
-.hero-bg {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 60% 40%, var(--pink-glow) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 20% 70%, var(--pink-faint) 0%, transparent 60%),
-    radial-gradient(ellipse 30% 50% at 80% 80%, rgba(232,84,122,0.06) 0%, transparent 60%),
-    #0a0808;
-}
-.hero-tag {
-  font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
-  color: var(--pink); margin-bottom: 20px; position: relative; z-index: 1;
-  animation: fadeUp 1s ease both;
-}
-.hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.8rem, 10vw, 7rem);
-  font-weight: 300; line-height: 1; position: relative; z-index: 1;
-  animation: fadeUp 1s ease 0.15s both;
-}
+.hero { height: 100vh; min-height: 600px; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: 80px 24px 40px; text-align: center; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 60% 40%, var(--pink-glow) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 20% 70%, var(--pink-faint) 0%, transparent 60%), radial-gradient(ellipse 30% 50% at 80% 80%, rgba(232,84,122,0.06) 0%, transparent 60%), #0a0808; }
+.hero-tag { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--pink); margin-bottom: 20px; position: relative; z-index: 1; animation: fadeUp 1s ease both; }
+.hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 10vw, 7rem); font-weight: 300; line-height: 1; position: relative; z-index: 1; animation: fadeUp 1s ease 0.15s both; }
 .hero-title em { font-style: italic; color: var(--pink); }
-.hero-sub {
-  margin-top: 20px; font-size: 0.78rem; letter-spacing: 0.08em;
-  color: var(--muted); max-width: 340px; position: relative; z-index: 1;
-  animation: fadeUp 1s ease 0.3s both;
-}
-.hero-cta {
-  margin-top: 36px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
-  position: relative; z-index: 1;
-  animation: fadeUp 1s ease 0.45s both;
-}
-.btn-primary {
-  background: var(--pink); color: var(--black);
-  padding: 14px 32px; border: none; cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
-  transition: all 0.3s; text-decoration: none; display: inline-block;
-}
+.hero-sub { margin-top: 20px; font-size: 0.78rem; letter-spacing: 0.08em; color: var(--muted); max-width: 340px; position: relative; z-index: 1; animation: fadeUp 1s ease 0.3s both; }
+.hero-cta { margin-top: 36px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; position: relative; z-index: 1; animation: fadeUp 1s ease 0.45s both; }
+.btn-primary { background: var(--pink); color: var(--black); padding: 14px 32px; border: none; cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; transition: all 0.3s; text-decoration: none; display: inline-block; }
 .btn-primary:hover { background: var(--pink-light); transform: translateY(-1px); }
-.btn-ghost {
-  background: transparent; color: var(--white);
-  padding: 14px 32px; border: 1px solid var(--border); cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500;
-  transition: all 0.3s; text-decoration: none; display: inline-block;
-}
+.btn-ghost { background: transparent; color: var(--white); padding: 14px 32px; border: 1px solid var(--border); cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; transition: all 0.3s; text-decoration: none; display: inline-block; }
 .btn-ghost:hover { border-color: var(--pink); color: var(--pink); }
-.hero-scroll {
-  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 1;
-  color: var(--muted); font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase;
-}
-.scroll-line {
-  width: 1px; height: 36px; background: linear-gradient(to bottom, var(--pink), transparent);
-  animation: scrollPulse 2s ease-in-out infinite;
-}
+.hero-scroll { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 1; color: var(--muted); font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; }
+.scroll-line { width: 1px; height: 36px; background: linear-gradient(to bottom, var(--pink), transparent); animation: scrollPulse 2s ease-in-out infinite; }
 
 /* ─── SECTIONS ─── */
 section { padding: 80px 48px; }
-.section-label {
-  font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--pink);
-  margin-bottom: 14px;
-}
-.section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 300; line-height: 1.1;
-}
+.section-label { font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--pink); margin-bottom: 14px; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 300; line-height: 1.1; }
 .section-title em { font-style: italic; color: var(--pink); }
 .divider { width: 60px; height: 1px; background: var(--pink); margin: 20px 0; }
 
 /* ─── GALLERY ─── */
 #gallery { background: var(--deep); }
 .gallery-header { max-width: 600px; margin-bottom: 48px; }
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 8px;
-  max-width: 1200px; margin: 0 auto;
-}
-.gallery-item {
-  overflow: hidden; cursor: pointer; position: relative; background: var(--card);
-}
-.gallery-item::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(10,10,10,0.5), transparent 50%);
-  opacity: 0; transition: opacity 0.4s;
-}
+.gallery-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px; max-width: 1200px; margin: 0 auto; }
+.gallery-item { overflow: hidden; cursor: zoom-in; position: relative; background: var(--card); }
+.gallery-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.5), transparent 50%); opacity: 0; transition: opacity 0.4s; }
 .gallery-item:hover::after { opacity: 1; }
-.gallery-item img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.6s ease; display: block;
-}
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; display: block; }
 .gallery-item:hover img { transform: scale(1.04); }
 .gi-1 { grid-column: 1/6; grid-row: 1; height: 320px; }
 .gi-2 { grid-column: 6/9; grid-row: 1; height: 320px; }
@@ -197,112 +79,72 @@ section { padding: 80px 48px; }
 .gi-5 { grid-column: 4/9; grid-row: 2; height: 260px; }
 .gi-6 { grid-column: 9/13; grid-row: 2; height: 260px; }
 
+/* ─── LIGHTBOX ─── */
+.lightbox-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.96); align-items: center; justify-content: center; flex-direction: column; }
+.lightbox-overlay.active { display: flex; }
+.lightbox-img-wrap { max-width: 90vw; max-height: 82vh; display: flex; align-items: center; justify-content: center; }
+.lightbox-img-wrap img { max-width: 90vw; max-height: 82vh; object-fit: contain; display: block; border: 1px solid rgba(232,84,122,0.2); box-shadow: 0 0 60px rgba(232,84,122,0.1); }
+.lightbox-close { position: fixed; top: 20px; right: 24px; background: none; border: 1px solid var(--border); color: var(--white); width: 44px; height: 44px; font-size: 1.4rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 2001; }
+.lightbox-close:hover { border-color: var(--pink); color: var(--pink); }
+.lightbox-prev, .lightbox-next { position: fixed; top: 50%; transform: translateY(-50%); background: rgba(10,8,8,0.7); border: 1px solid var(--border); color: var(--white); width: 48px; height: 48px; font-size: 1.4rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 2001; }
+.lightbox-prev { left: 16px; }
+.lightbox-next { right: 16px; }
+.lightbox-prev:hover, .lightbox-next:hover { border-color: var(--pink); color: var(--pink); background: rgba(232,84,122,0.1); }
+.lightbox-counter { margin-top: 16px; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+.lightbox-dots { display: flex; gap: 8px; margin-top: 12px; }
+.lightbox-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); cursor: pointer; transition: background 0.2s; }
+.lightbox-dot.active { background: var(--pink); }
+
 /* ─── SERVICES ─── */
 #services { background: var(--black); }
 .services-header { max-width: 600px; margin-bottom: 48px; }
-.services-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2px; max-width: 1200px; margin: 0 auto;
-}
-.service-card {
-  background: var(--card); padding: 36px 28px; position: relative; overflow: hidden;
-  transition: background 0.3s; border-top: 1px solid var(--border);
-}
-.service-card::before {
-  content: ''; position: absolute; top: 0; left: 0;
-  width: 3px; height: 0; background: var(--pink); transition: height 0.4s ease;
-}
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2px; max-width: 1200px; margin: 0 auto; }
+.service-card { background: var(--card); padding: 36px 28px; position: relative; overflow: hidden; transition: background 0.3s; border-top: 1px solid var(--border); }
+.service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--pink); transition: height 0.4s ease; }
 .service-card:hover { background: #1c1c1c; }
 .service-card:hover::before { height: 100%; }
-.service-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2rem; font-weight: 300; color: var(--border); margin-bottom: 16px; line-height: 1;
-}
-.service-name {
-  font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; margin-bottom: 10px;
-}
+.service-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--border); margin-bottom: 16px; line-height: 1; }
+.service-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; margin-bottom: 10px; }
 .service-desc { font-size: 0.76rem; color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
-.service-footer {
-  display: flex; align-items: center; justify-content: space-between;
-  border-top: 1px solid var(--border); padding-top: 16px;
-}
+.service-footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 16px; }
 .service-price { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--pink); font-weight: 300; }
 .service-duration { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
-.service-btn {
-  background: none; border: 1px solid var(--border); color: var(--white);
-  padding: 8px 18px; cursor: pointer; font-family: 'Montserrat', sans-serif;
-  font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.3s;
-}
+.service-btn { background: none; border: 1px solid var(--border); color: var(--white); padding: 8px 18px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.3s; }
 .service-btn:hover { border-color: var(--pink); color: var(--pink); }
-.note-box {
-  max-width: 800px; margin: 36px auto 0;
-  background: var(--card); border-left: 3px solid var(--pink);
-  padding: 18px 24px; font-size: 0.76rem; color: var(--muted); line-height: 1.9;
-}
+.note-box { max-width: 800px; margin: 36px auto 0; background: var(--card); border-left: 3px solid var(--pink); padding: 18px 24px; font-size: 0.76rem; color: var(--muted); line-height: 1.9; }
 .note-box strong { color: var(--white); font-weight: 500; display: block; margin-bottom: 4px; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; }
 
 /* ─── BOOKING ─── */
 #booking { background: var(--deep); }
-.booking-wrap {
-  display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px;
-  max-width: 1100px; margin: 0 auto; align-items: start;
-}
+.booking-wrap { display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; max-width: 1100px; margin: 0 auto; align-items: start; }
 .booking-info p { font-size: 0.8rem; color: var(--muted); line-height: 1.9; margin-bottom: 24px; }
 .booking-contact { display: flex; flex-direction: column; gap: 14px; }
 .contact-item { display: flex; gap: 14px; align-items: center; }
-.contact-icon {
-  width: 36px; height: 36px; border: 1px solid var(--border); flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center; color: var(--pink); font-size: 0.9rem;
-}
+.contact-icon { width: 36px; height: 36px; border: 1px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--pink); font-size: 0.9rem; }
 .contact-text { font-size: 0.76rem; color: var(--muted); }
 .contact-text strong { color: var(--white); font-weight: 500; display: block; font-size: 0.68rem; letter-spacing: 0.08em; }
 .contact-text a { color: var(--muted); text-decoration: none; }
 .contact-text a:hover { color: var(--pink); }
-
 .booking-form { background: var(--card); padding: 36px; }
 .form-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 28px; }
 .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
 .form-label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
-.form-input, .form-select, .form-textarea {
-  background: var(--deep); border: 1px solid var(--border);
-  color: var(--white); padding: 12px 14px;
-  font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 300;
-  outline: none; transition: border-color 0.3s; width: 100%;
-}
+.form-input, .form-select, .form-textarea { background: var(--deep); border: 1px solid var(--border); color: var(--white); padding: 12px 14px; font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 300; outline: none; transition: border-color 0.3s; width: 100%; }
 .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--pink); }
 .form-select option { background: var(--deep); }
 .form-textarea { resize: vertical; min-height: 90px; }
 
 /* ─── CALENDAR ─── */
-.monthly-cal-wrap {
-  background: #16100f; border: 1px solid #3a2530; overflow: hidden; margin-top: 6px;
-}
-.cal-nav-bar {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 14px; background: #120e0d; border-bottom: 1px solid #3a2530;
-}
-.cal-nav-btn {
-  background: none; border: 1px solid #3a2530; color: var(--white);
-  width: 34px; height: 34px; cursor: pointer; font-size: 1rem;
-  display: flex; align-items: center; justify-content: center; transition: all 0.2s;
-}
+.monthly-cal-wrap { background: #16100f; border: 1px solid #3a2530; overflow: hidden; margin-top: 6px; }
+.cal-nav-bar { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; background: #120e0d; border-bottom: 1px solid #3a2530; }
+.cal-nav-btn { background: none; border: 1px solid #3a2530; color: var(--white); width: 34px; height: 34px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
 .cal-nav-btn:hover:not(:disabled) { border-color: var(--pink); color: var(--pink); }
 .cal-nav-btn:disabled { opacity: 0.2; cursor: default; }
-.cal-nav-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem; font-weight: 600; color: var(--white); letter-spacing: 0.06em;
-}
+.cal-nav-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--white); letter-spacing: 0.06em; }
 .mb { padding: 14px; }
 .mg { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
-.cdn {
-  text-align: center; font-size: 0.5rem; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--pink); padding: 5px 0; font-weight: 700;
-}
-.cd {
-  text-align: center; padding: 8px 2px; font-size: 0.76rem;
-  cursor: pointer; border: 1px solid transparent; border-radius: 2px;
-  color: var(--white); transition: all 0.15s; line-height: 1;
-}
+.cdn { text-align: center; font-size: 0.5rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pink); padding: 5px 0; font-weight: 700; }
+.cd { text-align: center; padding: 8px 2px; font-size: 0.76rem; cursor: pointer; border: 1px solid transparent; border-radius: 2px; color: var(--white); transition: all 0.15s; line-height: 1; }
 .cd:hover { border-color: var(--pink); color: var(--pink); background: rgba(232,84,122,0.1); }
 .cd.selected { background: var(--pink) !important; color: #0a0808 !important; font-weight: 700 !important; }
 .cd.today { color: var(--pink); font-weight: 700; border: 1px solid rgba(232,84,122,0.4); }
@@ -311,45 +153,24 @@ section { padding: 80px 48px; }
 
 /* ─── TIME SLOTS ─── */
 .time-slots { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
-.time-slot {
-  padding: 7px 12px; border: 1px solid var(--border); cursor: pointer;
-  font-size: 0.68rem; letter-spacing: 0.06em; color: var(--white); transition: all 0.2s;
-}
+.time-slot { padding: 7px 12px; border: 1px solid var(--border); cursor: pointer; font-size: 0.68rem; letter-spacing: 0.06em; color: var(--white); transition: all 0.2s; }
 .time-slot:hover { border-color: var(--pink); color: var(--pink); }
 .time-slot.selected { background: var(--pink); color: var(--black); border-color: var(--pink); font-weight: 600; }
 .time-slot.unavailable { opacity: 0.25; cursor: not-allowed; }
-
-.form-submit {
-  width: 100%; background: var(--pink); color: var(--black);
-  border: none; padding: 15px; cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
-  transition: all 0.3s; margin-top: 6px;
-}
+.form-submit { width: 100%; background: var(--pink); color: var(--black); border: none; padding: 15px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; transition: all 0.3s; margin-top: 6px; }
 .form-submit:hover { background: var(--pink-light); transform: translateY(-1px); }
 
 /* ─── REVIEWS ─── */
 #reviews { background: var(--black); }
 .reviews-header { max-width: 600px; margin: 0 auto 48px; text-align: center; }
 .reviews-header .divider { margin: 20px auto; }
-.reviews-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px; max-width: 1200px; margin: 0 auto;
-}
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
 .review-card { background: var(--card); padding: 32px; position: relative; }
-.review-card::before {
-  content: '"'; font-family: 'Cormorant Garamond', serif; font-size: 5rem; line-height: 0.7;
-  color: var(--pink); opacity: 0.15; position: absolute; top: 18px; left: 20px;
-}
+.review-card::before { content: '"'; font-family: 'Cormorant Garamond', serif; font-size: 5rem; line-height: 0.7; color: var(--pink); opacity: 0.15; position: absolute; top: 18px; left: 20px; }
 .stars { color: var(--pink); letter-spacing: 3px; font-size: 0.72rem; margin-bottom: 14px; }
 .review-text { font-size: 0.8rem; color: var(--muted); line-height: 1.9; margin-bottom: 20px; font-style: italic; }
 .review-author { display: flex; align-items: center; gap: 12px; }
-.author-avatar {
-  width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
-  background: linear-gradient(135deg, var(--pink), var(--border));
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--black);
-}
+.author-avatar { width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; background: linear-gradient(135deg, var(--pink), var(--border)); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--black); }
 .author-name { font-size: 0.76rem; font-weight: 500; }
 .author-date { font-size: 0.62rem; color: var(--muted); }
 
@@ -357,21 +178,11 @@ section { padding: 80px 48px; }
 #pricing { background: var(--deep); }
 .pricing-header { max-width: 600px; margin: 0 auto 52px; text-align: center; }
 .pricing-header .divider { margin: 20px auto; }
-.pricing-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 0; max-width: 1100px; margin: 0 auto; border: 1px solid var(--border);
-}
-.pricing-plan {
-  padding: 40px 28px; border-right: 1px solid var(--border); position: relative; transition: background 0.3s;
-}
+.pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; max-width: 1100px; margin: 0 auto; border: 1px solid var(--border); }
+.pricing-plan { padding: 40px 28px; border-right: 1px solid var(--border); position: relative; transition: background 0.3s; }
 .pricing-plan:last-child { border-right: none; }
 .pricing-plan.featured { background: var(--card); border-top: 3px solid var(--pink); }
-.pricing-plan.featured::before {
-  content: 'MOST POPULAR';
-  position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
-  background: var(--pink); color: var(--black);
-  font-size: 0.5rem; letter-spacing: 0.2em; font-weight: 700; padding: 4px 12px;
-}
+.pricing-plan.featured::before { content: 'MOST POPULAR'; position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--pink); color: var(--black); font-size: 0.5rem; letter-spacing: 0.2em; font-weight: 700; padding: 4px 12px; }
 .plan-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin-bottom: 6px; }
 .plan-tagline { font-size: 0.66rem; color: var(--muted); letter-spacing: 0.06em; margin-bottom: 24px; }
 .plan-price { display: flex; align-items: flex-start; gap: 3px; margin-bottom: 3px; }
@@ -383,61 +194,33 @@ section { padding: 80px 48px; }
 .plan-features li::before { content: '✓'; color: var(--pink); font-weight: 700; font-size: 0.72rem; flex-shrink: 0; margin-top: 1px; }
 .plan-features li.no::before { content: '×'; color: var(--border); }
 .plan-features li.no { opacity: 0.4; }
-.plan-cta {
-  width: 100%; padding: 11px; border: 1px solid var(--border);
-  background: none; color: var(--white); cursor: pointer;
-  font-family: 'Montserrat', sans-serif; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
-  transition: all 0.3s;
-}
+.plan-cta { width: 100%; padding: 11px; border: 1px solid var(--border); background: none; color: var(--white); cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; transition: all 0.3s; }
 .plan-cta:hover, .pricing-plan.featured .plan-cta { background: var(--pink); border-color: var(--pink); color: var(--black); }
 
 /* ─── INSTAGRAM ─── */
 #instagram { background: var(--black); }
 .ig-header { max-width: 600px; margin: 0 auto 40px; text-align: center; }
 .ig-header .divider { margin: 20px auto; }
-.ig-handle {
-  display: inline-flex; align-items: center; gap: 8px;
-  color: var(--pink); font-size: 0.76rem; letter-spacing: 0.12em;
-  text-decoration: none; margin-bottom: 6px; transition: color 0.3s;
-}
+.ig-handle { display: inline-flex; align-items: center; gap: 8px; color: var(--pink); font-size: 0.76rem; letter-spacing: 0.12em; text-decoration: none; margin-bottom: 6px; transition: color 0.3s; }
 .ig-handle:hover { color: var(--pink-light); }
 .ig-handle svg { width: 16px; height: 16px; fill: currentColor; }
-.ig-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 6px; max-width: 1000px; margin: 0 auto 36px;
-}
+.ig-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; max-width: 1000px; margin: 0 auto 36px; }
 .ig-post { aspect-ratio: 1; overflow: hidden; cursor: pointer; position: relative; background: var(--card); }
 .ig-post-inner { width: 100%; height: 100%; transition: transform 0.5s ease; }
 .ig-post:hover .ig-post-inner { transform: scale(1.06); }
 .ig-post-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.ig-placeholder {
-  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
-}
-.ig-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(232,84,122,0.75), rgba(10,8,8,0.55));
-  opacity: 0; transition: opacity 0.35s;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
-}
+.ig-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+.ig-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(232,84,122,0.75), rgba(10,8,8,0.55)); opacity: 0; transition: opacity 0.35s; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
 .ig-post:hover .ig-overlay { opacity: 1; }
 .ig-overlay-icon { font-size: 1.3rem; }
 .ig-overlay-stat { font-size: 0.62rem; letter-spacing: 0.12em; color: #fff; }
 .ig-follow-wrap { text-align: center; }
-.ig-follow {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: linear-gradient(135deg, #e8547a, #c9376a, #a0255a);
-  color: #fff; padding: 14px 32px; text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; transition: all 0.3s;
-}
+.ig-follow { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #e8547a, #c9376a, #a0255a); color: #fff; padding: 14px 32px; text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; transition: all 0.3s; }
 .ig-follow:hover { opacity: 0.88; transform: translateY(-1px); }
 .ig-follow svg { width: 16px; height: 16px; fill: #fff; }
 
 /* ─── FOOTER ─── */
-footer {
-  background: #070707; border-top: 1px solid var(--border);
-  padding: 52px 48px 36px; text-align: center;
-}
+footer { background: #070707; border-top: 1px solid var(--border); padding: 52px 48px 36px; text-align: center; }
 .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--pink); letter-spacing: 0.1em; display: block; margin-bottom: 12px; }
 .footer-tagline { font-size: 0.66rem; color: var(--muted); letter-spacing: 0.15em; margin-bottom: 32px; }
 .footer-links { display: flex; justify-content: center; gap: 24px; list-style: none; margin-bottom: 36px; flex-wrap: wrap; }
@@ -446,48 +229,21 @@ footer {
 .footer-copy { font-size: 0.6rem; color: #444; letter-spacing: 0.1em; }
 
 /* ─── WHATSAPP ─── */
-.wa-float {
-  position: fixed; bottom: 24px; right: 24px; z-index: 200;
-  width: 56px; height: 56px; border-radius: 50%;
-  background: linear-gradient(135deg, #25d366, #128c7e);
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 20px rgba(37,211,102,0.35);
-  cursor: pointer; text-decoration: none;
-  animation: waPulse 2.5s ease-in-out infinite; transition: transform 0.3s;
-}
+.wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 200; width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #25d366, #128c7e); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.35); cursor: pointer; text-decoration: none; animation: waPulse 2.5s ease-in-out infinite; transition: transform 0.3s; }
 .wa-float:hover { transform: scale(1.1); }
 .wa-float svg { width: 28px; height: 28px; fill: #fff; }
-.wa-tooltip {
-  position: absolute; right: 66px; top: 50%; transform: translateY(-50%);
-  background: var(--card); border: 1px solid var(--border);
-  padding: 7px 12px; white-space: nowrap; font-size: 0.66rem;
-  letter-spacing: 0.08em; color: var(--white); opacity: 0; pointer-events: none; transition: opacity 0.3s;
-}
+.wa-tooltip { position: absolute; right: 66px; top: 50%; transform: translateY(-50%); background: var(--card); border: 1px solid var(--border); padding: 7px 12px; white-space: nowrap; font-size: 0.66rem; letter-spacing: 0.08em; color: var(--white); opacity: 0; pointer-events: none; transition: opacity 0.3s; }
 .wa-float:hover .wa-tooltip { opacity: 1; }
 
 /* ─── TOAST ─── */
-.toast {
-  position: fixed; bottom: 28px; right: 28px; z-index: 999;
-  background: var(--card); border-left: 3px solid var(--pink);
-  padding: 14px 20px; max-width: 300px; font-size: 0.76rem; line-height: 1.6;
-  transform: translateX(120%); transition: transform 0.4s ease;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-}
+.toast { position: fixed; bottom: 28px; right: 28px; z-index: 999; background: var(--card); border-left: 3px solid var(--pink); padding: 14px 20px; max-width: 300px; font-size: 0.76rem; line-height: 1.6; transform: translateX(120%); transition: transform 0.4s ease; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
 .toast.show { transform: translateX(0); }
 .toast-title { font-weight: 600; color: var(--pink); margin-bottom: 3px; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; }
 
 /* ─── ANIMATIONS ─── */
-@keyframes waPulse {
-  0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.35), 0 0 0 0 rgba(37,211,102,0.4); }
-  50%      { box-shadow: 0 4px 20px rgba(37,211,102,0.35), 0 0 0 12px rgba(37,211,102,0); }
-}
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes scrollPulse {
-  0%,100% { opacity: 0.4; } 50% { opacity: 1; }
-}
+@keyframes waPulse { 0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.35), 0 0 0 0 rgba(37,211,102,0.4); } 50% { box-shadow: 0 4px 20px rgba(37,211,102,0.35), 0 0 0 12px rgba(37,211,102,0); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scrollPulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 1024px) {
@@ -496,7 +252,6 @@ footer {
   .pricing-plan:nth-child(3) { border-top: 1px solid var(--border); }
   .ig-grid { grid-template-columns: repeat(3, 1fr); }
 }
-
 @media (max-width: 768px) {
   nav { padding: 14px 20px; }
   .nav-links { display: none; }
@@ -521,8 +276,10 @@ footer {
   .wa-float { width: 50px; height: 50px; bottom: 20px; right: 20px; }
   .wa-tooltip { display: none; }
   .toast { right: 16px; bottom: 16px; max-width: calc(100vw - 32px); }
+  .lightbox-prev { left: 8px; }
+  .lightbox-next { right: 8px; }
+  .lightbox-prev, .lightbox-next { width: 40px; height: 40px; font-size: 1.1rem; }
 }
-
 @media (max-width: 480px) {
   .hero-title { font-size: clamp(2.4rem, 12vw, 3.5rem); }
   .hero-cta { flex-direction: column; align-items: center; }
@@ -540,8 +297,8 @@ footer {
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">
-  <img src="logo.png" alt="FlirtCity Photography" style="height:40px;width:auto;vertical-align:middle;">
-</a>
+    <img src="logo.png" alt="FlirtCity Photography" style="height:40px;width:auto;vertical-align:middle;">
+  </a>
   <ul class="nav-links">
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#services">Services</a></li>
@@ -576,10 +333,7 @@ footer {
     <a class="btn-primary" href="#booking">Book a Session</a>
     <a class="btn-ghost" href="#gallery">View Portfolio</a>
   </div>
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
-  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
 </section>
 
 <!-- GALLERY -->
@@ -591,12 +345,12 @@ footer {
     <p style="font-size:0.8rem;color:var(--muted);line-height:1.9;">A curated collection of portraits, editorial moments, and intimate sessions — each image a window into a feeling.</p>
   </div>
   <div class="gallery-grid">
-<div class="gallery-item gi-1" onclick="openLightbox(0)"><img src="portrait1.jpg" alt="FlirtCity Photography"></div>
-<div class="gallery-item gi-2" onclick="openLightbox(1)"><img src="portrait2.jpg" alt="FlirtCity Photography"></div>
-<div class="gallery-item gi-3" onclick="openLightbox(2)"><img src="portrait3.jpg" alt="FlirtCity Photography"></div>
-<div class="gallery-item gi-4" onclick="openLightbox(3)"><img src="portrait4.jpg" alt="FlirtCity Photography"></div>
-<div class="gallery-item gi-5" onclick="openLightbox(4)"><img src="portrait5.jpg" alt="FlirtCity Photography"></div>
-<div class="gallery-item gi-6" onclick="openLightbox(5)"><img src="portrait6.jpg" alt="FlirtCity Photography"></div>
+    <div class="gallery-item gi-1" onclick="openLightbox(0)"><img src="portrait1.jpg" alt="FlirtCity Photography"></div>
+    <div class="gallery-item gi-2" onclick="openLightbox(1)"><img src="portrait2.jpg" alt="FlirtCity Photography"></div>
+    <div class="gallery-item gi-3" onclick="openLightbox(2)"><img src="portrait3.jpg" alt="FlirtCity Photography"></div>
+    <div class="gallery-item gi-4" onclick="openLightbox(3)"><img src="portrait4.jpg" alt="FlirtCity Photography"></div>
+    <div class="gallery-item gi-5" onclick="openLightbox(4)"><img src="portrait5.jpg" alt="FlirtCity Photography"></div>
+    <div class="gallery-item gi-6" onclick="openLightbox(5)"><img src="portrait6.jpg" alt="FlirtCity Photography"></div>
   </div>
 </section>
 
@@ -675,7 +429,6 @@ footer {
         </div>
       </div>
     </div>
-
     <div class="booking-form">
       <div class="form-title">Request a Booking</div>
       <div class="form-group">
@@ -750,36 +503,12 @@ footer {
     <div class="divider"></div>
   </div>
   <div class="reviews-grid">
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">Working with FlirtCity Photography was an absolute dream. She made me feel so comfortable in front of the camera — the final images were beyond anything I could have imagined. Pure magic.</p>
-      <div class="review-author"><div class="author-avatar">S</div><div><div class="author-name">Sofia M.</div><div class="author-date">Portrait Session · October 2025</div></div></div>
-    </div>
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">Our wedding shoot was everything. FlirtCity Photography captured moments we didn't even realise were happening. Every photo tells our story perfectly. We'll be back for our anniversary!</p>
-      <div class="review-author"><div class="author-avatar">F</div><div><div class="author-name">Frederick & Lena</div><div class="author-date">Couples Session · March 2026</div></div></div>
-    </div>
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">The brand shoot exceeded all expectations. FlirtCity understood our aesthetic immediately and delivered a cohesive gallery that transformed our entire social media presence.</p>
-      <div class="review-author"><div class="author-avatar">A</div><div><div class="author-name">Aisha K.</div><div class="author-date">Brand Session · December 2025</div></div></div>
-    </div>
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">I was nervous about my first professional shoot but FlirtCity's calm energy and creative direction made the whole experience feel natural. I finally love photos of myself!</p>
-      <div class="review-author"><div class="author-avatar">R</div><div><div class="author-name">Rachel T.</div><div class="author-date">Graduation Session · January 2026</div></div></div>
-    </div>
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">Hired FlirtCity Photography for our wedding event. She was discreet, professional, and captured everything beautifully. Turnaround was fast and the gallery was stunning.</p>
-      <div class="review-author"><div class="author-avatar">N</div><div><div class="author-name">Nour & Michael</div><div class="author-date">Event Coverage · February 2026</div></div></div>
-    </div>
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">The editorial shoot we did together was a full creative collaboration. FlirtCity brought ideas I hadn't thought of, and the final images are genuinely gallery-worthy. 10/10.</p>
-      <div class="review-author"><div class="author-avatar">M</div><div><div class="author-name">Marco L.</div><div class="author-date">Editorial Session · November 2025</div></div></div>
-    </div>
+    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">Working with FlirtCity Photography was an absolute dream. She made me feel so comfortable in front of the camera — the final images were beyond anything I could have imagined. Pure magic.</p><div class="review-author"><div class="author-avatar">S</div><div><div class="author-name">Sofia M.</div><div class="author-date">Portrait Session · October 2025</div></div></div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">Our wedding shoot was everything. FlirtCity Photography captured moments we didn't even realise were happening. Every photo tells our story perfectly. We'll be back for our anniversary!</p><div class="review-author"><div class="author-avatar">F</div><div><div class="author-name">Frederick & Lena</div><div class="author-date">Couples Session · March 2026</div></div></div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">The brand shoot exceeded all expectations. FlirtCity understood our aesthetic immediately and delivered a cohesive gallery that transformed our entire social media presence.</p><div class="review-author"><div class="author-avatar">A</div><div><div class="author-name">Aisha K.</div><div class="author-date">Brand Session · December 2025</div></div></div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">I was nervous about my first professional shoot but FlirtCity's calm energy and creative direction made the whole experience feel natural. I finally love photos of myself!</p><div class="review-author"><div class="author-avatar">R</div><div><div class="author-name">Rachel T.</div><div class="author-date">Graduation Session · January 2026</div></div></div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">Hired FlirtCity Photography for our wedding event. She was discreet, professional, and captured everything beautifully. Turnaround was fast and the gallery was stunning.</p><div class="review-author"><div class="author-avatar">N</div><div><div class="author-name">Nour & Michael</div><div class="author-date">Event Coverage · February 2026</div></div></div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">The editorial shoot we did together was a full creative collaboration. FlirtCity brought ideas I hadn't thought of, and the final images are genuinely gallery-worthy. 10/10.</p><div class="review-author"><div class="author-avatar">M</div><div><div class="author-name">Marco L.</div><div class="author-date">Editorial Session · November 2025</div></div></div></div>
   </div>
 </section>
 
@@ -793,59 +522,31 @@ footer {
   </div>
   <div class="pricing-grid">
     <div class="pricing-plan">
-      <div class="plan-name">1 Hour</div>
-      <div class="plan-tagline">Quick & stunning shoot</div>
+      <div class="plan-name">1 Hour</div><div class="plan-tagline">Quick & stunning shoot</div>
       <div class="plan-price"><span class="plan-currency">$</span><span class="plan-amount">70</span></div>
       <div class="plan-duration">1-hour session</div>
-      <ul class="plan-features">
-        <li>8 edited photos of your choice</li>
-        <li>1 location</li>
-        <li>Professional editing</li>
-        <li>Digital delivery</li>
-        <li class="no">Extra edited photos</li>
-      </ul>
+      <ul class="plan-features"><li>8 edited photos of your choice</li><li>1 location</li><li>Professional editing</li><li>Digital delivery</li><li class="no">Extra edited photos</li></ul>
       <button class="plan-cta" onclick="selectService('1 Hour Session')">Book Now</button>
     </div>
     <div class="pricing-plan featured">
-      <div class="plan-name">2 Hours</div>
-      <div class="plan-tagline">More looks, more magic</div>
+      <div class="plan-name">2 Hours</div><div class="plan-tagline">More looks, more magic</div>
       <div class="plan-price"><span class="plan-currency">$</span><span class="plan-amount">80</span></div>
       <div class="plan-duration">2-hour session</div>
-      <ul class="plan-features">
-        <li>8 edited photos of your choice</li>
-        <li>Ideal for birthdays / dinner</li>
-        <li>Professional editing</li>
-        <li>Digital delivery</li>
-        <li class="no">Extra edited photos</li>
-      </ul>
+      <ul class="plan-features"><li>8 edited photos of your choice</li><li>Ideal for birthdays / dinner</li><li>Professional editing</li><li>Digital delivery</li><li class="no">Extra edited photos</li></ul>
       <button class="plan-cta" onclick="selectService('2 Hour Session')">Book Now</button>
     </div>
     <div class="pricing-plan">
-      <div class="plan-name">Premium 10</div>
-      <div class="plan-tagline">Bigger gallery, bolder you</div>
+      <div class="plan-name">Premium 10</div><div class="plan-tagline">Bigger gallery, bolder you</div>
       <div class="plan-price"><span class="plan-currency">$</span><span class="plan-amount">100</span></div>
       <div class="plan-duration">10 edited photos</div>
-      <ul class="plan-features">
-        <li>10 edited photos of your choice</li>
-        <li>Flexible locations</li>
-        <li>Premium editing</li>
-        <li>Digital delivery</li>
-        <li>Great for models & brands</li>
-      </ul>
+      <ul class="plan-features"><li>10 edited photos of your choice</li><li>Flexible locations</li><li>Premium editing</li><li>Digital delivery</li><li>Great for models & brands</li></ul>
       <button class="plan-cta" onclick="selectService('Premium 10 Photos')">Book Now</button>
     </div>
     <div class="pricing-plan">
-      <div class="plan-name">Premium 15</div>
-      <div class="plan-tagline">The ultimate collection</div>
+      <div class="plan-name">Premium 15</div><div class="plan-tagline">The ultimate collection</div>
       <div class="plan-price"><span class="plan-currency">$</span><span class="plan-amount">120</span></div>
       <div class="plan-duration">15 edited photos</div>
-      <ul class="plan-features">
-        <li>15 edited photos of your choice</li>
-        <li>Flexible locations</li>
-        <li>Premium editing</li>
-        <li>Digital delivery</li>
-        <li>Best for influencers & content</li>
-      </ul>
+      <ul class="plan-features"><li>15 edited photos of your choice</li><li>Flexible locations</li><li>Premium editing</li><li>Digital delivery</li><li>Best for influencers & content</li></ul>
       <button class="plan-cta" onclick="selectService('Premium 15 Photos')">Book Now</button>
     </div>
   </div>
@@ -861,6 +562,22 @@ footer {
     <div class="section-label">Follow Along</div>
     <h2 class="section-title">Find Us on<br><em>Instagram</em></h2>
     <div class="divider"></div>
+    <a class="ig-handle" href="https://instagram.com/shot_by_flirt" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      @shot_by_flirt
+    </a>
+  </div>
+  <div class="ig-grid">
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#2a1020,#1a0818);">🌸</div></div><div class="ig-overlay"><div class="ig-overlay-icon">♥</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#1a1020,#2a0a18);">✨</div></div><div class="ig-overlay"><div class="ig-overlay-icon">♥</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#20101a,#180a2a);">📸</div></div><div class="ig-overlay"><div class="ig-overlay-icon">♥</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#1a0a20,#2a1028);">💄</div></div><div class="ig-overlay"><div class="ig-overlay-icon">♥</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#28101a,#1a0820);">🌹</div></div><div class="ig-overlay"><div class="ig-overlay-icon">♥</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#200a18,#2a1020);">💫</div></div><div class="ig-overlay"><div class="ig-overlay-icon">♥</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#1e0c1a,#2c1022);">🎞️</div></div><div class="ig-overlay"><div class="ig-overlay-icon">♥</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#220e1c,#180c1e);">💋</div></div><div class="ig-overlay"><div class="ig-overlay-icon">♥</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+  </div>
+  <div class="ig-follow-wrap">
     <a class="ig-follow" href="https://instagram.com/shot_by_flirt" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
       Follow @shot_by_flirt
@@ -884,7 +601,7 @@ footer {
   <p class="footer-copy">© 2026 FlirtCity Photography. All rights reserved.</p>
 </footer>
 
-  <!-- LIGHTBOX -->
+<!-- LIGHTBOX -->
 <div class="lightbox-overlay" id="lightbox" onclick="handleOverlayClick(event)">
   <button class="lightbox-close" onclick="closeLightbox()">&#215;</button>
   <button class="lightbox-prev" onclick="lightboxNav(-1)">&#8592;</button>
@@ -895,6 +612,7 @@ footer {
   <div class="lightbox-counter" id="lightbox-counter">1 / 6</div>
   <div class="lightbox-dots" id="lightbox-dots"></div>
 </div>
+
 <!-- WHATSAPP -->
 <a class="wa-float" href="https://wa.me/905488677150?text=Hi%20FlirtCity%20Photography!%20I%27d%20like%20to%20book%20a%20session%20%F0%9F%93%B8" target="_blank" rel="noopener">
   <span class="wa-tooltip">Book via WhatsApp</span>
@@ -907,10 +625,9 @@ footer {
 </div>
 
 <script>
-  // ── Lightbox ──
+// ── Lightbox ──
 var lbImages = ['portrait1.jpg','portrait2.jpg','portrait3.jpg','portrait4.jpg','portrait5.jpg','portrait6.jpg'];
 var lbCurrent = 0;
-
 function openLightbox(index) {
   lbCurrent = index;
   updateLightbox();
@@ -926,61 +643,42 @@ function openLightbox(index) {
     dots.appendChild(dot);
   }
 }
-
 function updateLightbox() {
   document.getElementById('lightbox-img').src = lbImages[lbCurrent];
   document.getElementById('lightbox-counter').textContent = (lbCurrent + 1) + ' / ' + lbImages.length;
   var dots = document.querySelectorAll('.lightbox-dot');
   for (var i = 0; i < dots.length; i++) { dots[i].classList.toggle('active', i === lbCurrent); }
 }
-
 function lightboxNav(dir) {
   lbCurrent = (lbCurrent + dir + lbImages.length) % lbImages.length;
   updateLightbox();
 }
-
 function closeLightbox() {
   document.getElementById('lightbox').classList.remove('active');
   document.body.style.overflow = '';
 }
-
 function handleOverlayClick(e) {
   if (e.target === document.getElementById('lightbox')) closeLightbox();
 }
-
 document.addEventListener('keydown', function(e) {
   var lb = document.getElementById('lightbox');
   if (!lb.classList.contains('active')) return;
   if (e.key === 'ArrowRight') lightboxNav(1);
-  if (e.key === 'ArrowLeft')  lightboxNav(-1);
-  if (e.key === 'Escape')     closeLightbox();
+  if (e.key === 'ArrowLeft') lightboxNav(-1);
+  if (e.key === 'Escape') closeLightbox();
 });
-
 var lbTouchStartX = 0;
-document.getElementById('lightbox').addEventListener('touchstart', function(e) {
-  lbTouchStartX = e.touches[0].clientX;
-}, { passive: true });
-document.getElementById('lightbox').addEventListener('touchend', function(e) {
-  var diff = lbTouchStartX - e.changedTouches[0].clientX;
-  if (Math.abs(diff) > 50) lightboxNav(diff > 0 ? 1 : -1);
-});
+document.getElementById('lightbox').addEventListener('touchstart', function(e) { lbTouchStartX = e.touches[0].clientX; }, { passive: true });
+document.getElementById('lightbox').addEventListener('touchend', function(e) { var diff = lbTouchStartX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) lightboxNav(diff > 0 ? 1 : -1); });
+
 // ── Mobile Menu ──
-function toggleMenu() {
-  var h = document.getElementById('hamburger');
-  var m = document.getElementById('mobile-menu');
-  h.classList.toggle('open');
-  m.classList.toggle('open');
-}
-function closeMenu() {
-  document.getElementById('hamburger').classList.remove('open');
-  document.getElementById('mobile-menu').classList.remove('open');
-}
+function toggleMenu() { document.getElementById('hamburger').classList.toggle('open'); document.getElementById('mobile-menu').classList.toggle('open'); }
+function closeMenu() { document.getElementById('hamburger').classList.remove('open'); document.getElementById('mobile-menu').classList.remove('open'); }
 
 // ── Calendar ──
 var calCurrent = 0;
 var calTotal = 10;
 var calMonthNames = ["March","April","May","June","July","August","September","October","November","December"];
-
 function calNav(dir) {
   document.getElementById('month-' + calCurrent).style.display = 'none';
   calCurrent += dir;
@@ -989,7 +687,6 @@ function calNav(dir) {
   document.getElementById('cal-prev-btn').disabled = (calCurrent === 0);
   document.getElementById('cal-next-btn').disabled = (calCurrent === calTotal - 1);
 }
-
 function pickDate(el, dateStr) {
   var all = document.querySelectorAll('.cd.selected');
   for (var i = 0; i < all.length; i++) { all[i].classList.remove('selected'); }
@@ -1022,12 +719,10 @@ function submitForm() {
   var timeEl  = document.querySelector('.time-slot.selected');
   var time    = timeEl ? timeEl.textContent : '';
   var msg     = document.getElementById('inp-msg').value.trim();
-
   if (!first || !service || !date || !time) {
     showToast('Missing Info', 'Please fill in your name, select a package, a date and a time.');
     return;
   }
-
   var waText = encodeURIComponent(
     'Hi FlirtCity Photography! \uD83D\uDCF8\n\n' +
     'I\'d like to book a session:\n' +
@@ -1047,45 +742,6 @@ function showToast(title, msg) {
   t.classList.add('show');
   setTimeout(function() { t.classList.remove('show'); }, 4000);
 }
-
-/* ─── LIGHTBOX ─── */
-.lightbox-overlay {
-  display: none; position: fixed; inset: 0; z-index: 2000;
-  background: rgba(0,0,0,0.96);
-  align-items: center; justify-content: center;
-  flex-direction: column;
-}
-.lightbox-overlay.active { display: flex; }
-.lightbox-img-wrap {
-  max-width: 90vw; max-height: 82vh;
-  display: flex; align-items: center; justify-content: center;
-}
-.lightbox-img-wrap img {
-  max-width: 90vw; max-height: 82vh; object-fit: contain; display: block;
-  border: 1px solid rgba(232,84,122,0.2);
-  box-shadow: 0 0 60px rgba(232,84,122,0.1);
-}
-.lightbox-close {
-  position: fixed; top: 20px; right: 24px;
-  background: none; border: 1px solid #2e1f23; color: #fdf0f3;
-  width: 44px; height: 44px; font-size: 1.4rem; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 2001;
-}
-.lightbox-close:hover { border-color: #e8547a; color: #e8547a; }
-.lightbox-prev, .lightbox-next {
-  position: fixed; top: 50%; transform: translateY(-50%);
-  background: rgba(10,8,8,0.7); border: 1px solid #2e1f23; color: #fdf0f3;
-  width: 48px; height: 48px; font-size: 1.4rem; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 2001;
-}
-.lightbox-prev { left: 16px; }
-.lightbox-next { right: 16px; }
-.lightbox-prev:hover, .lightbox-next:hover { border-color: #e8547a; color: #e8547a; }
-.lightbox-counter { margin-top: 16px; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #9a8085; }
-.lightbox-dots { display: flex; gap: 8px; margin-top: 12px; }
-.lightbox-dot { width: 6px; height: 6px; border-radius: 50%; background: #2e1f23; cursor: pointer; transition: background 0.2s; }
-.lightbox-dot.active { background: #e8547a; }
-.gallery-item { cursor: zoom-in; }
 </script>
 </body>
 </html>
