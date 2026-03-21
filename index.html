@@ -591,7 +591,7 @@ footer {
     <p style="font-size:0.8rem;color:var(--muted);line-height:1.9;">A curated collection of portraits, editorial moments, and intimate sessions — each image a window into a feeling.</p>
   </div>
   <div class="gallery-grid">
-    <div class="gallery-item gi-1" onclick="openLightbox(0)"><img src="portrait1.jpg" alt="FlirtCity Photography"></div>
+<div class="gallery-item gi-1" onclick="openLightbox(0)"><img src="portrait1.jpg" alt="FlirtCity Photography"></div>
 <div class="gallery-item gi-2" onclick="openLightbox(1)"><img src="portrait2.jpg" alt="FlirtCity Photography"></div>
 <div class="gallery-item gi-3" onclick="openLightbox(2)"><img src="portrait3.jpg" alt="FlirtCity Photography"></div>
 <div class="gallery-item gi-4" onclick="openLightbox(3)"><img src="portrait4.jpg" alt="FlirtCity Photography"></div>
@@ -884,6 +884,17 @@ footer {
   <p class="footer-copy">© 2026 FlirtCity Photography. All rights reserved.</p>
 </footer>
 
+  <!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" onclick="handleOverlayClick(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">&#215;</button>
+  <button class="lightbox-prev" onclick="lightboxNav(-1)">&#8592;</button>
+  <div class="lightbox-img-wrap">
+    <img id="lightbox-img" src="" alt="FlirtCity Photography">
+  </div>
+  <button class="lightbox-next" onclick="lightboxNav(1)">&#8594;</button>
+  <div class="lightbox-counter" id="lightbox-counter">1 / 6</div>
+  <div class="lightbox-dots" id="lightbox-dots"></div>
+</div>
 <!-- WHATSAPP -->
 <a class="wa-float" href="https://wa.me/905488677150?text=Hi%20FlirtCity%20Photography!%20I%27d%20like%20to%20book%20a%20session%20%F0%9F%93%B8" target="_blank" rel="noopener">
   <span class="wa-tooltip">Book via WhatsApp</span>
@@ -896,6 +907,63 @@ footer {
 </div>
 
 <script>
+  // ── Lightbox ──
+var lbImages = ['portrait1.jpg','portrait2.jpg','portrait3.jpg','portrait4.jpg','portrait5.jpg','portrait6.jpg'];
+var lbCurrent = 0;
+
+function openLightbox(index) {
+  lbCurrent = index;
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  var dots = document.getElementById('lightbox-dots');
+  dots.innerHTML = '';
+  for (var i = 0; i < lbImages.length; i++) {
+    var dot = document.createElement('div');
+    dot.className = 'lightbox-dot' + (i === index ? ' active' : '');
+    dot.setAttribute('data-i', i);
+    dot.onclick = function() { lbCurrent = parseInt(this.getAttribute('data-i')); updateLightbox(); };
+    dots.appendChild(dot);
+  }
+}
+
+function updateLightbox() {
+  document.getElementById('lightbox-img').src = lbImages[lbCurrent];
+  document.getElementById('lightbox-counter').textContent = (lbCurrent + 1) + ' / ' + lbImages.length;
+  var dots = document.querySelectorAll('.lightbox-dot');
+  for (var i = 0; i < dots.length; i++) { dots[i].classList.toggle('active', i === lbCurrent); }
+}
+
+function lightboxNav(dir) {
+  lbCurrent = (lbCurrent + dir + lbImages.length) % lbImages.length;
+  updateLightbox();
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+}
+
+document.addEventListener('keydown', function(e) {
+  var lb = document.getElementById('lightbox');
+  if (!lb.classList.contains('active')) return;
+  if (e.key === 'ArrowRight') lightboxNav(1);
+  if (e.key === 'ArrowLeft')  lightboxNav(-1);
+  if (e.key === 'Escape')     closeLightbox();
+});
+
+var lbTouchStartX = 0;
+document.getElementById('lightbox').addEventListener('touchstart', function(e) {
+  lbTouchStartX = e.touches[0].clientX;
+}, { passive: true });
+document.getElementById('lightbox').addEventListener('touchend', function(e) {
+  var diff = lbTouchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) lightboxNav(diff > 0 ? 1 : -1);
+});
 // ── Mobile Menu ──
 function toggleMenu() {
   var h = document.getElementById('hamburger');
@@ -980,6 +1048,44 @@ function showToast(title, msg) {
   setTimeout(function() { t.classList.remove('show'); }, 4000);
 }
 
+/* ─── LIGHTBOX ─── */
+.lightbox-overlay {
+  display: none; position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,0,0,0.96);
+  align-items: center; justify-content: center;
+  flex-direction: column;
+}
+.lightbox-overlay.active { display: flex; }
+.lightbox-img-wrap {
+  max-width: 90vw; max-height: 82vh;
+  display: flex; align-items: center; justify-content: center;
+}
+.lightbox-img-wrap img {
+  max-width: 90vw; max-height: 82vh; object-fit: contain; display: block;
+  border: 1px solid rgba(232,84,122,0.2);
+  box-shadow: 0 0 60px rgba(232,84,122,0.1);
+}
+.lightbox-close {
+  position: fixed; top: 20px; right: 24px;
+  background: none; border: 1px solid #2e1f23; color: #fdf0f3;
+  width: 44px; height: 44px; font-size: 1.4rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 2001;
+}
+.lightbox-close:hover { border-color: #e8547a; color: #e8547a; }
+.lightbox-prev, .lightbox-next {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  background: rgba(10,8,8,0.7); border: 1px solid #2e1f23; color: #fdf0f3;
+  width: 48px; height: 48px; font-size: 1.4rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 2001;
+}
+.lightbox-prev { left: 16px; }
+.lightbox-next { right: 16px; }
+.lightbox-prev:hover, .lightbox-next:hover { border-color: #e8547a; color: #e8547a; }
+.lightbox-counter { margin-top: 16px; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #9a8085; }
+.lightbox-dots { display: flex; gap: 8px; margin-top: 12px; }
+.lightbox-dot { width: 6px; height: 6px; border-radius: 50%; background: #2e1f23; cursor: pointer; transition: background 0.2s; }
+.lightbox-dot.active { background: #e8547a; }
+.gallery-item { cursor: zoom-in; }
 </script>
 </body>
 </html>
