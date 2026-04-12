@@ -4,25 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FlirtCity Photography</title>
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --black: #0a0808;
-  --deep: #110d0e;
-  --card: #1a1214;
-  --border: #2e1f23;
-  --pink: #e8547a;
-  --pink-light: #f07a96;
-  --white: #fdf0f3;
-  --muted: #9a8085;
-  --pink-glow: rgba(232,84,122,0.12);
-  --pink-faint: rgba(232,84,122,0.05);
+  --black: #0a0808; --deep: #110d0e; --card: #1a1214; --border: #2e1f23;
+  --pink: #e8547a; --pink-light: #f07a96; --white: #fdf0f3; --muted: #9a8085;
+  --pink-glow: rgba(232,84,122,0.12); --pink-faint: rgba(232,84,122,0.05);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { background: var(--black); color: var(--white); font-family: 'Montserrat', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
 
-/* ─── NAV ─── */
+/* NAV */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 18px 48px; background: rgba(10,8,8,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(232,84,122,0.1); }
 .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; letter-spacing: 0.08em; color: var(--pink); text-decoration: none; white-space: nowrap; }
 .nav-links { display: flex; gap: 28px; list-style: none; }
@@ -41,7 +36,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; 
 .mobile-menu a:last-child { border-bottom: none; }
 .mobile-menu a:hover { color: var(--pink); }
 
-/* ─── HERO ─── */
+/* HERO */
 .hero { height: 100vh; min-height: 600px; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: 80px 24px 40px; text-align: center; }
 .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 60% 40%, var(--pink-glow) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 20% 70%, var(--pink-faint) 0%, transparent 60%), radial-gradient(ellipse 30% 50% at 80% 80%, rgba(232,84,122,0.06) 0%, transparent 60%), #0a0808; }
 .hero-tag { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--pink); margin-bottom: 20px; position: relative; z-index: 1; animation: fadeUp 1s ease both; }
@@ -56,14 +51,14 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; 
 .hero-scroll { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 1; color: var(--muted); font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; }
 .scroll-line { width: 1px; height: 36px; background: linear-gradient(to bottom, var(--pink), transparent); animation: scrollPulse 2s ease-in-out infinite; }
 
-/* ─── SECTIONS ─── */
+/* SECTIONS */
 section { padding: 80px 48px; }
 .section-label { font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--pink); margin-bottom: 14px; }
 .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 300; line-height: 1.1; }
 .section-title em { font-style: italic; color: var(--pink); }
 .divider { width: 60px; height: 1px; background: var(--pink); margin: 20px 0; }
 
-/* ─── GALLERY ─── */
+/* GALLERY */
 #gallery { background: var(--deep); }
 .gallery-header { max-width: 600px; margin-bottom: 48px; }
 .gallery-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px; max-width: 1200px; margin: 0 auto; }
@@ -79,7 +74,7 @@ section { padding: 80px 48px; }
 .gi-5 { grid-column: 4/9; grid-row: 2; height: 260px; }
 .gi-6 { grid-column: 9/13; grid-row: 2; height: 260px; }
 
-/* ─── LIGHTBOX ─── */
+/* LIGHTBOX */
 .lightbox-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.96); align-items: center; justify-content: center; flex-direction: column; }
 .lightbox-overlay.active { display: flex; }
 .lightbox-img-wrap { max-width: 90vw; max-height: 82vh; display: flex; align-items: center; justify-content: center; }
@@ -95,7 +90,7 @@ section { padding: 80px 48px; }
 .lightbox-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); cursor: pointer; transition: background 0.2s; }
 .lightbox-dot.active { background: var(--pink); }
 
-/* ─── SERVICES ─── */
+/* SERVICES */
 #services { background: var(--black); }
 .services-header { max-width: 600px; margin-bottom: 48px; }
 .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2px; max-width: 1200px; margin: 0 auto; }
@@ -106,15 +101,13 @@ section { padding: 80px 48px; }
 .service-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--border); margin-bottom: 16px; line-height: 1; }
 .service-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; margin-bottom: 10px; }
 .service-desc { font-size: 0.76rem; color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
-.service-footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 16px; }
-.service-price { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--pink); font-weight: 300; }
-.service-duration { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
-.service-btn { background: none; border: 1px solid var(--border); color: var(--white); padding: 8px 18px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.3s; }
+.service-footer { display: flex; align-items: center; justify-content: flex-end; border-top: 1px solid var(--border); padding-top: 16px; }
+.service-btn { background: none; border: 1px solid var(--border); color: var(--white); padding: 10px 22px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.3s; }
 .service-btn:hover { border-color: var(--pink); color: var(--pink); }
 .note-box { max-width: 800px; margin: 36px auto 0; background: var(--card); border-left: 3px solid var(--pink); padding: 18px 24px; font-size: 0.76rem; color: var(--muted); line-height: 1.9; }
 .note-box strong { color: var(--white); font-weight: 500; display: block; margin-bottom: 4px; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; }
 
-/* ─── BOOKING ─── */
+/* BOOKING */
 #booking { background: var(--deep); }
 .booking-wrap { display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; max-width: 1100px; margin: 0 auto; align-items: start; }
 .booking-info p { font-size: 0.8rem; color: var(--muted); line-height: 1.9; margin-bottom: 24px; }
@@ -134,7 +127,7 @@ section { padding: 80px 48px; }
 .form-select option { background: var(--deep); }
 .form-textarea { resize: vertical; min-height: 90px; }
 
-/* ─── CALENDAR ─── */
+/* CALENDAR */
 .monthly-cal-wrap { background: #16100f; border: 1px solid #3a2530; overflow: hidden; margin-top: 6px; }
 .cal-nav-bar { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; background: #120e0d; border-bottom: 1px solid #3a2530; }
 .cal-nav-btn { background: none; border: 1px solid #3a2530; color: var(--white); width: 34px; height: 34px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
@@ -151,7 +144,7 @@ section { padding: 80px 48px; }
 .cde { pointer-events: none; }
 .cd.past { color: #3a2530 !important; cursor: default; pointer-events: none; }
 
-/* ─── TIME SLOTS ─── */
+/* TIME SLOTS */
 .time-slots { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
 .time-slot { padding: 7px 12px; border: 1px solid var(--border); cursor: pointer; font-size: 0.68rem; letter-spacing: 0.06em; color: var(--white); transition: all 0.2s; }
 .time-slot:hover { border-color: var(--pink); color: var(--pink); }
@@ -160,7 +153,7 @@ section { padding: 80px 48px; }
 .form-submit { width: 100%; background: var(--pink); color: var(--black); border: none; padding: 15px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; transition: all 0.3s; margin-top: 6px; }
 .form-submit:hover { background: var(--pink-light); transform: translateY(-1px); }
 
-/* ─── REVIEWS ─── */
+/* REVIEWS */
 #reviews { background: var(--black); }
 .reviews-header { max-width: 600px; margin: 0 auto 48px; text-align: center; }
 .reviews-header .divider { margin: 20px auto; }
@@ -174,7 +167,7 @@ section { padding: 80px 48px; }
 .author-name { font-size: 0.76rem; font-weight: 500; }
 .author-date { font-size: 0.62rem; color: var(--muted); }
 
-/* ─── PRICING ─── */
+/* PRICING — no amounts shown, contact-to-book style */
 #pricing { background: var(--deep); }
 .pricing-header { max-width: 600px; margin: 0 auto 52px; text-align: center; }
 .pricing-header .divider { margin: 20px auto; }
@@ -185,9 +178,7 @@ section { padding: 80px 48px; }
 .pricing-plan.featured::before { content: 'MOST POPULAR'; position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--pink); color: var(--black); font-size: 0.5rem; letter-spacing: 0.2em; font-weight: 700; padding: 4px 12px; }
 .plan-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin-bottom: 6px; }
 .plan-tagline { font-size: 0.66rem; color: var(--muted); letter-spacing: 0.06em; margin-bottom: 24px; }
-.plan-price { display: flex; align-items: flex-start; gap: 3px; margin-bottom: 3px; }
-.plan-currency { font-size: 1rem; color: var(--pink); margin-top: 7px; font-weight: 500; }
-.plan-amount { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--pink); line-height: 1; font-weight: 300; }
+.plan-enquire { font-size: 0.7rem; color: var(--pink); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; margin-bottom: 20px; }
 .plan-duration { font-size: 0.62rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 28px; text-transform: uppercase; }
 .plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
 .plan-features li { font-size: 0.74rem; color: var(--muted); display: flex; gap: 10px; align-items: flex-start; }
@@ -197,7 +188,7 @@ section { padding: 80px 48px; }
 .plan-cta { width: 100%; padding: 11px; border: 1px solid var(--border); background: none; color: var(--white); cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; transition: all 0.3s; }
 .plan-cta:hover, .pricing-plan.featured .plan-cta { background: var(--pink); border-color: var(--pink); color: var(--black); }
 
-/* ─── INSTAGRAM ─── */
+/* INSTAGRAM */
 #instagram { background: var(--black); }
 .ig-header { max-width: 600px; margin: 0 auto 40px; text-align: center; }
 .ig-header .divider { margin: 20px auto; }
@@ -219,33 +210,32 @@ section { padding: 80px 48px; }
 .ig-follow:hover { opacity: 0.88; transform: translateY(-1px); }
 .ig-follow svg { width: 16px; height: 16px; fill: #fff; }
 
-/* ─── FOOTER ─── */
+/* FOOTER */
 footer { background: #070707; border-top: 1px solid var(--border); padding: 52px 48px 36px; text-align: center; }
-.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--pink); letter-spacing: 0.1em; display: block; margin-bottom: 12px; }
 .footer-tagline { font-size: 0.66rem; color: var(--muted); letter-spacing: 0.15em; margin-bottom: 32px; }
 .footer-links { display: flex; justify-content: center; gap: 24px; list-style: none; margin-bottom: 36px; flex-wrap: wrap; }
 .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.3s; }
 .footer-links a:hover { color: var(--pink); }
 .footer-copy { font-size: 0.6rem; color: #444; letter-spacing: 0.1em; }
 
-/* ─── WHATSAPP ─── */
+/* WHATSAPP */
 .wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 200; width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #25d366, #128c7e); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.35); cursor: pointer; text-decoration: none; animation: waPulse 2.5s ease-in-out infinite; transition: transform 0.3s; }
 .wa-float:hover { transform: scale(1.1); }
 .wa-float svg { width: 28px; height: 28px; fill: #fff; }
 .wa-tooltip { position: absolute; right: 66px; top: 50%; transform: translateY(-50%); background: var(--card); border: 1px solid var(--border); padding: 7px 12px; white-space: nowrap; font-size: 0.66rem; letter-spacing: 0.08em; color: var(--white); opacity: 0; pointer-events: none; transition: opacity 0.3s; }
 .wa-float:hover .wa-tooltip { opacity: 1; }
 
-/* ─── TOAST ─── */
+/* TOAST */
 .toast { position: fixed; bottom: 28px; right: 28px; z-index: 999; background: var(--card); border-left: 3px solid var(--pink); padding: 14px 20px; max-width: 300px; font-size: 0.76rem; line-height: 1.6; transform: translateX(120%); transition: transform 0.4s ease; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
 .toast.show { transform: translateX(0); }
 .toast-title { font-weight: 600; color: var(--pink); margin-bottom: 3px; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; }
 
-/* ─── ANIMATIONS ─── */
+/* ANIMATIONS */
 @keyframes waPulse { 0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.35), 0 0 0 0 rgba(37,211,102,0.4); } 50% { box-shadow: 0 4px 20px rgba(37,211,102,0.35), 0 0 0 12px rgba(37,211,102,0); } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes scrollPulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
 
-/* ─── RESPONSIVE ─── */
+/* RESPONSIVE */
 @media (max-width: 1024px) {
   .pricing-grid { grid-template-columns: repeat(2, 1fr); }
   .pricing-plan:nth-child(2) { border-right: none; }
@@ -367,8 +357,7 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
       <div class="service-name">1 Hour Session</div>
       <p class="service-desc">A focused shoot packed into one golden hour. Perfect for portraits, headshots, or a quick content refresh. Includes 8 beautifully edited photos of your choice.</p>
       <div class="service-footer">
-        <div><div class="service-price" </div><div class="service-duration">1 hour · 8 edited photos</div></div>
-        <button class="service-btn" onclick="selectService('1 Hour Session')">Book This</button>
+        <button class="service-btn" onclick="openCalendly()">Enquire & Book</button>
       </div>
     </div>
     <div class="service-card">
@@ -376,8 +365,7 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
       <div class="service-name">2 Hour Session</div>
       <p class="service-desc">More time, more looks, more magic. Ideal for multiple outfits or a relaxed creative shoot. Includes 8 beautifully edited photos of your choice.</p>
       <div class="service-footer">
-        <div><div class="service-price" </div><div class="service-duration">2 hours · 8 edited photos</div></div>
-        <button class="service-btn" onclick="selectService('2 Hour Session')">Book This</button>
+        <button class="service-btn" onclick="openCalendly()">Enquire & Book</button>
       </div>
     </div>
     <div class="service-card">
@@ -385,8 +373,7 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
       <div class="service-name">Premium 10</div>
       <p class="service-desc">Step it up with 10 premium edited photos. More variety, more expression — ideal for models, creatives, and anyone who wants a fuller gallery.</p>
       <div class="service-footer">
-        <div><div class="service-price" </div><div class="service-duration">10 edited photos</div></div>
-        <button class="service-btn" onclick="selectService('Premium 10 Photos')">Book This</button>
+        <button class="service-btn" onclick="openCalendly()">Enquire & Book</button>
       </div>
     </div>
     <div class="service-card">
@@ -394,8 +381,7 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
       <div class="service-name">Premium 15</div>
       <p class="service-desc">The ultimate collection — 15 premium edited photos for maximum versatility. Best for brands, influencers, and anyone who wants to show every side of themselves.</p>
       <div class="service-footer">
-        <div><div class="service-price" </div><div class="service-duration">15 edited photos</div></div>
-        <button class="service-btn" onclick="selectService('Premium 15 Photos')">Book This</button>
+        <button class="service-btn" onclick="openCalendly()">Enquire & Book</button>
       </div>
     </div>
   </div>
@@ -439,10 +425,10 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
         <label class="form-label">Session Type</label>
         <select class="form-select" id="inp-service">
           <option value="">— Select a package —</option>
-          <option>1 Hour Session — $70</option>
-          <option>2 Hour Session — $80</option>
-          <option>Premium 10 Photos — $100</option>
-          <option>Premium 15 Photos — $120</option>
+          <option>1 Hour Session</option>
+          <option>2 Hour Session</option>
+          <option>Premium 10 Photos</option>
+          <option>Premium 15 Photos</option>
         </select>
       </div>
       <div class="form-group">
@@ -450,19 +436,18 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
         <div class="monthly-cal-wrap">
           <div class="cal-nav-bar">
             <button class="cal-nav-btn" id="cal-prev-btn" onclick="calNav(-1)" disabled>&#8592;</button>
-            <span class="cal-nav-title" id="cal-nav-title">March 2026</span>
+            <span class="cal-nav-title" id="cal-nav-title">April 2026</span>
             <button class="cal-nav-btn" id="cal-next-btn" onclick="calNav(1)">&#8594;</button>
           </div>
-<div class="mb" id="month-0" style="display:block"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cd past">1</div><div class="cd past">2</div><div class="cd past">3</div><div class="cd past">4</div><div class="cd past">5</div><div class="cd past">6</div><div class="cd past">7</div><div class="cd past">8</div><div class="cd past">9</div><div class="cd past">10</div><div class="cd past">11</div><div class="cd past">12</div><div class="cd past">13</div><div class="cd past">14</div><div class="cd past">15</div><div class="cd past">16</div><div class="cd past">17</div><div class="cd past">18</div><div class="cd past">19</div><div class="cd today" onclick="pickDate(this,'March 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'March 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'March 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'March 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'March 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'March 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'March 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'March 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'March 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'March 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'March 30, 2026')">30</div><div class="cd" onclick="pickDate(this,'March 31, 2026')">31</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div></div></div>
-<div class="mb" id="month-1" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cde"></div><div class="cd" onclick="pickDate(this,'April 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'April 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'April 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'April 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'April 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'April 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'April 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'April 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'April 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'April 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'April 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'April 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'April 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'April 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'April 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'April 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'April 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'April 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'April 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'April 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'April 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'April 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'April 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'April 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'April 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'April 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'April 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'April 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'April 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'April 30, 2026')">30</div><div class="cde"></div><div class="cde"></div><div class="cde"></div></div></div>
-<div class="mb" id="month-2" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cd" onclick="pickDate(this,'May 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'May 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'May 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'May 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'May 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'May 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'May 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'May 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'May 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'May 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'May 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'May 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'May 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'May 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'May 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'May 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'May 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'May 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'May 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'May 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'May 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'May 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'May 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'May 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'May 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'May 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'May 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'May 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'May 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'May 30, 2026')">30</div><div class="cd" onclick="pickDate(this,'May 31, 2026')">31</div></div></div>
-<div class="mb" id="month-3" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cd" onclick="pickDate(this,'June 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'June 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'June 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'June 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'June 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'June 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'June 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'June 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'June 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'June 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'June 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'June 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'June 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'June 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'June 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'June 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'June 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'June 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'June 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'June 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'June 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'June 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'June 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'June 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'June 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'June 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'June 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'June 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'June 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'June 30, 2026')">30</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div></div></div>
-<div class="mb" id="month-4" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cde"></div><div class="cd" onclick="pickDate(this,'July 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'July 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'July 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'July 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'July 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'July 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'July 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'July 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'July 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'July 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'July 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'July 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'July 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'July 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'July 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'July 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'July 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'July 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'July 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'July 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'July 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'July 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'July 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'July 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'July 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'July 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'July 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'July 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'July 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'July 30, 2026')">30</div><div class="cd" onclick="pickDate(this,'July 31, 2026')">31</div><div class="cde"></div><div class="cde"></div></div></div>
-<div class="mb" id="month-5" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cd" onclick="pickDate(this,'August 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'August 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'August 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'August 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'August 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'August 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'August 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'August 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'August 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'August 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'August 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'August 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'August 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'August 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'August 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'August 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'August 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'August 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'August 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'August 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'August 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'August 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'August 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'August 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'August 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'August 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'August 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'August 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'August 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'August 30, 2026')">30</div><div class="cd" onclick="pickDate(this,'August 31, 2026')">31</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div></div></div>
-<div class="mb" id="month-6" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cd" onclick="pickDate(this,'September 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'September 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'September 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'September 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'September 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'September 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'September 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'September 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'September 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'September 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'September 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'September 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'September 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'September 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'September 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'September 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'September 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'September 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'September 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'September 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'September 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'September 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'September 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'September 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'September 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'September 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'September 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'September 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'September 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'September 30, 2026')">30</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div></div></div>
-<div class="mb" id="month-7" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cd" onclick="pickDate(this,'October 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'October 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'October 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'October 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'October 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'October 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'October 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'October 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'October 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'October 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'October 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'October 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'October 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'October 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'October 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'October 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'October 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'October 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'October 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'October 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'October 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'October 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'October 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'October 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'October 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'October 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'October 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'October 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'October 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'October 30, 2026')">30</div><div class="cd" onclick="pickDate(this,'October 31, 2026')">31</div><div class="cde"></div></div></div>
-<div class="mb" id="month-8" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cd" onclick="pickDate(this,'November 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'November 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'November 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'November 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'November 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'November 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'November 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'November 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'November 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'November 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'November 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'November 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'November 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'November 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'November 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'November 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'November 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'November 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'November 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'November 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'November 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'November 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'November 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'November 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'November 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'November 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'November 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'November 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'November 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'November 30, 2026')">30</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div></div></div>
-<div class="mb" id="month-9" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cd" onclick="pickDate(this,'December 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'December 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'December 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'December 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'December 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'December 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'December 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'December 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'December 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'December 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'December 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'December 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'December 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'December 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'December 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'December 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'December 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'December 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'December 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'December 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'December 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'December 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'December 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'December 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'December 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'December 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'December 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'December 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'December 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'December 30, 2026')">30</div><div class="cd" onclick="pickDate(this,'December 31, 2026')">31</div><div class="cde"></div><div class="cde"></div><div class="cde"></div></div></div>
+<div class="mb" id="month-0" style="display:block"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cde"></div><div class="cd today" onclick="pickDate(this,'April 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'April 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'April 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'April 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'April 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'April 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'April 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'April 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'April 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'April 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'April 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'April 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'April 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'April 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'April 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'April 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'April 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'April 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'April 30, 2026')">30</div><div class="cde"></div><div class="cde"></div><div class="cde"></div></div></div>
+<div class="mb" id="month-1" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cd" onclick="pickDate(this,'May 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'May 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'May 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'May 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'May 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'May 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'May 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'May 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'May 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'May 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'May 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'May 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'May 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'May 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'May 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'May 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'May 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'May 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'May 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'May 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'May 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'May 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'May 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'May 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'May 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'May 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'May 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'May 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'May 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'May 30, 2026')">30</div><div class="cd" onclick="pickDate(this,'May 31, 2026')">31</div></div></div>
+<div class="mb" id="month-2" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cd" onclick="pickDate(this,'June 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'June 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'June 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'June 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'June 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'June 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'June 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'June 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'June 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'June 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'June 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'June 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'June 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'June 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'June 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'June 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'June 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'June 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'June 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'June 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'June 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'June 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'June 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'June 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'June 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'June 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'June 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'June 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'June 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'June 30, 2026')">30</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div></div></div>
+<div class="mb" id="month-3" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cde"></div><div class="cd" onclick="pickDate(this,'July 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'July 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'July 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'July 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'July 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'July 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'July 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'July 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'July 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'July 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'July 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'July 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'July 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'July 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'July 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'July 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'July 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'July 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'July 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'July 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'July 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'July 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'July 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'July 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'July 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'July 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'July 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'July 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'July 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'July 30, 2026')">30</div><div class="cd" onclick="pickDate(this,'July 31, 2026')">31</div><div class="cde"></div><div class="cde"></div></div></div>
+<div class="mb" id="month-4" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cd" onclick="pickDate(this,'August 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'August 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'August 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'August 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'August 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'August 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'August 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'August 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'August 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'August 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'August 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'August 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'August 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'August 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'August 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'August 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'August 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'August 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'August 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'August 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'August 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'August 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'August 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'August 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'August 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'August 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'August 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'August 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'August 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'August 30, 2026')">30</div><div class="cd" onclick="pickDate(this,'August 31, 2026')">31</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div></div></div>
+<div class="mb" id="month-5" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cd" onclick="pickDate(this,'September 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'September 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'September 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'September 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'September 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'September 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'September 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'September 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'September 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'September 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'September 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'September 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'September 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'September 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'September 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'September 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'September 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'September 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'September 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'September 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'September 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'September 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'September 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'September 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'September 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'September 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'September 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'September 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'September 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'September 30, 2026')">30</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div></div></div>
+<div class="mb" id="month-6" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cd" onclick="pickDate(this,'October 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'October 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'October 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'October 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'October 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'October 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'October 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'October 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'October 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'October 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'October 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'October 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'October 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'October 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'October 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'October 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'October 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'October 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'October 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'October 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'October 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'October 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'October 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'October 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'October 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'October 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'October 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'October 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'October 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'October 30, 2026')">30</div><div class="cd" onclick="pickDate(this,'October 31, 2026')">31</div><div class="cde"></div></div></div>
+<div class="mb" id="month-7" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cd" onclick="pickDate(this,'November 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'November 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'November 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'November 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'November 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'November 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'November 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'November 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'November 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'November 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'November 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'November 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'November 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'November 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'November 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'November 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'November 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'November 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'November 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'November 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'November 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'November 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'November 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'November 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'November 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'November 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'November 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'November 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'November 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'November 30, 2026')">30</div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div><div class="cde"></div></div></div>
+<div class="mb" id="month-8" style="display:none"><div class="mg"><div class="cdn">Mon</div><div class="cdn">Tue</div><div class="cdn">Wed</div><div class="cdn">Thu</div><div class="cdn">Fri</div><div class="cdn">Sat</div><div class="cdn">Sun</div><div class="cde"></div><div class="cd" onclick="pickDate(this,'December 1, 2026')">1</div><div class="cd" onclick="pickDate(this,'December 2, 2026')">2</div><div class="cd" onclick="pickDate(this,'December 3, 2026')">3</div><div class="cd" onclick="pickDate(this,'December 4, 2026')">4</div><div class="cd" onclick="pickDate(this,'December 5, 2026')">5</div><div class="cd" onclick="pickDate(this,'December 6, 2026')">6</div><div class="cd" onclick="pickDate(this,'December 7, 2026')">7</div><div class="cd" onclick="pickDate(this,'December 8, 2026')">8</div><div class="cd" onclick="pickDate(this,'December 9, 2026')">9</div><div class="cd" onclick="pickDate(this,'December 10, 2026')">10</div><div class="cd" onclick="pickDate(this,'December 11, 2026')">11</div><div class="cd" onclick="pickDate(this,'December 12, 2026')">12</div><div class="cd" onclick="pickDate(this,'December 13, 2026')">13</div><div class="cd" onclick="pickDate(this,'December 14, 2026')">14</div><div class="cd" onclick="pickDate(this,'December 15, 2026')">15</div><div class="cd" onclick="pickDate(this,'December 16, 2026')">16</div><div class="cd" onclick="pickDate(this,'December 17, 2026')">17</div><div class="cd" onclick="pickDate(this,'December 18, 2026')">18</div><div class="cd" onclick="pickDate(this,'December 19, 2026')">19</div><div class="cd" onclick="pickDate(this,'December 20, 2026')">20</div><div class="cd" onclick="pickDate(this,'December 21, 2026')">21</div><div class="cd" onclick="pickDate(this,'December 22, 2026')">22</div><div class="cd" onclick="pickDate(this,'December 23, 2026')">23</div><div class="cd" onclick="pickDate(this,'December 24, 2026')">24</div><div class="cd" onclick="pickDate(this,'December 25, 2026')">25</div><div class="cd" onclick="pickDate(this,'December 26, 2026')">26</div><div class="cd" onclick="pickDate(this,'December 27, 2026')">27</div><div class="cd" onclick="pickDate(this,'December 28, 2026')">28</div><div class="cd" onclick="pickDate(this,'December 29, 2026')">29</div><div class="cd" onclick="pickDate(this,'December 30, 2026')">30</div><div class="cd" onclick="pickDate(this,'December 31, 2026')">31</div><div class="cde"></div><div class="cde"></div><div class="cde"></div></div></div>
         </div>
         <input class="form-input" type="text" id="inp-date" placeholder="Click any date to select it" readonly style="cursor:default;margin-top:8px;">
       </div>
@@ -490,7 +475,8 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
         <label class="form-label">Tell Me About Your Vision</label>
         <textarea class="form-textarea" id="inp-msg" placeholder="Describe the mood, location ideas, or any inspiration you have in mind..."></textarea>
       </div>
-      <button class="form-submit" onclick="submitForm()">Send via WhatsApp →</button>
+      <button class="form-submit" onclick="submitForm()">Send via WhatsApp &#8594;</button>
+      <p style="text-align:center;margin-top:12px;font-size:0.68rem;color:var(--muted);">or <a href="#" onclick="openCalendly();return false;" style="color:var(--pink);text-decoration:none;">check live availability via Calendly</a></p>
     </div>
   </div>
 </section>
@@ -503,12 +489,12 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
     <div class="divider"></div>
   </div>
   <div class="reviews-grid">
-    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">Working with FlirtCity Photography was an absolute dream. She made me feel so comfortable in front of the camera — the final images were beyond anything I could have imagined. Pure magic.</p><div class="review-author"><div class="author-avatar">S</div><div><div class="author-name">Sofia M.</div><div class="author-date">Portrait Session · October 2025</div></div></div></div>
-    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">Our wedding shoot was everything. FlirtCity Photography captured moments we didn't even realise were happening. Every photo tells our story perfectly. We'll be back for our anniversary!</p><div class="review-author"><div class="author-avatar">F</div><div><div class="author-name">Frederick & Lena</div><div class="author-date">Couples Session · March 2026</div></div></div></div>
-    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">The brand shoot exceeded all expectations. FlirtCity understood our aesthetic immediately and delivered a cohesive gallery that transformed our entire social media presence.</p><div class="review-author"><div class="author-avatar">A</div><div><div class="author-name">Aisha K.</div><div class="author-date">Brand Session · December 2025</div></div></div></div>
-    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">I was nervous about my first professional shoot but FlirtCity's calm energy and creative direction made the whole experience feel natural. I finally love photos of myself!</p><div class="review-author"><div class="author-avatar">R</div><div><div class="author-name">Rachel T.</div><div class="author-date">Graduation Session · January 2026</div></div></div></div>
-    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">Hired FlirtCity Photography for our wedding event. She was discreet, professional, and captured everything beautifully. Turnaround was fast and the gallery was stunning.</p><div class="review-author"><div class="author-avatar">N</div><div><div class="author-name">Nour & Michael</div><div class="author-date">Event Coverage · February 2026</div></div></div></div>
-    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">The editorial shoot we did together was a full creative collaboration. FlirtCity brought ideas I hadn't thought of, and the final images are genuinely gallery-worthy. 10/10.</p><div class="review-author"><div class="author-avatar">M</div><div><div class="author-name">Marco L.</div><div class="author-date">Editorial Session · November 2025</div></div></div></div>
+    <div class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="review-text">Working with FlirtCity Photography was an absolute dream. She made me feel so comfortable in front of the camera — the final images were beyond anything I could have imagined. Pure magic.</p><div class="review-author"><div class="author-avatar">S</div><div><div class="author-name">Sofia M.</div><div class="author-date">Portrait Session · October 2025</div></div></div></div>
+    <div class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="review-text">Our wedding shoot was everything. FlirtCity Photography captured moments we didn't even realise were happening. Every photo tells our story perfectly. We'll be back for our anniversary!</p><div class="review-author"><div class="author-avatar">F</div><div><div class="author-name">Frederick &amp; Lena</div><div class="author-date">Couples Session · March 2026</div></div></div></div>
+    <div class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="review-text">The brand shoot exceeded all expectations. FlirtCity understood our aesthetic immediately and delivered a cohesive gallery that transformed our entire social media presence.</p><div class="review-author"><div class="author-avatar">A</div><div><div class="author-name">Aisha K.</div><div class="author-date">Brand Session · December 2025</div></div></div></div>
+    <div class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="review-text">I was nervous about my first professional shoot but FlirtCity's calm energy and creative direction made the whole experience feel natural. I finally love photos of myself!</p><div class="review-author"><div class="author-avatar">R</div><div><div class="author-name">Rachel T.</div><div class="author-date">Graduation Session · January 2026</div></div></div></div>
+    <div class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="review-text">Hired FlirtCity Photography for our event. She was discreet, professional, and captured everything beautifully. Turnaround was fast and the gallery was stunning.</p><div class="review-author"><div class="author-avatar">N</div><div><div class="author-name">Nour &amp; Michael</div><div class="author-date">Event Coverage · February 2026</div></div></div></div>
+    <div class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="review-text">The editorial shoot we did together was a full creative collaboration. FlirtCity brought ideas I hadn't thought of, and the final images are genuinely gallery-worthy. 10/10.</p><div class="review-author"><div class="author-avatar">M</div><div><div class="author-name">Marco L.</div><div class="author-date">Editorial Session · November 2025</div></div></div></div>
   </div>
 </section>
 
@@ -516,43 +502,47 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
 <section id="pricing">
   <div class="pricing-header">
     <div class="section-label">Investment</div>
-    <h2 class="section-title">Simple, Transparent<br><em>Pricing</em></h2>
+    <h2 class="section-title">Simple, Transparent<br><em>Packages</em></h2>
     <div class="divider"></div>
-    <p style="font-size:0.8rem;color:var(--muted);line-height:1.9;">Every package includes professional editing and my full creative attention. No hidden fees.</p>
+    <p style="font-size:0.8rem;color:var(--muted);line-height:1.9;">Every package includes professional editing and my full creative attention. Contact me for pricing details.</p>
   </div>
   <div class="pricing-grid">
     <div class="pricing-plan">
-      <div class="plan-name">1 Hour</div><div class="plan-tagline">Quick & stunning shoot</div>
-      <div class="plan-price"><span class="plan-currency" </span><span class="plan-amount" </span></div>
+      <div class="plan-name">1 Hour</div>
+      <div class="plan-tagline">Quick &amp; stunning shoot</div>
+      <div class="plan-enquire">Contact for pricing</div>
       <div class="plan-duration">1-hour session</div>
       <ul class="plan-features"><li>8 edited photos of your choice</li><li>1 location</li><li>Professional editing</li><li>Digital delivery</li><li class="no">Extra edited photos</li></ul>
-      <button class="plan-cta" onclick="selectService('1 Hour Session')">Book Now</button>
+      <button class="plan-cta" onclick="openCalendly()">Enquire Now</button>
     </div>
     <div class="pricing-plan featured">
-      <div class="plan-name">2 Hours</div><div class="plan-tagline">More looks, more magic</div>
-      <div class="plan-price"><span class="plan-currency" </span><span class="plan-amount" </span></div>
+      <div class="plan-name">2 Hours</div>
+      <div class="plan-tagline">More looks, more magic</div>
+      <div class="plan-enquire">Contact for pricing</div>
       <div class="plan-duration">2-hour session</div>
       <ul class="plan-features"><li>8 edited photos of your choice</li><li>Ideal for birthdays / dinner</li><li>Professional editing</li><li>Digital delivery</li><li class="no">Extra edited photos</li></ul>
-      <button class="plan-cta" onclick="selectService('2 Hour Session')">Book Now</button>
+      <button class="plan-cta" onclick="openCalendly()">Enquire Now</button>
     </div>
     <div class="pricing-plan">
-      <div class="plan-name">Premium 10</div><div class="plan-tagline">Bigger gallery, bolder you</div>
-      <div class="plan-price"><span class="plan-currency" </span><span class="plan-amount" </span></div>
+      <div class="plan-name">Premium 10</div>
+      <div class="plan-tagline">Bigger gallery, bolder you</div>
+      <div class="plan-enquire">Contact for pricing</div>
       <div class="plan-duration">10 edited photos</div>
-      <ul class="plan-features"><li>10 edited photos of your choice</li><li>Flexible locations</li><li>Premium editing</li><li>Digital delivery</li><li>Great for models & brands</li></ul>
-      <button class="plan-cta" onclick="selectService('Premium 10 Photos')">Book Now</button>
+      <ul class="plan-features"><li>10 edited photos of your choice</li><li>Flexible locations</li><li>Premium editing</li><li>Digital delivery</li><li>Great for models &amp; brands</li></ul>
+      <button class="plan-cta" onclick="openCalendly()">Enquire Now</button>
     </div>
     <div class="pricing-plan">
-      <div class="plan-name">Premium 15</div><div class="plan-tagline">The ultimate collection</div>
-      <div class="plan-price"><span class="plan-currency" </span><span class="plan-amount" </span></div>
+      <div class="plan-name">Premium 15</div>
+      <div class="plan-tagline">The ultimate collection</div>
+      <div class="plan-enquire">Contact for pricing</div>
       <div class="plan-duration">15 edited photos</div>
-      <ul class="plan-features"><li>15 edited photos of your choice</li><li>Flexible locations</li><li>Premium editing</li><li>Digital delivery</li><li>Best for influencers & content</li></ul>
-      <button class="plan-cta" onclick="selectService('Premium 15 Photos')">Book Now</button>
+      <ul class="plan-features"><li>15 edited photos of your choice</li><li>Flexible locations</li><li>Premium editing</li><li>Digital delivery</li><li>Best for influencers &amp; content</li></ul>
+      <button class="plan-cta" onclick="openCalendly()">Enquire Now</button>
     </div>
   </div>
   <div class="note-box" style="margin-top:28px;">
-    <strong>📌 Important Note</strong>
-    Transportation costs (both going and coming) are to be covered by the client. I'm based in <strong style="color:var(--white);">Lefkoşa</strong>.
+    <strong>&#128205; Important Note</strong>
+    Transportation costs (both going and coming) are to be covered by the client. I'm based in <strong style="color:var(--white);">Lefkosa</strong>.
   </div>
 </section>
 
@@ -562,6 +552,20 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
     <div class="section-label">Follow Along</div>
     <h2 class="section-title">Find Us on<br><em>Instagram</em></h2>
     <div class="divider"></div>
+    <a class="ig-handle" href="https://instagram.com/shot_by_flirt" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      @shot_by_flirt
+    </a>
+  </div>
+  <div class="ig-grid">
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#2a1020,#1a0818);">&#127800;</div></div><div class="ig-overlay"><div class="ig-overlay-icon">&#9829;</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#1a1020,#2a0a18);">&#10024;</div></div><div class="ig-overlay"><div class="ig-overlay-icon">&#9829;</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#20101a,#180a2a);">&#128247;</div></div><div class="ig-overlay"><div class="ig-overlay-icon">&#9829;</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#1a0a20,#2a1028);">&#128132;</div></div><div class="ig-overlay"><div class="ig-overlay-icon">&#9829;</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#28101a,#1a0820);">&#127865;</div></div><div class="ig-overlay"><div class="ig-overlay-icon">&#9829;</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#200a18,#2a1020);">&#128171;</div></div><div class="ig-overlay"><div class="ig-overlay-icon">&#9829;</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#1e0c1a,#2c1022);">&#127926;</div></div><div class="ig-overlay"><div class="ig-overlay-icon">&#9829;</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
+    <div class="ig-post"><div class="ig-post-inner"><div class="ig-placeholder" style="background:linear-gradient(135deg,#220e1c,#180c1e);">&#128139;</div></div><div class="ig-overlay"><div class="ig-overlay-icon">&#9829;</div><div class="ig-overlay-stat">View on Instagram</div></div></div>
   </div>
   <div class="ig-follow-wrap">
     <a class="ig-follow" href="https://instagram.com/shot_by_flirt" target="_blank" rel="noopener">
@@ -574,7 +578,7 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
 <!-- FOOTER -->
 <footer>
   <img src="logo.png" alt="FlirtCity Photography" style="height:60px;width:auto;margin-bottom:12px;opacity:0.9;">
-  <p class="footer-tagline">Photography Studio · Lefkoşa</p>
+  <p class="footer-tagline">Photography Studio · Lefkosa</p>
   <ul class="footer-links">
     <li><a href="#home">Home</a></li>
     <li><a href="#gallery">Gallery</a></li>
@@ -584,24 +588,22 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="#instagram">Instagram</a></li>
   </ul>
-  <p class="footer-copy">© 2026 FlirtCity Photography. All rights reserved.</p>
+  <p class="footer-copy">&#169; 2026 FlirtCity Photography. All rights reserved.</p>
 </footer>
 
 <!-- LIGHTBOX -->
 <div class="lightbox-overlay" id="lightbox" onclick="handleOverlayClick(event)">
   <button class="lightbox-close" onclick="closeLightbox()">&#215;</button>
   <button class="lightbox-prev" onclick="lightboxNav(-1)">&#8592;</button>
-  <div class="lightbox-img-wrap">
-    <img id="lightbox-img" src="" alt="FlirtCity Photography">
-  </div>
+  <div class="lightbox-img-wrap"><img id="lightbox-img" src="" alt="FlirtCity Photography"></div>
   <button class="lightbox-next" onclick="lightboxNav(1)">&#8594;</button>
   <div class="lightbox-counter" id="lightbox-counter">1 / 6</div>
   <div class="lightbox-dots" id="lightbox-dots"></div>
 </div>
 
 <!-- WHATSAPP -->
-<a class="wa-float" href="https://wa.me/905488677150?text=Hi%20FlirtCity%20Photography!%20I%27d%20like%20to%20book%20a%20session%20%F0%9F%93%B8" target="_blank" rel="noopener">
-  <span class="wa-tooltip">Book via WhatsApp</span>
+<a class="wa-float" href="https://wa.me/905488677150?text=Hi%20love%20%F0%9F%92%95%20thank%20you%20for%20reaching%20out!%0AWe%20offer%20luxury%20photoshoot%20sessions%20tailored%20to%20make%20you%20feel%20confident%20and%20beautiful%20%E2%9C%A8%0APlease%20let%20me%20know%3A%0A%E2%80%A2%20Preferred%20date%0A%E2%80%A2%20Type%20of%20shoot%20(birthday%2C%20casual%2C%20etc.)%0AI%27ll%20send%20you%20the%20full%20package%20details%20%F0%9F%92%8C" target="_blank" rel="noopener">
+  <span class="wa-tooltip">Chat on WhatsApp</span>
   <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.492.648 4.832 1.784 6.864L2 30l7.352-1.76A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.5a11.44 11.44 0 01-5.832-1.592l-.416-.248-4.36 1.044 1.076-4.248-.272-.432A11.44 11.44 0 014.5 16C4.5 9.648 9.648 4.5 16 4.5S27.5 9.648 27.5 16 22.352 27.5 16 27.5zm6.276-8.548c-.344-.172-2.032-1.004-2.348-1.116-.316-.116-.548-.172-.776.172-.228.344-.888 1.116-1.088 1.348-.2.228-.396.256-.74.084-.344-.172-1.452-.536-2.764-1.708-1.02-.912-1.712-2.04-1.912-2.384-.2-.344-.02-.528.148-.7.152-.152.344-.396.516-.596.172-.2.228-.344.344-.572.116-.228.056-.428-.028-.6-.084-.172-.776-1.872-1.064-2.564-.28-.672-.564-.58-.776-.592l-.66-.012c-.228 0-.596.084-.908.428-.312.344-1.192 1.164-1.192 2.836 0 1.672 1.22 3.288 1.392 3.516.172.228 2.404 3.672 5.824 5.148.816.352 1.452.564 1.948.72.82.26 1.564.224 2.152.136.656-.1 2.032-.832 2.32-1.636.288-.804.288-1.492.2-1.636-.084-.144-.312-.228-.656-.4z"/></svg>
 </a>
 
@@ -611,12 +613,17 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
 </div>
 
 <script>
+// ── Calendly ──
+function openCalendly() {
+  Calendly.initPopupWidget({ url: 'https://calendly.com/YOURNAME' });
+  return false;
+}
+
 // ── Lightbox ──
 var lbImages = ['portrait1.jpg','portrait2.jpg','portrait3.jpg','portrait4.jpg','portrait5.jpg','portrait6.jpg'];
 var lbCurrent = 0;
 function openLightbox(index) {
-  lbCurrent = index;
-  updateLightbox();
+  lbCurrent = index; updateLightbox();
   document.getElementById('lightbox').classList.add('active');
   document.body.style.overflow = 'hidden';
   var dots = document.getElementById('lightbox-dots');
@@ -635,17 +642,9 @@ function updateLightbox() {
   var dots = document.querySelectorAll('.lightbox-dot');
   for (var i = 0; i < dots.length; i++) { dots[i].classList.toggle('active', i === lbCurrent); }
 }
-function lightboxNav(dir) {
-  lbCurrent = (lbCurrent + dir + lbImages.length) % lbImages.length;
-  updateLightbox();
-}
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('active');
-  document.body.style.overflow = '';
-}
-function handleOverlayClick(e) {
-  if (e.target === document.getElementById('lightbox')) closeLightbox();
-}
+function lightboxNav(dir) { lbCurrent = (lbCurrent + dir + lbImages.length) % lbImages.length; updateLightbox(); }
+function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow = ''; }
+function handleOverlayClick(e) { if (e.target === document.getElementById('lightbox')) closeLightbox(); }
 document.addEventListener('keydown', function(e) {
   var lb = document.getElementById('lightbox');
   if (!lb.classList.contains('active')) return;
@@ -663,8 +662,8 @@ function closeMenu() { document.getElementById('hamburger').classList.remove('op
 
 // ── Calendar ──
 var calCurrent = 0;
-var calTotal = 10;
-var calMonthNames = ["March","April","May","June","July","August","September","October","November","December"];
+var calTotal = 9;
+var calMonthNames = ["April","May","June","July","August","September","October","November","December"];
 function calNav(dir) {
   document.getElementById('month-' + calCurrent).style.display = 'none';
   calCurrent += dir;
@@ -710,13 +709,15 @@ function submitForm() {
     return;
   }
   var waText = encodeURIComponent(
-    'Hi FlirtCity Photography! \uD83D\uDCF8\n\n' +
-    'I\'d like to book a session:\n' +
+    'Hi love \uD83D\uDC95 thank you for reaching out!\n' +
+    'We offer luxury photoshoot sessions tailored to make you feel confident and beautiful \u2728\n\n' +
+    'Booking details:\n' +
     '\uD83D\uDC64 Name: ' + first + '\n' +
     '\uD83C\uDFAF Session: ' + service + '\n' +
     '\uD83D\uDCC5 Date: ' + date + '\n' +
     '\u23F0 Time: ' + time +
-    (msg ? '\n\n\uD83D\uDCAC Notes: ' + msg : '')
+    (msg ? '\n\n\uD83D\uDCAC Notes: ' + msg : '') +
+    '\n\nI\'ll send you the full package details \uD83D\uDC8C'
   );
   window.open('https://wa.me/905488677150?text=' + waText, '_blank');
 }
