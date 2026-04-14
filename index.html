@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FlirtCity Photography</title>
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -357,7 +355,7 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
       <div class="service-name">1 Hour Session</div>
       <p class="service-desc">A focused shoot packed into one golden hour. Perfect for portraits, headshots, or a quick content refresh. Includes 8 beautifully edited photos of your choice.</p>
       <div class="service-footer">
-        <button class="service-btn" onclick="openCalendly()">Enquire & Book</button>
+        <button class="service-btn" onclick="selectService('1 Hour Session')">Book This</button>
       </div>
     </div>
     <div class="service-card">
@@ -365,7 +363,7 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
       <div class="service-name">2 Hour Session</div>
       <p class="service-desc">More time, more looks, more magic. Ideal for multiple outfits or a relaxed creative shoot. Includes 8 beautifully edited photos of your choice.</p>
       <div class="service-footer">
-        <button class="service-btn" onclick="openCalendly()">Enquire & Book</button>
+        <button class="service-btn" onclick="selectService('2 Hour Session')">Book This</button>
       </div>
     </div>
     <div class="service-card">
@@ -373,7 +371,7 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
       <div class="service-name">Premium 10</div>
       <p class="service-desc">Step it up with 10 premium edited photos. More variety, more expression — ideal for models, creatives, and anyone who wants a fuller gallery.</p>
       <div class="service-footer">
-        <button class="service-btn" onclick="openCalendly()">Enquire & Book</button>
+        <button class="service-btn" onclick="selectService('Premium 10 Photos')">Book This</button>
       </div>
     </div>
     <div class="service-card">
@@ -381,7 +379,7 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
       <div class="service-name">Premium 15</div>
       <p class="service-desc">The ultimate collection — 15 premium edited photos for maximum versatility. Best for brands, influencers, and anyone who wants to show every side of themselves.</p>
       <div class="service-footer">
-        <button class="service-btn" onclick="openCalendly()">Enquire & Book</button>
+        <button class="service-btn" onclick="selectService('Premium 15 Photos')">Book This</button>
       </div>
     </div>
   </div>
@@ -476,7 +474,6 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
         <textarea class="form-textarea" id="inp-msg" placeholder="Describe the mood, location ideas, or any inspiration you have in mind..."></textarea>
       </div>
       <button class="form-submit" onclick="submitForm()">Send via WhatsApp &#8594;</button>
-      <p style="text-align:center;margin-top:12px;font-size:0.68rem;color:var(--muted);">or <a href="#" onclick="openCalendly();return false;" style="color:var(--pink);text-decoration:none;">check live availability via Calendly</a></p>
     </div>
   </div>
 </section>
@@ -513,7 +510,7 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
       <div class="plan-enquire">Contact for pricing</div>
       <div class="plan-duration">1-hour session</div>
       <ul class="plan-features"><li>8 edited photos of your choice</li><li>1 location</li><li>Professional editing</li><li>Digital delivery</li><li class="no">Extra edited photos</li></ul>
-      <button class="plan-cta" onclick="openCalendly()">Enquire Now</button>
+      <button class="plan-cta" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Now</button>
     </div>
     <div class="pricing-plan featured">
       <div class="plan-name">2 Hours</div>
@@ -521,7 +518,7 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
       <div class="plan-enquire">Contact for pricing</div>
       <div class="plan-duration">2-hour session</div>
       <ul class="plan-features"><li>8 edited photos of your choice</li><li>Ideal for birthdays / dinner</li><li>Professional editing</li><li>Digital delivery</li><li class="no">Extra edited photos</li></ul>
-      <button class="plan-cta" onclick="openCalendly()">Enquire Now</button>
+      <button class="plan-cta" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Now</button>
     </div>
     <div class="pricing-plan">
       <div class="plan-name">Premium 10</div>
@@ -529,7 +526,7 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
       <div class="plan-enquire">Contact for pricing</div>
       <div class="plan-duration">10 edited photos</div>
       <ul class="plan-features"><li>10 edited photos of your choice</li><li>Flexible locations</li><li>Premium editing</li><li>Digital delivery</li><li>Great for models &amp; brands</li></ul>
-      <button class="plan-cta" onclick="openCalendly()">Enquire Now</button>
+      <button class="plan-cta" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Now</button>
     </div>
     <div class="pricing-plan">
       <div class="plan-name">Premium 15</div>
@@ -537,7 +534,7 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
       <div class="plan-enquire">Contact for pricing</div>
       <div class="plan-duration">15 edited photos</div>
       <ul class="plan-features"><li>15 edited photos of your choice</li><li>Flexible locations</li><li>Premium editing</li><li>Digital delivery</li><li>Best for influencers &amp; content</li></ul>
-      <button class="plan-cta" onclick="openCalendly()">Enquire Now</button>
+      <button class="plan-cta" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Now</button>
     </div>
   </div>
   <div class="note-box" style="margin-top:28px;">
@@ -552,9 +549,11 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
     <div class="section-label">Follow Along</div>
     <h2 class="section-title">Find Us on<br><em>Instagram</em></h2>
     <div class="divider"></div>
-    <a class="ig-handle" href="https://instagram.com/shot_by_flirt" target="_blank" rel="noopener">
+  </div>
+  <div class="ig-follow-wrap">
+    <a class="ig-follow" href="https://instagram.com/shot_by_flirt" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      @shot_by_flirt
+      Follow @shot_by_flirt
     </a>
   </div>
 </section>
@@ -597,11 +596,6 @@ footer { background: #070707; border-top: 1px solid var(--border); padding: 52px
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ── Calendly ──
-function openCalendly() {
-  Calendly.initPopupWidget({ url: 'https://calendly.com/YOURNAME' });
-  return false;
-}
 
 // ── Lightbox ──
 var lbImages = ['portrait1.jpg','portrait2.jpg','portrait3.jpg','portrait4.jpg','portrait5.jpg','portrait6.jpg'];
