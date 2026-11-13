@@ -66,27 +66,9 @@ button { color: inherit; cursor: pointer; }
 .hero-title em { color: var(--accent); font-size: .79em; font-weight: 400; }
 .hero-sub { max-width: 29ch; color: var(--muted); font-size: clamp(.95rem, 1.35vw, 1.18rem); }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 29px; }
-.photo-deck { position: relative; min-width: 0; display: grid; align-content: center; }
-.photo-stage { position: relative; isolation: isolate; height: clamp(315px, min(38vw, calc(100svh - 230px)), 560px); perspective: 1060px; touch-action: pan-y; }
-.photo-stage::before, .photo-stage::after { content: ''; position: absolute; z-index: -1; inset: 12% 2%; border: 1px solid #f07a962d; border-radius: 50%; rotate: -21deg; pointer-events: none; }
-.photo-stage::after { inset: 18% -2%; rotate: 19deg; border-color: #f07a961b; }
-.photo-plane { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateX(var(--pitch, 0deg)) rotateY(var(--yaw, 0deg)); transition: transform .23s ease-out; }
-.deck-frame {
-  position: absolute; inset: 50% auto auto 50%; width: 53%; height: 84%;
-  padding: 0; overflow: hidden; border: 1px solid #ffd0dc69; border-radius: 7px;
-  background: #422b36; box-shadow: 0 22px 56px #0e060ba6;
-  transform: translate(-50%, -50%) translate3d(var(--x, 0), var(--y, 0), var(--z, -220px)) rotateY(var(--angle, 0deg)) rotateZ(var(--twist, 0deg));
-  opacity: 0; pointer-events: none;
-  transition: transform .66s cubic-bezier(.22,.72,.22,1), opacity .46s ease, filter .46s ease;
-}
-.deck-frame img { width: 100%; height: 100%; object-fit: cover; object-position: var(--crop, center 40%); }
-.deck-frame[data-position="active"] { --z: 94px; --twist: -5deg; opacity: 1; pointer-events: auto; cursor: zoom-in; }
-.deck-frame[data-position="before"] { --x: -62%; --y: 5%; --z: -112px; --angle: 31deg; --twist: -10deg; opacity: .78; filter: brightness(.77); }
-.deck-frame[data-position="after"] { --x: 62%; --y: -3%; --z: -112px; --angle: -31deg; --twist: 10deg; opacity: .8; filter: brightness(.78); }
-.deck-controls { display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 6px; }
 .circle-btn { width: 44px; height: 44px; display: inline-grid; place-items: center; padding: 0; border-radius: 50%; border: 1px solid var(--border); background: #160f14c4; font-size: 1.2rem; line-height: 1; }
 .circle-btn:hover { border-color: var(--accent); background: var(--card); }
-.deck-count, .lightbox-counter { color: var(--muted); font-size: .75rem; font-variant-numeric: tabular-nums; letter-spacing: .12em; }
+.lightbox-counter { color: var(--muted); font-size: .75rem; font-variant-numeric: tabular-nums; letter-spacing: .12em; }
 .page-section { padding: clamp(66px, 8vw, 124px) var(--gutter); }
 .section-inner { max-width: var(--frame); margin: auto; }
 .section-heading { margin-bottom: clamp(28px, 4vw, 54px); }
@@ -179,8 +161,6 @@ footer { padding: 28px var(--gutter) 80px; border-top: 1px solid var(--border); 
   .hero-inner { min-height: auto; grid-template-columns: 1fr; padding-top: 46px; gap: 20px; }
   .hero-title { font-size: clamp(4.7rem, 14vw, 7.4rem); }
   .hero-cta { margin-top: 22px; }
-  .photo-stage { height: clamp(290px, 72vw, 490px); }
-  .deck-frame { width: 45%; }
   .gallery-heading { display: block; }
   .gallery-item { grid-column: span 6; }
   .gallery-item:nth-child(n) { margin-top: 0; }
@@ -193,7 +173,6 @@ footer { padding: 28px var(--gutter) 80px; border-top: 1px solid var(--border); 
   .brand span { font-size: 1.5rem; }
   .hero-title { font-size: clamp(3.55rem, 14vw, 4.7rem); }
   .hero-cta a { padding-inline: 15px; }
-  .deck-frame { width: 51%; }
   .services-grid, .pricing-grid, .reviews-grid { grid-template-columns: 1fr; }
   .booking-form { grid-template-columns: 1fr; }
 }
@@ -294,8 +273,6 @@ footer { padding: 28px var(--gutter) 80px; border-top: 1px solid var(--border); 
 .hero {
   background: radial-gradient(ellipse at 75% 48%, #693449, #321c2b 42%, var(--ink) 76%);
 }
-.photo-stage::before { border-color: #f07a9660; }
-.photo-stage::after { border-color: #f07a9633; }
 .page-section.depth-section { position: relative; isolation: isolate; }
 .depth-section .section-inner { position: relative; }
 #services { background: radial-gradient(ellipse at 14% -5%, #3c202d, transparent 62%), var(--ink); }
@@ -495,6 +472,60 @@ html { scroll-padding-top: calc(var(--nav-height, 75px) + 16px); }
   .hero-cta a { padding-inline: 12px; }
 }
 
+
+/* Full-bleed, horizontal hero sequence */
+.hero-inner {
+  min-height: clamp(460px, calc(100svh - var(--nav-height, 74px)), 790px);
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+}
+.hero-backdrop, .hero-backdrop::after { position: absolute; inset: 0; pointer-events: none; }
+.hero-backdrop { overflow: hidden; }
+.hero-backdrop::after {
+  content: '';
+  background: linear-gradient(90deg, #160f14 2%, #160f14f2 20%, #160f14b8 41%, #160f141f 73%),
+    linear-gradient(0deg, #160f14b8, transparent 28%);
+}
+.hero-filmstrip {
+  display: flex; height: 100%;
+  animation: hero-filmstrip 12s cubic-bezier(.65, 0, .35, 1) infinite paused;
+}
+.hero[data-sliding] .hero-filmstrip { animation-play-state: running; }
+.hero-slide { position: relative; flex: 0 0 100%; overflow: hidden; }
+.hero-slide img {
+  position: absolute; inset: 0 0 0 auto; width: min(75%, 1050px); height: 100%;
+  object-fit: cover; object-position: center 40%;
+  mask-image: linear-gradient(90deg, transparent, black 27%);
+}
+.hero-slide:nth-child(2) img { object-position: center 34%; }
+@keyframes hero-filmstrip {
+  0%, 41.5% { transform: translate3d(0, 0, 0); }
+  50%, 91.5% { transform: translate3d(-100%, 0, 0); }
+  100% { transform: translate3d(-200%, 0, 0); }
+}
+.hero-copy { padding-block: 16px 28px; }
+.hero-sub { color: #f4e6ea; }
+.hero-cta .btn-ghost { background: #160f14a6; border-color: #fff0f36b; }
+.hero-motion {
+  position: absolute; z-index: 3; bottom: 16px; left: var(--gutter);
+  background: #160f14df; border-color: #fff0f36b; font-size: .92rem;
+}
+.hero-motion[hidden] { display: none; }
+@media (max-width: 820px) {
+  .hero-inner { min-height: clamp(475px, calc(100svh - var(--nav-height, 59px)), 740px); align-items: end; padding-bottom: 70px; }
+  .hero-copy { padding-block: 0; }
+  .hero-slide img { width: 100%; mask-image: none; }
+  .hero-backdrop::after {
+    background: linear-gradient(0deg, #160f14 1%, #160f14df 28%, #160f148c 52%, #160f1410 82%),
+      linear-gradient(90deg, #160f144a, transparent 75%);
+  }
+  .hero-title { text-shadow: 0 4px 25px #160f14b5; }
+  .hero-cta { margin-top: 19px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-filmstrip { animation: none; }
+  .hero-motion { display: none; }
+}
   </style>
 </head>
 <body>
@@ -526,6 +557,13 @@ html { scroll-padding-top: calc(var(--nav-height, 75px) + 16px); }
 </header>
 <main id="main">
   <section class="hero" id="home" aria-labelledby="hero-title">
+    <div class="hero-backdrop" aria-hidden="true">
+      <div class="hero-filmstrip">
+        <div class="hero-slide"><img src="portrait1-480.webp" srcset="portrait1-480.webp 480w, portrait1-960.webp 960w" sizes="(max-width: 820px) 100vw, 75vw" alt="" decoding="async" fetchpriority="high"></div>
+        <div class="hero-slide"><img src="portrait6-480.webp" srcset="portrait6-480.webp 480w, portrait6-960.webp 960w" sizes="(max-width: 820px) 100vw, 75vw" alt="" decoding="async"></div>
+        <div class="hero-slide"><img src="portrait1-480.webp" srcset="portrait1-480.webp 480w, portrait1-960.webp 960w" sizes="(max-width: 820px) 100vw, 75vw" alt="" decoding="async"></div>
+      </div>
+    </div>
     <div class="hero-inner">
       <div class="hero-copy">
         <p class="eyebrow">Photography studio · Lefkoşa</p>
@@ -536,24 +574,8 @@ html { scroll-padding-top: calc(var(--nav-height, 75px) + 16px); }
           <a class="btn-ghost" href="#booking">Book a session <span aria-hidden="true">↗</span></a>
         </div>
       </div>
-      <div class="photo-deck" role="region" aria-label="Featured photographs">
-        <div class="photo-stage">
-          <div class="photo-plane">
-            <button type="button" class="deck-frame" data-position="active" aria-label="Enlarge portfolio photograph 1"><img src="portrait1-480.webp" srcset="portrait1-480.webp 480w, portrait1-960.webp 960w" sizes="(max-width: 820px) 50vw, 29vw" alt="" decoding="async" fetchpriority="high"></button>
-            <button type="button" class="deck-frame" data-position="after" tabindex="-1" inert aria-label="Enlarge portfolio photograph 2"><img src="portrait2-480.webp" srcset="portrait2-480.webp 480w, portrait2-960.webp 960w" sizes="(max-width: 820px) 50vw, 29vw" alt="" decoding="async"></button>
-            <button type="button" class="deck-frame" data-position="hidden" tabindex="-1" inert aria-label="Enlarge portfolio photograph 3"><img data-src="portrait3-480.webp" data-srcset="portrait3-480.webp 480w, portrait3-960.webp 960w" sizes="(max-width: 820px) 50vw, 29vw" alt="" decoding="async"></button>
-            <button type="button" class="deck-frame" data-position="hidden" tabindex="-1" inert aria-label="Enlarge portfolio photograph 4"><img data-src="portrait4-480.webp" data-srcset="portrait4-480.webp 480w, portrait4-960.webp 960w" sizes="(max-width: 820px) 50vw, 29vw" alt="" decoding="async"></button>
-            <button type="button" class="deck-frame" data-position="hidden" tabindex="-1" inert aria-label="Enlarge portfolio photograph 5"><img data-src="portrait5-480.webp" data-srcset="portrait5-480.webp 480w, portrait5-960.webp 960w" sizes="(max-width: 820px) 50vw, 29vw" alt="" decoding="async"></button>
-            <button type="button" class="deck-frame" data-position="before" tabindex="-1" inert aria-label="Enlarge portfolio photograph 6"><img src="portrait6-480.webp" srcset="portrait6-480.webp 480w, portrait6-960.webp 960w" sizes="(max-width: 820px) 50vw, 29vw" alt="" decoding="async"></button>
-          </div>
-        </div>
-        <div class="deck-controls">
-          <button type="button" class="circle-btn" id="deck-prev" aria-label="Previous featured photo">←</button>
-          <span class="deck-count" role="status">1 / 6</span>
-          <button type="button" class="circle-btn" id="deck-next" aria-label="Next featured photo">→</button>
-        </div>
-      </div>
     </div>
+    <button type="button" class="circle-btn hero-motion" aria-label="Pause background slides" hidden><span aria-hidden="true">Ⅱ</span></button>
   </section>
   <section class="page-section" id="gallery">
     <div class="section-inner">
@@ -794,39 +816,14 @@ html { scroll-padding-top: calc(var(--nav-height, 75px) + 16px); }
 </a>
 <script>
 const gallery = [...document.querySelectorAll('.gallery-item')];
-const frames = [...document.querySelectorAll('.deck-frame')];
-const stage = document.querySelector('.photo-stage');
-const plane = document.querySelector('.photo-plane');
-const deckCount = document.querySelector('.deck-count');
 const dialog = document.querySelector('#lightbox');
 const fullPhoto = document.querySelector('#lightbox-img');
 const lightboxCount = document.querySelector('.lightbox-counter');
 const motion = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
-let currentFrame = 0;
 let currentPhoto = 0;
 
 function wrapIndex(index) {
   return (index + gallery.length) % gallery.length;
-}
-
-function showFrame(index) {
-  currentFrame = wrapIndex(index);
-  const before = wrapIndex(currentFrame - 1);
-  const after = wrapIndex(currentFrame + 1);
-  frames.forEach((frame, i) => {
-    const active = i === currentFrame;
-    frame.dataset.position = active ? 'active' : i === before ? 'before' : i === after ? 'after' : 'hidden';
-    const photo = frame.querySelector('img');
-    if (frame.dataset.position !== 'hidden' && photo.dataset.src) {
-      photo.srcset = photo.dataset.srcset;
-      photo.src = photo.dataset.src;
-      delete photo.dataset.src;
-      delete photo.dataset.srcset;
-    }
-    frame.tabIndex = active ? 0 : -1;
-    frame.inert = !active;
-  });
-  deckCount.textContent = (currentFrame + 1) + ' / ' + frames.length;
 }
 
 function showPhoto(index) {
@@ -843,9 +840,6 @@ function openGallery(index) {
 }
 
 gallery.forEach((photo, i) => photo.addEventListener('click', () => openGallery(i)));
-frames.forEach((frame, i) => frame.addEventListener('click', () => openGallery(i)));
-document.querySelector('#deck-prev').addEventListener('click', () => showFrame(currentFrame - 1));
-document.querySelector('#deck-next').addEventListener('click', () => showFrame(currentFrame + 1));
 document.querySelector('#gallery-prev').addEventListener('click', () => showPhoto(currentPhoto - 1));
 document.querySelector('#gallery-next').addEventListener('click', () => showPhoto(currentPhoto + 1));
 document.querySelector('#gallery-close').addEventListener('click', () => dialog.close());
@@ -874,9 +868,7 @@ function addSwipe(container, go) {
   }, { passive: true });
 }
 
-addArrowNavigation(document.querySelector('.deck-controls'), direction => showFrame(currentFrame + direction));
 addArrowNavigation(dialog, direction => showPhoto(currentPhoto + direction));
-addSwipe(stage, direction => showFrame(currentFrame + direction));
 addSwipe(dialog, direction => showPhoto(currentPhoto + direction));
 
 function addTilt(surface, target, degrees) {
@@ -897,7 +889,6 @@ function addTilt(surface, target, degrees) {
   motion.addEventListener('change', reset);
 }
 
-addTilt(stage, plane, 18);
 gallery.forEach(photo => addTilt(photo, photo, 11));
 document.querySelectorAll('.service-card, .pricing-plan, .review-card').forEach(card => addTilt(card, card, 13));
 
@@ -1239,6 +1230,38 @@ function pinWhatsAppToVisibleViewport() {
 
 pinWhatsAppToVisibleViewport();
 
+function initHeroSlides() {
+  const hero = document.querySelector('.hero');
+  const control = hero.querySelector('.hero-motion');
+  const symbol = control.querySelector('span');
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  let visible = true;
+  let paused = false;
+
+  function sync() {
+    hero.toggleAttribute('data-sliding', visible && !document.hidden && !paused && !reducedMotion.matches);
+    control.hidden = reducedMotion.matches;
+    control.setAttribute('aria-label', paused ? 'Play background slides' : 'Pause background slides');
+    symbol.textContent = paused ? '▶' : 'Ⅱ';
+  }
+
+  control.addEventListener('click', () => {
+    paused = !paused;
+    sync();
+  });
+  document.addEventListener('visibilitychange', sync);
+  reducedMotion.addEventListener('change', sync);
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      sync();
+    }).observe(hero);
+  }
+  sync();
+}
+
+initHeroSlides();
 </script>
 </body>
 </html>
