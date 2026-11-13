@@ -160,7 +160,7 @@ button { color: inherit; cursor: pointer; }
 footer { padding: 28px var(--gutter) 80px; border-top: 1px solid var(--border); }
 .footer-inner { max-width: var(--frame); margin: auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
 .footer-copy { font-size: .8rem; color: var(--muted); }
-.wa-float { position: fixed; z-index: 4; right: clamp(12px, 2vw, 26px); bottom: max(14px, env(safe-area-inset-bottom)); width: 52px; height: 52px; display: grid; place-items: center; border-radius: 50%; color: #112a19; background: #b3efc4; box-shadow: 0 6px 24px #0e050a80; }
+.wa-float { position: fixed; z-index: 10; right: calc(clamp(12px, 2vw, 26px) + env(safe-area-inset-right, 0px) + var(--wa-viewport-right, 0px)); bottom: calc(max(16px, env(safe-area-inset-bottom, 0px)) + var(--wa-viewport-bottom, 0px)); width: 52px; height: 52px; display: grid; place-items: center; border-radius: 50%; color: #112a19; background: #b3efc4; box-shadow: 0 6px 24px #0e050a80; }
 .wa-float:hover { background: #d9ffe3; }
 .wa-float svg { width: 26px; height: 26px; }
 @media (max-width: 1000px) {
@@ -481,7 +481,7 @@ html { scroll-padding-top: calc(var(--nav-height, 75px) + 16px); }
   .booking-prints { display: none; }
   .contact-text a { overflow-wrap: anywhere; }
   .site-footer .footer-inner { display: grid; gap: 14px; }
-  .wa-float { width: 46px; height: 46px; right: max(10px, env(safe-area-inset-right)); }
+  .wa-float { width: 46px; height: 46px; right: calc(12px + env(safe-area-inset-right, 0px) + var(--wa-viewport-right, 0px)); }
 }
 @media (max-width: 460px) {
   :root { --gutter: clamp(15px, 4.8vw, 22px); }
@@ -1207,6 +1207,36 @@ function initMobileCards() {
 }
 
 initMobileCards();
+
+// Keep the chat shortcut above browser controls when the visible viewport shrinks.
+function pinWhatsAppToVisibleViewport() {
+  const viewport = window.visualViewport;
+  if (!viewport) return;
+
+  const button = document.querySelector('.wa-float');
+  const root = document.documentElement;
+  let frame = 0;
+
+  function updatePosition() {
+    frame = 0;
+    const bottom = Math.max(0, root.clientHeight - viewport.height - viewport.offsetTop);
+    const right = Math.max(0, root.clientWidth - viewport.width - viewport.offsetLeft);
+    button.style.setProperty('--wa-viewport-bottom', Math.round(bottom) + 'px');
+    button.style.setProperty('--wa-viewport-right', Math.round(right) + 'px');
+  }
+
+  function schedulePositionUpdate() {
+    if (!frame) frame = requestAnimationFrame(updatePosition);
+  }
+
+  viewport.addEventListener('resize', schedulePositionUpdate);
+  viewport.addEventListener('scroll', schedulePositionUpdate);
+  window.addEventListener('resize', schedulePositionUpdate);
+  window.addEventListener('pageshow', schedulePositionUpdate);
+  updatePosition();
+}
+
+pinWhatsAppToVisibleViewport();
 </script>
 </body>
 </html>
