@@ -475,7 +475,8 @@ html { scroll-padding-top: calc(var(--nav-height, 75px) + 16px); }
 
 /* Full-bleed, horizontal hero sequence */
 .hero-inner {
-  min-height: clamp(460px, calc(100svh - var(--nav-height, 74px)), 790px);
+  min-height: clamp(360px, 58svh, 520px);
+  padding-block: clamp(30px, 5svh, 56px);
   grid-template-columns: minmax(0, 1fr);
   align-items: center;
 }
@@ -503,20 +504,16 @@ html { scroll-padding-top: calc(var(--nav-height, 75px) + 16px); }
   50%, 91.5% { transform: translate3d(-100%, 0, 0); }
   100% { transform: translate3d(-200%, 0, 0); }
 }
-.hero-copy { padding-block: 16px 28px; }
+.hero-copy { padding-block: 0; }
+.hero-title { margin-block: 12px 16px; }
+.hero-cta { margin-top: 22px; }
 .hero-sub { color: #f4e6ea; }
 .hero-cta .btn-ghost { background: #160f14a6; border-color: #fff0f36b; }
-.hero-motion {
-  position: absolute; z-index: 3; bottom: 16px; left: var(--gutter);
-  background: #160f14df; border-color: #fff0f36b; font-size: .92rem;
-}
-.hero-motion[hidden] { display: none; }
 @media (max-width: 820px) {
-  .hero-inner { min-height: clamp(475px, calc(100svh - var(--nav-height, 59px)), 740px); align-items: end; padding-bottom: 70px; }
-  .hero-copy { padding-block: 0; }
+  .hero-inner { min-height: clamp(330px, 56svh, 435px); align-items: end; padding-block: 26px 30px; }
   .hero-slide img { width: 100%; mask-image: none; }
   .hero-backdrop::after {
-    background: linear-gradient(0deg, #160f14 1%, #160f14df 28%, #160f148c 52%, #160f1410 82%),
+    background: linear-gradient(0deg, #160f14 1%, #160f14e6 29%, #160f14a8 58%, #160f1424 92%),
       linear-gradient(90deg, #160f144a, transparent 75%);
   }
   .hero-title { text-shadow: 0 4px 25px #160f14b5; }
@@ -524,7 +521,6 @@ html { scroll-padding-top: calc(var(--nav-height, 75px) + 16px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-filmstrip { animation: none; }
-  .hero-motion { display: none; }
 }
   </style>
 </head>
@@ -575,7 +571,6 @@ html { scroll-padding-top: calc(var(--nav-height, 75px) + 16px); }
         </div>
       </div>
     </div>
-    <button type="button" class="circle-btn hero-motion" aria-label="Pause background slides" hidden><span aria-hidden="true">Ⅱ</span></button>
   </section>
   <section class="page-section" id="gallery">
     <div class="section-inner">
@@ -1232,23 +1227,13 @@ pinWhatsAppToVisibleViewport();
 
 function initHeroSlides() {
   const hero = document.querySelector('.hero');
-  const control = hero.querySelector('.hero-motion');
-  const symbol = control.querySelector('span');
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   let visible = true;
-  let paused = false;
 
   function sync() {
-    hero.toggleAttribute('data-sliding', visible && !document.hidden && !paused && !reducedMotion.matches);
-    control.hidden = reducedMotion.matches;
-    control.setAttribute('aria-label', paused ? 'Play background slides' : 'Pause background slides');
-    symbol.textContent = paused ? '▶' : 'Ⅱ';
+    hero.toggleAttribute('data-sliding', visible && !document.hidden && !reducedMotion.matches);
   }
 
-  control.addEventListener('click', () => {
-    paused = !paused;
-    sync();
-  });
   document.addEventListener('visibilitychange', sync);
   reducedMotion.addEventListener('change', sync);
 
